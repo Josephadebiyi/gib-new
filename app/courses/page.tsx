@@ -1,3 +1,5 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -13,11 +15,24 @@ import {
   Database,
   Smartphone,
   BarChart,
+  Palette,
+  Languages,
+  BookOpen,
+  Briefcase,
+  Target,
+  Phone,
+  Mail,
 } from "lucide-react"
+import Image from "next/image"
 import Link from "next/link"
+import { useTranslation } from "@/hooks/useTranslation"
+import { LanguageSwitcher } from "@/components/LanguageSwitcher"
 
 export default function CoursesPage() {
+  const { t } = useTranslation()
+
   const courses = [
+    // Technology Courses
     {
       id: "aws-cloud",
       category: "Cloud Computing",
@@ -30,19 +45,21 @@ export default function CoursesPage() {
       icon: <Globe className="w-8 h-8" />,
       gradient: "from-blue-500/10 to-blue-600/20",
       skills: ["AWS Core Services", "Cloud Architecture", "Security", "Pricing"],
+      image: "/images/cybersecurity-course.jpg",
     },
     {
       id: "cybersecurity",
       category: "Cybersecurity",
-      title: "CISSP Cybersecurity Professional",
-      description: "Comprehensive cybersecurity training preparing you for CISSP certification and security roles.",
-      duration: "12 weeks",
+      title: "Cybersecurity Vulnerability Tester",
+      description: "Comprehensive cybersecurity training with ethical hacking and penetration testing skills.",
+      duration: "4 months",
       students: "1,800+",
       rating: 4.8,
       level: "Advanced",
       icon: <Shield className="w-8 h-8" />,
       gradient: "from-red-500/10 to-red-600/20",
-      skills: ["Risk Management", "Security Architecture", "Incident Response", "Compliance"],
+      skills: ["Ethical Hacking", "Penetration Testing", "Security Assessment", "Compliance"],
+      image: "/images/cybersecurity-course.jpg",
     },
     {
       id: "full-stack",
@@ -56,6 +73,7 @@ export default function CoursesPage() {
       icon: <Code className="w-8 h-8" />,
       gradient: "from-green-500/10 to-green-600/20",
       skills: ["React", "Node.js", "MongoDB", "AWS Deployment"],
+      image: "/images/uiux-design-course.jpg",
     },
     {
       id: "data-analytics",
@@ -69,6 +87,7 @@ export default function CoursesPage() {
       icon: <BarChart className="w-8 h-8" />,
       gradient: "from-purple-500/10 to-purple-600/20",
       skills: ["Python", "SQL", "Tableau", "Statistical Analysis"],
+      image: "/images/iam-course.jpg",
     },
     {
       id: "mobile-dev",
@@ -82,6 +101,7 @@ export default function CoursesPage() {
       icon: <Smartphone className="w-8 h-8" />,
       gradient: "from-orange-500/10 to-orange-600/20",
       skills: ["React Native", "Mobile UI/UX", "App Store Deployment", "Native APIs"],
+      image: "/images/language-courses.jpg",
     },
     {
       id: "database-admin",
@@ -95,6 +115,167 @@ export default function CoursesPage() {
       icon: <Database className="w-8 h-8" />,
       gradient: "from-indigo-500/10 to-indigo-600/20",
       skills: ["PostgreSQL", "MongoDB", "Performance Tuning", "Backup & Recovery"],
+      image: "/images/kyc-compliance-course.jpg",
+    },
+    {
+      id: "iam",
+      category: "Security",
+      title: "Identity & Access Management (IAM)",
+      description: "Master IAM frameworks, RBAC, SSO, and multi-factor authentication systems.",
+      duration: "3 months",
+      students: "800+",
+      rating: 4.7,
+      level: "Intermediate",
+      icon: <Shield className="w-8 h-8" />,
+      gradient: "from-teal-500/10 to-teal-600/20",
+      skills: ["IAM Frameworks", "RBAC", "SSO & MFA", "Compliance"],
+      image: "/images/iam-course.jpg",
+    },
+    {
+      id: "kyc-compliance",
+      category: "Compliance",
+      title: "KYC & Compliance Specialist",
+      description: "Learn KYC regulations, customer due diligence, and fraud detection techniques.",
+      duration: "2 months",
+      students: "600+",
+      rating: 4.6,
+      level: "Beginner",
+      icon: <BookOpen className="w-8 h-8" />,
+      gradient: "from-emerald-500/10 to-emerald-600/20",
+      skills: ["KYC & AML", "Due Diligence", "Risk Assessment", "Fraud Prevention"],
+      image: "/images/kyc-compliance-course.jpg",
+    },
+
+    // Design Courses
+    {
+      id: "uiux-design",
+      category: "Design",
+      title: "UI/UX & Webflow Design",
+      description: "Master modern design principles, user experience, and Webflow development.",
+      duration: "3 months",
+      students: "1,400+",
+      rating: 4.8,
+      level: "Beginner",
+      icon: <Palette className="w-8 h-8" />,
+      gradient: "from-pink-500/10 to-pink-600/20",
+      skills: ["UI/UX Principles", "Wireframing", "Webflow", "User Research"],
+      image: "/images/uiux-design-course.jpg",
+    },
+    {
+      id: "graphics-design",
+      category: "Design",
+      title: "Graphics Design & Branding",
+      description: "Create stunning visual designs, logos, and brand identities using industry-standard tools.",
+      duration: "3 months",
+      students: "1,100+",
+      rating: 4.7,
+      level: "Beginner",
+      icon: <Palette className="w-8 h-8" />,
+      gradient: "from-rose-500/10 to-rose-600/20",
+      skills: ["Adobe Creative Suite", "Logo Design", "Brand Identity", "Print Design"],
+      image: "/images/uiux-design-course.jpg",
+    },
+
+    // Business & Management Courses
+    {
+      id: "project-management",
+      category: "Management",
+      title: "Project Management Professional",
+      description: "Learn agile methodologies, project planning, and team leadership skills.",
+      duration: "6 weeks",
+      students: "2,000+",
+      rating: 4.8,
+      level: "Intermediate",
+      icon: <Target className="w-8 h-8" />,
+      gradient: "from-blue-500/10 to-blue-600/20",
+      skills: ["Agile & Scrum", "Project Planning", "Risk Management", "Team Leadership"],
+      image: "/images/kyc-compliance-course.jpg",
+    },
+    {
+      id: "product-management",
+      category: "Management",
+      title: "Product Management Essentials",
+      description: "Master product strategy, roadmap planning, and user-centered product development.",
+      duration: "8 weeks",
+      students: "1,600+",
+      rating: 4.9,
+      level: "Intermediate",
+      icon: <Briefcase className="w-8 h-8" />,
+      gradient: "from-violet-500/10 to-violet-600/20",
+      skills: ["Product Strategy", "Roadmap Planning", "User Research", "Analytics"],
+      image: "/images/iam-course.jpg",
+    },
+    {
+      id: "business-leadership",
+      category: "Leadership",
+      title: "Business Leadership Program",
+      description: "Intensive 3-week program covering strategic thinking, team management, and executive skills.",
+      duration: "3 weeks",
+      students: "800+",
+      rating: 4.9,
+      level: "Advanced",
+      icon: <Users className="w-8 h-8" />,
+      gradient: "from-amber-500/10 to-amber-600/20",
+      skills: ["Strategic Thinking", "Team Management", "Decision Making", "Communication"],
+      image: "/images/kyc-compliance-course.jpg",
+    },
+
+    // Language Courses
+    {
+      id: "french-language",
+      category: "Languages",
+      title: "French Language Mastery",
+      description: "From beginner to advanced French proficiency with business communication focus.",
+      duration: "3-6 months",
+      students: "1,800+",
+      rating: 4.7,
+      level: "All Levels",
+      icon: <Languages className="w-8 h-8" />,
+      gradient: "from-blue-500/10 to-blue-600/20",
+      skills: ["Conversational French", "Business French", "DELF Preparation", "Cultural Insights"],
+      image: "/images/language-courses.jpg",
+    },
+    {
+      id: "spanish-language",
+      category: "Languages",
+      title: "Spanish Language Excellence",
+      description: "Comprehensive Spanish program from basics to professional proficiency.",
+      duration: "3-6 months",
+      students: "2,200+",
+      rating: 4.8,
+      level: "All Levels",
+      icon: <Languages className="w-8 h-8" />,
+      gradient: "from-red-500/10 to-red-600/20",
+      skills: ["Conversational Spanish", "Business Spanish", "DELE Preparation", "Latin Culture"],
+      image: "/images/language-courses.jpg",
+    },
+    {
+      id: "lithuanian-language",
+      category: "Languages",
+      title: "Lithuanian Language Program",
+      description: "Learn Lithuanian for living and working in the Baltic region.",
+      duration: "3-6 months",
+      students: "600+",
+      rating: 4.6,
+      level: "All Levels",
+      icon: <Languages className="w-8 h-8" />,
+      gradient: "from-green-500/10 to-green-600/20",
+      skills: ["Basic Lithuanian", "Business Lithuanian", "LKI Certification", "Baltic Culture"],
+      image: "/images/language-courses.jpg",
+    },
+    {
+      id: "ielts-preparation",
+      category: "English Exams",
+      title: "IELTS Preparation Course",
+      description: "Comprehensive IELTS preparation for academic and general training modules.",
+      duration: "8 weeks",
+      students: "3,500+",
+      rating: 4.9,
+      level: "Intermediate",
+      icon: <BookOpen className="w-8 h-8" />,
+      gradient: "from-indigo-500/10 to-indigo-600/20",
+      skills: ["Reading Skills", "Writing Tasks", "Speaking Practice", "Listening Comprehension"],
+      image: "/images/language-courses.jpg",
     },
   ]
 
@@ -105,40 +286,51 @@ export default function CoursesPage() {
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center space-x-8">
             <Link href="/">
-              <div className="bg-white/95 text-[#1a5f3f] px-4 py-2 rounded-lg font-bold text-xl shadow-lg cursor-pointer">
-                GITB
-              </div>
+              <Image
+                src="/images/gitb-logo-white.png"
+                alt="GITB Logo"
+                width={120}
+                height={40}
+                className="h-10 w-auto cursor-pointer"
+              />
             </Link>
             <nav className="hidden md:flex space-x-8 text-sm font-medium">
-              <Link href="/" className="hover:text-[#daff7d] transition-colors">
-                Home
-              </Link>
               <Link href="/courses" className="text-[#daff7d] font-semibold">
-                Courses
+                {t("nav.courses")}
               </Link>
               <Link href="/about" className="hover:text-[#daff7d] transition-colors">
-                About Us
+                {t("nav.about")}
               </Link>
               <Link href="/how-it-works" className="hover:text-[#daff7d] transition-colors">
-                How It Works
+                {t("nav.howItWorks")}
               </Link>
               <Link href="/faq" className="hover:text-[#daff7d] transition-colors">
-                FAQ
+                {t("nav.faq")}
               </Link>
             </nav>
           </div>
           <div className="flex items-center space-x-6">
-            <div className="flex items-center space-x-2 text-sm">
-              <span className="bg-white/20 px-2 py-1 rounded">EN | LT</span>
-            </div>
+            <LanguageSwitcher />
             <Link href="/application">
-              <Button className="bg-[#daff7d] text-[#1a5f3f] hover:bg-[#c5e86a] text-sm px-6 py-2 font-semibold shadow-lg">
-                APPLY NOW
+              <Button className="bg-[#daff7d] text-[#1a5f3f] hover:bg-[#c5e86a] text-sm px-4 py-2 sm:px-6 font-semibold shadow-lg transition-all">
+                {t("nav.applyNow")}
               </Button>
             </Link>
           </div>
         </div>
       </header>
+
+      {/* Announcement Banner */}
+      <section className="bg-[#daff7d] py-3 px-4 text-center">
+        <div className="max-w-7xl mx-auto">
+          <p className="text-[#1a5f3f] font-semibold text-sm sm:text-base">
+            🎉 <span className="font-bold">ENROLL NOW</span> and get <span className="font-bold">15% OFF</span> with
+            code:
+            <span className="bg-[#1a5f3f] text-[#daff7d] px-2 py-1 rounded ml-2 font-mono">SUPERTECH</span>
+            <span className="ml-2">- Limited Time Offer!</span>
+          </p>
+        </div>
+      </section>
 
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-purple-100/30 via-blue-50/40 to-green-50/30 py-20 px-4 relative overflow-hidden">
@@ -148,11 +340,11 @@ export default function CoursesPage() {
         </div>
 
         <div className="max-w-7xl mx-auto text-center relative z-10">
-          <h1 className="text-5xl font-bold text-gray-900 mb-6">
+          <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">
             Industry-Focused <span className="text-[#1a5f3f]">Tech Courses</span>
           </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-            Choose from our comprehensive catalog of EU-recognized programs designed to prepare you for high-demand tech
+          <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+            Choose from our comprehensive catalog of EU-recognized programs designed to prepare you for high-demand
             careers
           </p>
           <div className="flex flex-wrap justify-center gap-4 mb-8">
@@ -163,57 +355,94 @@ export default function CoursesPage() {
         </div>
       </section>
 
+      {/* Course Categories */}
+      <section className="py-12 px-4 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-wrap justify-center gap-4 mb-12">
+            {["All", "Technology", "Design", "Management", "Languages", "English Exams"].map((category) => (
+              <Button
+                key={category}
+                variant={category === "All" ? "default" : "outline"}
+                className={`px-4 py-2 sm:px-6 sm:py-2 text-sm sm:text-base transition-all ${
+                  category === "All"
+                    ? "bg-[#1a5f3f] text-white"
+                    : "border-[#1a5f3f]/30 text-[#1a5f3f] hover:bg-[#daff7d]/20"
+                }`}
+              >
+                {category}
+              </Button>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Courses Grid */}
       <section className="py-20 px-4">
         <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-8">
+          <div className="grid lg:grid-cols-2 xl:grid-cols-3 gap-8">
             {courses.map((course, index) => (
               <Card
                 key={index}
                 className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 bg-white/80 backdrop-blur-sm group"
               >
-                <CardContent className="p-8">
-                  <div className="flex items-start justify-between mb-6">
-                    <div className={`bg-gradient-to-br ${course.gradient} p-4 rounded-2xl`}>
+                <div className="relative h-48 overflow-hidden rounded-t-lg">
+                  <Image
+                    src={course.image || "/placeholder.svg"}
+                    alt={course.title}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute top-4 right-4">
+                    <Badge className="bg-[#daff7d]/90 text-[#1a5f3f]">{course.level}</Badge>
+                  </div>
+                </div>
+
+                <CardContent className="p-6">
+                  <div className="flex items-center mb-4">
+                    <div className={`bg-gradient-to-br ${course.gradient} p-3 rounded-xl mr-3`}>
                       <div className="text-[#1a5f3f]">{course.icon}</div>
                     </div>
-                    <Badge className="bg-[#daff7d]/20 text-[#1a5f3f]">{course.level}</Badge>
+                    <div>
+                      <p className="text-sm font-semibold text-[#1a5f3f] mb-1">{course.category}</p>
+                      <h3 className="text-lg font-bold text-gray-900 leading-tight">{course.title}</h3>
+                    </div>
                   </div>
 
-                  <div className="mb-4">
-                    <p className="text-sm font-semibold text-[#1a5f3f] mb-2">{course.category}</p>
-                    <h3 className="text-2xl font-bold text-gray-900 mb-3">{course.title}</h3>
-                    <p className="text-gray-600 leading-relaxed">{course.description}</p>
-                  </div>
+                  <p className="text-gray-600 leading-relaxed mb-4 text-sm">{course.description}</p>
 
-                  <div className="flex items-center space-x-6 mb-6 text-sm text-gray-500">
+                  <div className="flex items-center space-x-4 mb-4 text-xs text-gray-500">
                     <div className="flex items-center">
-                      <Clock className="w-4 h-4 mr-2" />
+                      <Clock className="w-3 h-3 mr-1" />
                       {course.duration}
                     </div>
                     <div className="flex items-center">
-                      <Users className="w-4 h-4 mr-2" />
-                      {course.students} enrolled
+                      <Users className="w-3 h-3 mr-1" />
+                      {course.students}
                     </div>
                     <div className="flex items-center">
-                      <Star className="w-4 h-4 mr-2 text-[#daff7d] fill-current" />
+                      <Star className="w-3 h-3 mr-1 text-[#daff7d] fill-current" />
                       {course.rating}
                     </div>
                   </div>
 
                   <div className="mb-6">
-                    <p className="text-sm font-semibold text-gray-700 mb-3">Key Skills:</p>
-                    <div className="flex flex-wrap gap-2">
-                      {course.skills.map((skill, skillIndex) => (
-                        <Badge key={skillIndex} variant="outline" className="text-xs">
+                    <p className="text-xs font-semibold text-gray-700 mb-2">Key Skills:</p>
+                    <div className="flex flex-wrap gap-1">
+                      {course.skills.slice(0, 3).map((skill, skillIndex) => (
+                        <Badge key={skillIndex} variant="outline" className="text-xs px-2 py-1">
                           {skill}
                         </Badge>
                       ))}
+                      {course.skills.length > 3 && (
+                        <Badge variant="outline" className="text-xs px-2 py-1">
+                          +{course.skills.length - 3} more
+                        </Badge>
+                      )}
                     </div>
                   </div>
 
                   <Link href={`/courses/${course.id}`}>
-                    <Button className="w-full bg-gradient-to-r from-[#1a5f3f] to-[#2d7a5a] text-white hover:from-[#145033] hover:to-[#246647] group-hover:shadow-lg transition-all">
+                    <Button className="w-full bg-gradient-to-r from-[#1a5f3f] to-[#2d7a5a] text-white hover:from-[#145033] hover:to-[#246647] group-hover:shadow-lg transition-all text-sm sm:text-base py-2 sm:py-3">
                       Learn More
                       <ArrowRight className="w-4 h-4 ml-2" />
                     </Button>
@@ -228,19 +457,19 @@ export default function CoursesPage() {
       {/* Certification Partners */}
       <section className="py-16 px-4 bg-gradient-to-br from-gray-50/50 to-blue-50/30">
         <div className="max-w-7xl mx-auto text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8">
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-8">
             Prepare for <span className="text-[#1a5f3f]">Industry Certifications</span>
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-6 gap-6 items-center opacity-70 hover:opacity-100 transition-opacity">
             {["AWS", "Microsoft", "Google Cloud", "CompTIA", "CISSP", "Cisco"].map((cert, index) => (
               <div
                 key={index}
-                className="bg-white/80 backdrop-blur-sm p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow text-center"
+                className="bg-white/80 backdrop-blur-sm p-4 sm:p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow text-center"
               >
-                <div className="w-16 h-16 bg-gradient-to-br from-[#1a5f3f]/10 to-[#daff7d]/20 rounded-lg flex items-center justify-center mx-auto mb-3">
-                  <Award className="w-8 h-8 text-[#1a5f3f]" />
+                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-[#1a5f3f]/10 to-[#daff7d]/20 rounded-lg flex items-center justify-center mx-auto mb-3">
+                  <Award className="w-6 h-6 sm:w-8 sm:h-8 text-[#1a5f3f]" />
                 </div>
-                <span className="text-sm font-semibold text-gray-700">{cert}</span>
+                <span className="text-xs sm:text-sm font-semibold text-gray-700">{cert}</span>
               </div>
             ))}
           </div>
@@ -250,12 +479,12 @@ export default function CoursesPage() {
       {/* CTA Section */}
       <section className="py-20 px-4 bg-gradient-to-r from-[#1a5f3f] to-[#2d7a5a]">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl font-bold text-white mb-6">Ready to Start Learning?</h2>
-          <p className="text-xl text-green-100 mb-8">
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">Ready to Start Learning?</h2>
+          <p className="text-lg sm:text-xl text-green-100 mb-8">
             Join thousands of students who have transformed their careers with our industry-focused programs
           </p>
           <Link href="/application">
-            <Button className="bg-[#daff7d] text-[#1a5f3f] hover:bg-[#c5e86a] px-8 py-4 text-lg rounded-xl shadow-xl font-semibold">
+            <Button className="bg-[#daff7d] text-[#1a5f3f] hover:bg-[#c5e86a] px-6 py-3 sm:px-8 sm:py-4 text-base sm:text-lg rounded-xl shadow-xl font-semibold transition-all">
               Apply Now - €50 Application Fee
               <ArrowRight className="w-5 h-5 ml-2" />
             </Button>
@@ -266,12 +495,16 @@ export default function CoursesPage() {
       {/* Footer */}
       <footer className="bg-[#1a5f3f] text-white py-16 px-4">
         <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
               <Link href="/">
-                <div className="bg-white text-[#1a5f3f] px-4 py-2 rounded-lg font-bold text-xl mb-6 inline-block cursor-pointer">
-                  GITB
-                </div>
+                <Image
+                  src="/images/gitb-logo-white.png"
+                  alt="GITB Logo"
+                  width={120}
+                  height={40}
+                  className="h-10 w-auto mb-6 cursor-pointer"
+                />
               </Link>
               <p className="text-green-100 mb-6 leading-relaxed">
                 Global Institute of Tech and Business - Empowering careers through technology education.
@@ -281,11 +514,6 @@ export default function CoursesPage() {
               <h4 className="font-bold text-lg mb-6">Quick Links</h4>
               <div className="space-y-3 text-green-100">
                 <p>
-                  <Link href="/" className="hover:text-white transition-colors">
-                    Home
-                  </Link>
-                </p>
-                <p>
                   <Link href="/courses" className="hover:text-white transition-colors">
                     Courses
                   </Link>
@@ -293,6 +521,16 @@ export default function CoursesPage() {
                 <p>
                   <Link href="/about" className="hover:text-white transition-colors">
                     About Us
+                  </Link>
+                </p>
+                <p>
+                  <Link href="/how-it-works" className="hover:text-white transition-colors">
+                    How It Works
+                  </Link>
+                </p>
+                <p>
+                  <Link href="/faq" className="hover:text-white transition-colors">
+                    FAQ
                   </Link>
                 </p>
                 <p>
@@ -305,19 +543,59 @@ export default function CoursesPage() {
             <div>
               <h4 className="font-bold text-lg mb-6">Programs</h4>
               <div className="space-y-3 text-green-100">
-                <p>Cloud Computing</p>
-                <p>Cybersecurity</p>
-                <p>Full Stack Development</p>
-                <p>Data Analytics</p>
+                <p>
+                  <Link href="/courses" className="hover:text-white transition-colors">
+                    Cloud Computing
+                  </Link>
+                </p>
+                <p>
+                  <Link href="/courses" className="hover:text-white transition-colors">
+                    Cybersecurity
+                  </Link>
+                </p>
+                <p>
+                  <Link href="/courses" className="hover:text-white transition-colors">
+                    UI/UX Design
+                  </Link>
+                </p>
+                <p>
+                  <Link href="/courses" className="hover:text-white transition-colors">
+                    Language Programs
+                  </Link>
+                </p>
               </div>
             </div>
             <div>
               <h4 className="font-bold text-lg mb-6">Contact</h4>
-              <div className="space-y-3 text-green-100">
-                <p>+370 600 12345</p>
-                <p>info@gitb.eu</p>
-                <p>Vilnius, Lithuania</p>
+              <div className="space-y-4">
+                <div className="flex items-center space-x-3">
+                  <Phone className="w-5 h-5 text-[#daff7d]" />
+                  <span className="text-green-100">+370 600 12345</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <Mail className="w-5 h-5 text-[#daff7d]" />
+                  <span className="text-green-100">admissions@gitb.eu</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <Globe className="w-5 h-5 text-[#daff7d]" />
+                  <span className="text-green-100">Vilnius, Lithuania</span>
+                </div>
               </div>
+            </div>
+          </div>
+
+          <div className="border-t border-green-600/30 mt-12 pt-8 text-center">
+            <p className="text-green-100">© 2024 Global Institute of Tech and Business. All rights reserved.</p>
+            <div className="flex flex-wrap justify-center space-x-4 sm:space-x-8 mt-4 text-sm text-green-200">
+              <Link href="/privacy-policy" className="hover:text-white transition-colors">
+                Privacy Policy
+              </Link>
+              <Link href="/terms-conditions" className="hover:text-white transition-colors">
+                Terms & Conditions
+              </Link>
+              <Link href="/cookie-policy" className="hover:text-white transition-colors">
+                Cookie Policy
+              </Link>
             </div>
           </div>
         </div>

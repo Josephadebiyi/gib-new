@@ -33,7 +33,7 @@ export default function HomePage() {
           <div className="flex items-center space-x-8">
             <Link href="/">
               <Image
-                src="/images/gitb-logo.png"
+                src="/images/gitb-logo-white.png"
                 alt="GITB Logo"
                 width={120}
                 height={40}
@@ -41,9 +41,6 @@ export default function HomePage() {
               />
             </Link>
             <nav className="hidden md:flex space-x-8 text-sm font-medium">
-              <Link href="/" className="text-[#daff7d] font-semibold">
-                {t("nav.home")}
-              </Link>
               <Link href="/courses" className="hover:text-[#daff7d] transition-colors">
                 {t("nav.courses")}
               </Link>
@@ -72,6 +69,18 @@ export default function HomePage() {
           </div>
         </div>
       </header>
+
+      {/* Announcement Banner */}
+      <section className="bg-[#daff7d] py-3 px-4 text-center">
+        <div className="max-w-7xl mx-auto">
+          <p className="text-[#1a5f3f] font-semibold text-sm sm:text-base">
+            🎉 <span className="font-bold">ENROLL NOW</span> and get <span className="font-bold">15% OFF</span> with
+            code:
+            <span className="bg-[#1a5f3f] text-[#daff7d] px-2 py-1 rounded ml-2 font-mono">SUPERTECH</span>
+            <span className="ml-2">- Limited Time Offer!</span>
+          </p>
+        </div>
+      </section>
 
       {/* Hero Section with Cloudy Background */}
       <section className="relative min-h-screen bg-gradient-to-br from-purple-100/30 via-blue-50/40 to-green-50/30 px-4 py-20 overflow-hidden">
@@ -402,11 +411,11 @@ export default function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
               <Image
-                src="/images/gitb-logo.png"
+                src="/images/gitb-logo-white.png"
                 alt="GITB Logo"
                 width={120}
                 height={40}
-                className="h-10 w-auto mb-6 brightness-0 invert"
+                className="h-10 w-auto mb-6"
               />
               <p className="text-green-100 mb-6 leading-relaxed">{t("footer.description")}</p>
               <div className="flex space-x-4">
