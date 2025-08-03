@@ -1,3 +1,5 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -5,40 +7,62 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Upload, CreditCard, Shield, Award, CheckCircle, FileText, User, GraduationCap } from "lucide-react"
+import {
+  Upload,
+  CreditCard,
+  Shield,
+  Award,
+  CheckCircle,
+  FileText,
+  User,
+  GraduationCap,
+  Phone,
+  Mail,
+  Globe,
+} from "lucide-react"
+import Image from "next/image"
 import Link from "next/link"
+import { useTranslation } from "@/hooks/useTranslation"
+import { LanguageSwitcher } from "@/components/LanguageSwitcher"
 
 export default function ApplicationPage() {
+  const { t } = useTranslation()
+
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-gradient-to-br from-green-50/30 via-lime-50/20 to-yellow-50/10">
       {/* Header */}
-      <header className="bg-gradient-to-r from-[#1a5f3f]/90 to-[#2d7a5a]/90 backdrop-blur-sm text-white px-4 py-4">
+      <header className="bg-[#173104] text-white px-4 py-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center space-x-8">
             <Link href="/">
-              <div className="bg-white/95 text-[#1a5f3f] px-4 py-2 rounded-lg font-bold text-xl shadow-lg cursor-pointer">
-                GITB
-              </div>
+              <Image
+                src="/images/gitb-logo.png"
+                alt="GITB Logo"
+                width={120}
+                height={40}
+                className="h-10 w-auto cursor-pointer brightness-0 invert"
+              />
             </Link>
             <nav className="hidden md:flex space-x-8 text-sm font-medium">
-              <Link href="/" className="hover:text-[#daff7d] transition-colors">
-                Home
+              <Link href="/" className="hover:text-[#b9ee44] transition-colors">
+                {t("nav.home")}
               </Link>
-              <Link href="/courses" className="hover:text-[#daff7d] transition-colors">
-                Courses
+              <Link href="/courses" className="hover:text-[#b9ee44] transition-colors">
+                {t("nav.courses")}
               </Link>
-              <Link href="/about" className="hover:text-[#daff7d] transition-colors">
-                About Us
+              <Link href="/about" className="hover:text-[#b9ee44] transition-colors">
+                {t("nav.about")}
               </Link>
-              <Link href="/how-it-works" className="hover:text-[#daff7d] transition-colors">
-                How It Works
+              <Link href="/how-it-works" className="hover:text-[#b9ee44] transition-colors">
+                {t("nav.howItWorks")}
               </Link>
-              <Link href="/faq" className="hover:text-[#daff7d] transition-colors">
-                FAQ
+              <Link href="/faq" className="hover:text-[#b9ee44] transition-colors">
+                {t("nav.faq")}
               </Link>
             </nav>
           </div>
           <div className="flex items-center space-x-6">
+            <LanguageSwitcher />
             <div className="flex items-center space-x-2 text-sm">
               <span className="bg-white/20 px-2 py-1 rounded">EN | LT</span>
             </div>
@@ -47,30 +71,25 @@ export default function ApplicationPage() {
       </header>
 
       {/* Application Hero */}
-      <section className="bg-gradient-to-br from-purple-100/30 via-blue-50/40 to-green-50/30 py-16 px-4 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-50">
-          <div className="absolute inset-0 bg-gradient-to-r from-[#daff7d]/5 via-transparent to-[#daff7d]/5"></div>
-          <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_20%_20%,_#daff7d_0.1px,_transparent_0.1px)] bg-[length:60px_60px]"></div>
-        </div>
-
-        <div className="max-w-4xl mx-auto text-center relative z-10">
-          <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-            Start Your <span className="text-[#1a5f3f]">Tech Journey</span>
+      <section className="bg-gradient-to-r from-[#b9ee44] to-[#a8d93f] py-16 px-4">
+        <div className="max-w-4xl mx-auto text-center">
+          <h1 className="text-4xl lg:text-5xl font-bold text-[#173104] mb-6">
+            Start Your <span className="text-white">Tech Journey</span>
           </h1>
-          <p className="text-xl text-gray-600 mb-8">
+          <p className="text-xl text-[#173104]/80 mb-8">
             Complete your application to join Europe's leading tech education institute
           </p>
           <div className="flex justify-center space-x-8 text-sm">
             <div className="flex items-center">
-              <CheckCircle className="w-5 h-5 text-[#1a5f3f] mr-2" />
+              <CheckCircle className="w-5 h-5 text-[#173104] mr-2" />
               <span>EU Recognized</span>
             </div>
             <div className="flex items-center">
-              <CheckCircle className="w-5 h-5 text-[#1a5f3f] mr-2" />
+              <CheckCircle className="w-5 h-5 text-[#173104] mr-2" />
               <span>92% Job Placement</span>
             </div>
             <div className="flex items-center">
-              <CheckCircle className="w-5 h-5 text-[#1a5f3f] mr-2" />
+              <CheckCircle className="w-5 h-5 text-[#173104] mr-2" />
               <span>Industry Partnerships</span>
             </div>
           </div>
@@ -83,9 +102,9 @@ export default function ApplicationPage() {
           <div className="grid lg:grid-cols-3 gap-8">
             {/* Form */}
             <div className="lg:col-span-2">
-              <Card className="shadow-xl border-0">
-                <CardHeader className="bg-gradient-to-r from-[#1a5f3f]/5 to-[#daff7d]/10">
-                  <CardTitle className="text-2xl text-[#1a5f3f] flex items-center">
+              <Card className="shadow-xl border-0 bg-white/80 backdrop-blur-sm">
+                <CardHeader className="bg-gradient-to-r from-[#173104]/5 to-[#b9ee44]/10">
+                  <CardTitle className="text-2xl text-[#173104] flex items-center">
                     <User className="w-6 h-6 mr-3" />
                     Application Form
                   </CardTitle>
@@ -94,7 +113,7 @@ export default function ApplicationPage() {
                   {/* Personal Information */}
                   <div>
                     <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
-                      <User className="w-5 h-5 mr-2 text-[#1a5f3f]" />
+                      <User className="w-5 h-5 mr-2 text-[#173104]" />
                       Personal Information
                     </h3>
                     <div className="grid md:grid-cols-2 gap-4">
@@ -140,7 +159,7 @@ export default function ApplicationPage() {
                   {/* Course Selection */}
                   <div>
                     <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
-                      <GraduationCap className="w-5 h-5 mr-2 text-[#1a5f3f]" />
+                      <GraduationCap className="w-5 h-5 mr-2 text-[#173104]" />
                       Course Selection
                     </h3>
                     <div>
@@ -150,12 +169,14 @@ export default function ApplicationPage() {
                           <SelectValue placeholder="Select your preferred course" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="aws-cloud">AWS Cloud Practitioner Certification</SelectItem>
-                          <SelectItem value="cybersecurity">CISSP Cybersecurity Professional</SelectItem>
-                          <SelectItem value="full-stack">Full Stack JavaScript Developer</SelectItem>
-                          <SelectItem value="data-analytics">Data Analytics & Visualization</SelectItem>
-                          <SelectItem value="mobile-dev">React Native Mobile Development</SelectItem>
-                          <SelectItem value="database-admin">Database Administration & Design</SelectItem>
+                          <SelectItem value="cybersecurity">Cybersecurity Professional (4 months)</SelectItem>
+                          <SelectItem value="cybersecurity-vuln">
+                            Cybersecurity Vulnerability Tester (4 months)
+                          </SelectItem>
+                          <SelectItem value="uiux-design">UI/UX & Webflow Design (3 months)</SelectItem>
+                          <SelectItem value="iam">Identity & Access Management (3 months)</SelectItem>
+                          <SelectItem value="kyc-compliance">KYC & Compliance Specialist (2 months)</SelectItem>
+                          <SelectItem value="languages">European Languages Program (3-6 months)</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
@@ -164,7 +185,7 @@ export default function ApplicationPage() {
                   {/* Education Background */}
                   <div>
                     <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
-                      <GraduationCap className="w-5 h-5 mr-2 text-[#1a5f3f]" />
+                      <GraduationCap className="w-5 h-5 mr-2 text-[#173104]" />
                       Education Background
                     </h3>
                     <div className="space-y-4">
@@ -197,7 +218,7 @@ export default function ApplicationPage() {
                   {/* Professional Experience */}
                   <div>
                     <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
-                      <FileText className="w-5 h-5 mr-2 text-[#1a5f3f]" />
+                      <FileText className="w-5 h-5 mr-2 text-[#173104]" />
                       Professional Experience
                     </h3>
                     <div className="space-y-4">
@@ -242,25 +263,25 @@ export default function ApplicationPage() {
                   {/* Document Uploads */}
                   <div>
                     <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
-                      <Upload className="w-5 h-5 mr-2 text-[#1a5f3f]" />
+                      <Upload className="w-5 h-5 mr-2 text-[#173104]" />
                       Required Documents
                     </h3>
                     <div className="space-y-4">
-                      <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-[#1a5f3f] transition-colors">
+                      <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-[#173104] transition-colors">
                         <Upload className="w-8 h-8 text-gray-400 mx-auto mb-2" />
                         <p className="text-sm text-gray-600 mb-2">Upload your CV/Resume *</p>
                         <Button variant="outline" size="sm">
                           Choose File
                         </Button>
                       </div>
-                      <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-[#1a5f3f] transition-colors">
+                      <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-[#173104] transition-colors">
                         <Upload className="w-8 h-8 text-gray-400 mx-auto mb-2" />
                         <p className="text-sm text-gray-600 mb-2">Upload ID/Passport *</p>
                         <Button variant="outline" size="sm">
                           Choose File
                         </Button>
                       </div>
-                      <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-[#1a5f3f] transition-colors">
+                      <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-[#173104] transition-colors">
                         <Upload className="w-8 h-8 text-gray-400 mx-auto mb-2" />
                         <p className="text-sm text-gray-600 mb-2">Educational Certificates (Optional)</p>
                         <Button variant="outline" size="sm">
@@ -276,11 +297,11 @@ export default function ApplicationPage() {
                       <Checkbox id="terms" className="mt-1" />
                       <Label htmlFor="terms" className="text-sm leading-relaxed">
                         I agree to the{" "}
-                        <Link href="#" className="text-[#1a5f3f] hover:underline">
+                        <Link href="/terms-conditions" className="text-[#173104] hover:underline">
                           Terms & Conditions
                         </Link>{" "}
                         and{" "}
-                        <Link href="#" className="text-[#1a5f3f] hover:underline">
+                        <Link href="/privacy-policy" className="text-[#173104] hover:underline">
                           Privacy Policy
                         </Link>{" "}
                         *
@@ -300,33 +321,33 @@ export default function ApplicationPage() {
             {/* Payment & Summary */}
             <div className="space-y-6">
               {/* Application Fee */}
-              <Card className="shadow-lg border-2 border-[#1a5f3f]/20">
-                <CardHeader className="bg-gradient-to-r from-[#1a5f3f]/5 to-[#daff7d]/10">
-                  <CardTitle className="text-lg text-[#1a5f3f] flex items-center">
+              <Card className="shadow-lg border-2 border-[#173104]/20 bg-white/80 backdrop-blur-sm">
+                <CardHeader className="bg-gradient-to-r from-[#173104]/5 to-[#b9ee44]/10">
+                  <CardTitle className="text-lg text-[#173104] flex items-center">
                     <CreditCard className="w-5 h-5 mr-2" />
                     Application Fee
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="p-6">
                   <div className="text-center mb-6">
-                    <div className="text-3xl font-bold text-[#1a5f3f] mb-2">€50</div>
+                    <div className="text-3xl font-bold text-[#173104] mb-2">€50</div>
                     <p className="text-sm text-gray-600">Non-refundable application fee</p>
                   </div>
                   <div className="space-y-3 text-sm text-gray-600 mb-6">
                     <div className="flex items-center">
-                      <CheckCircle className="w-4 h-4 text-[#1a5f3f] mr-2" />
+                      <CheckCircle className="w-4 h-4 text-[#173104] mr-2" />
                       <span>Deducted from tuition upon enrollment</span>
                     </div>
                     <div className="flex items-center">
-                      <CheckCircle className="w-4 h-4 text-[#1a5f3f] mr-2" />
+                      <CheckCircle className="w-4 h-4 text-[#173104] mr-2" />
                       <span>Secure payment processing</span>
                     </div>
                     <div className="flex items-center">
-                      <CheckCircle className="w-4 h-4 text-[#1a5f3f] mr-2" />
+                      <CheckCircle className="w-4 h-4 text-[#173104] mr-2" />
                       <span>Instant application review</span>
                     </div>
                   </div>
-                  <Button className="w-full bg-gradient-to-r from-[#1a5f3f] to-[#2d7a5a] text-white hover:shadow-lg transition-shadow">
+                  <Button className="w-full bg-gradient-to-r from-[#173104] to-[#2d5a1a] text-white hover:shadow-lg transition-shadow">
                     <Shield className="w-4 h-4 mr-2" />
                     Pay Securely with Stripe
                   </Button>
@@ -334,9 +355,9 @@ export default function ApplicationPage() {
               </Card>
 
               {/* Certification Preview */}
-              <Card className="shadow-lg border-0">
+              <Card className="shadow-lg border-0 bg-white/80 backdrop-blur-sm">
                 <CardHeader>
-                  <CardTitle className="text-lg text-[#1a5f3f] flex items-center">
+                  <CardTitle className="text-lg text-[#173104] flex items-center">
                     <Award className="w-5 h-5 mr-2" />
                     Certifications Available
                   </CardTitle>
@@ -344,16 +365,16 @@ export default function ApplicationPage() {
                 <CardContent className="p-6">
                   <div className="space-y-4">
                     {[
-                      "AWS Certified",
-                      "Microsoft Azure",
                       "CompTIA Security+",
-                      "Google Cloud",
-                      "CISSP",
-                      "Cisco CCNA",
+                      "CompTIA PenTest+",
+                      "Google UX Design",
+                      "CIAM Certified",
+                      "CKYCA Certified",
+                      "DELF/DELE/LKI",
                     ].map((cert, index) => (
                       <div key={index} className="flex items-center">
-                        <div className="w-10 h-10 bg-gradient-to-br from-[#1a5f3f]/10 to-[#daff7d]/20 rounded-lg flex items-center justify-center mr-3">
-                          <Award className="w-5 h-5 text-[#1a5f3f]" />
+                        <div className="w-10 h-10 bg-gradient-to-br from-[#173104]/10 to-[#b9ee44]/20 rounded-lg flex items-center justify-center mr-3">
+                          <Award className="w-5 h-5 text-[#173104]" />
                         </div>
                         <span className="text-sm font-medium">{cert}</span>
                       </div>
@@ -370,7 +391,7 @@ export default function ApplicationPage() {
                     Our admissions team is here to assist you with your application.
                   </p>
                   <div className="space-y-2 text-sm">
-                    <p className="font-medium">📧 admissions@gitb.eu</p>
+                    <p className="font-medium">📧 admissions@gitb.lt</p>
                     <p className="font-medium">📞 +370 600 12345</p>
                   </div>
                 </CardContent>
@@ -380,16 +401,48 @@ export default function ApplicationPage() {
         </div>
       </section>
 
+      {/* Newsletter Signup */}
+      <section className="py-16 px-4 bg-gradient-to-r from-[#173104]/5 to-[#b9ee44]/10">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">Stay Updated with GITB</h2>
+          <p className="text-lg text-gray-600 mb-8">
+            Get the latest news about courses, job opportunities, and industry insights
+          </p>
+
+          <Card className="bg-white/90 backdrop-blur-sm shadow-lg border-0 rounded-2xl">
+            <CardContent className="p-8">
+              <form className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+                <input
+                  type="text"
+                  placeholder="Full Name"
+                  className="flex-1 px-4 py-3 rounded-xl border border-gray-200 focus:border-[#173104] focus:ring-2 focus:ring-[#173104]/20 outline-none transition-all"
+                />
+                <input
+                  type="email"
+                  placeholder="Email Address"
+                  className="flex-1 px-4 py-3 rounded-xl border border-gray-200 focus:border-[#173104] focus:ring-2 focus:ring-[#173104]/20 outline-none transition-all"
+                />
+                <Button className="bg-gradient-to-r from-[#173104] to-[#2d5a1a] text-white px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all">
+                  Subscribe
+                </Button>
+              </form>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
       {/* Footer */}
-      <footer className="bg-[#1a5f3f] text-white py-16 px-4">
+      <footer className="bg-[#173104] text-white py-16 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-4 gap-8">
             <div>
-              <Link href="/">
-                <div className="bg-white text-[#1a5f3f] px-4 py-2 rounded-lg font-bold text-xl mb-6 inline-block cursor-pointer">
-                  GITB
-                </div>
-              </Link>
+              <Image
+                src="/images/gitb-logo.png"
+                alt="GITB Logo"
+                width={120}
+                height={40}
+                className="h-10 w-auto mb-6 brightness-0 invert"
+              />
               <p className="text-green-100 mb-6 leading-relaxed">
                 Global Institute of Tech and Business - Empowering careers through technology education.
               </p>
@@ -399,22 +452,22 @@ export default function ApplicationPage() {
               <div className="space-y-3 text-green-100">
                 <p>
                   <Link href="/" className="hover:text-white transition-colors">
-                    Home
+                    {t("nav.home")}
                   </Link>
                 </p>
                 <p>
                   <Link href="/courses" className="hover:text-white transition-colors">
-                    Courses
+                    {t("nav.courses")}
                   </Link>
                 </p>
                 <p>
                   <Link href="/about" className="hover:text-white transition-colors">
-                    About Us
+                    {t("nav.about")}
                   </Link>
                 </p>
                 <p>
                   <Link href="/how-it-works" className="hover:text-white transition-colors">
-                    How It Works
+                    {t("nav.howItWorks")}
                   </Link>
                 </p>
               </div>
@@ -422,19 +475,43 @@ export default function ApplicationPage() {
             <div>
               <h4 className="font-bold text-lg mb-6">Programs</h4>
               <div className="space-y-3 text-green-100">
-                <p>Cloud Computing</p>
                 <p>Cybersecurity</p>
-                <p>Full Stack Development</p>
-                <p>Data Analytics</p>
+                <p>UI/UX Design</p>
+                <p>Languages</p>
+                <p>Compliance</p>
               </div>
             </div>
             <div>
               <h4 className="font-bold text-lg mb-6">Contact</h4>
-              <div className="space-y-3 text-green-100">
-                <p>+370 600 12345</p>
-                <p>info@gitb.eu</p>
-                <p>Vilnius, Lithuania</p>
+              <div className="space-y-4">
+                <div className="flex items-center space-x-3">
+                  <Phone className="w-5 h-5 text-[#b9ee44]" />
+                  <span className="text-green-100">+370 600 12345</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <Mail className="w-5 h-5 text-[#b9ee44]" />
+                  <span className="text-green-100">admissions@gitb.lt</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <Globe className="w-5 h-5 text-[#b9ee44]" />
+                  <span className="text-green-100">Vilnius, Lithuania</span>
+                </div>
               </div>
+            </div>
+          </div>
+
+          <div className="border-t border-green-600/30 mt-12 pt-8 text-center">
+            <p className="text-green-100">© 2024 Global Institute of Tech and Business. All rights reserved.</p>
+            <div className="flex flex-wrap justify-center space-x-4 sm:space-x-8 mt-4 text-sm text-green-200">
+              <Link href="/privacy-policy" className="hover:text-white transition-colors">
+                Privacy Policy
+              </Link>
+              <Link href="/terms-conditions" className="hover:text-white transition-colors">
+                Terms & Conditions
+              </Link>
+              <Link href="/cookie-policy" className="hover:text-white transition-colors">
+                Cookie Policy
+              </Link>
             </div>
           </div>
         </div>

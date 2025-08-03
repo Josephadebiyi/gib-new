@@ -2,20 +2,20 @@
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
 import {
   Phone,
   Mail,
   Globe,
-  Award,
-  Users,
   ArrowRight,
+  Clock,
+  Award,
+  Building2,
+  TrendingUp,
   CheckCircle,
   Star,
-  Play,
-  Code,
-  Database,
-  Shield,
-  Cloud,
+  Target,
+  Briefcase,
 } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
@@ -26,31 +26,31 @@ export default function HomePage() {
   const { t } = useTranslation()
 
   return (
-    <div className="min-h-screen bg-white overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-green-50/30 via-lime-50/20 to-yellow-50/10 overflow-hidden">
       {/* Header */}
-      <header className="bg-gradient-to-r from-[#1a5f3f]/90 to-[#2d7a5a]/90 backdrop-blur-sm text-white px-4 py-4 relative z-50">
+      <header className="bg-[#173104] text-white px-4 py-4 relative z-50">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center space-x-8">
             <Link href="/">
               <Image
-                src="/images/gitb-logo-white.png"
+                src="/images/gitb-logo.png"
                 alt="GITB Logo"
                 width={120}
                 height={40}
-                className="h-10 w-auto cursor-pointer"
+                className="h-10 w-auto cursor-pointer brightness-0 invert"
               />
             </Link>
             <nav className="hidden md:flex space-x-8 text-sm font-medium">
-              <Link href="/courses" className="hover:text-[#daff7d] transition-colors">
-                {t("nav.courses")}
-              </Link>
-              <Link href="/about" className="hover:text-[#daff7d] transition-colors">
+              <Link href="/about" className="hover:text-[#b9ee44] transition-colors">
                 {t("nav.about")}
               </Link>
-              <Link href="/how-it-works" className="hover:text-[#daff7d] transition-colors">
+              <Link href="/courses" className="hover:text-[#b9ee44] transition-colors">
+                {t("nav.courses")}
+              </Link>
+              <Link href="/how-it-works" className="hover:text-[#b9ee44] transition-colors">
                 {t("nav.howItWorks")}
               </Link>
-              <Link href="/faq" className="hover:text-[#daff7d] transition-colors">
+              <Link href="/faq" className="hover:text-[#b9ee44] transition-colors">
                 {t("nav.faq")}
               </Link>
             </nav>
@@ -62,79 +62,61 @@ export default function HomePage() {
               <span>+370 600 12345</span>
             </div>
             <Link href="/application">
-              <Button className="bg-[#daff7d] text-[#1a5f3f] hover:bg-[#c5e86a] text-sm px-4 py-2 sm:px-6 font-semibold shadow-lg transition-all">
-                {t("nav.applyNow")}
+              <Button className="bg-gradient-to-r from-[#b9ee44] to-[#a8d93f] text-[#173104] hover:from-[#a8d93f] hover:to-[#97c73a] text-sm px-6 py-2 font-bold rounded-lg shadow-lg transition-all">
+                {t("nav.registerNow")}
               </Button>
             </Link>
           </div>
         </div>
       </header>
 
-      {/* Announcement Banner */}
-      <section className="bg-[#daff7d] py-3 px-4 text-center">
+      {/* Promotional Banner */}
+      <section className="bg-gradient-to-r from-[#b9ee44] to-[#a8d93f] py-3 px-4 text-center">
         <div className="max-w-7xl mx-auto">
-          <p className="text-[#1a5f3f] font-semibold text-sm sm:text-base">
-            🎉 <span className="font-bold">ENROLL NOW</span> and get <span className="font-bold">15% OFF</span> with
-            code:
-            <span className="bg-[#1a5f3f] text-[#daff7d] px-2 py-1 rounded ml-2 font-mono">SUPERTECH</span>
-            <span className="ml-2">- Limited Time Offer!</span>
-          </p>
+          <div className="flex items-center justify-center space-x-4 text-[#173104] font-bold text-sm">
+            <span>🎯 {t("banner.action")}</span>
+            <div className="flex items-center space-x-2">
+              <Clock className="w-4 h-4" />
+              <span>00:15:34</span>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Hero Section with Cloudy Background */}
-      <section className="relative min-h-screen bg-gradient-to-br from-purple-100/30 via-blue-50/40 to-green-50/30 px-4 py-20 overflow-hidden">
-        {/* Floating Tech Elements */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-20 left-10 animate-float">
-            <div className="bg-[#daff7d]/20 p-4 rounded-full backdrop-blur-sm">
-              <Code className="w-8 h-8 text-[#1a5f3f]/70" />
-            </div>
-          </div>
-          <div className="absolute top-40 right-20 animate-float-delayed">
-            <div className="bg-[#1a5f3f]/10 p-4 rounded-full backdrop-blur-sm">
-              <Database className="w-8 h-8 text-[#1a5f3f]/70" />
-            </div>
-          </div>
-          <div className="absolute bottom-40 left-20 animate-float">
-            <div className="bg-purple-200/30 p-4 rounded-full backdrop-blur-sm">
-              <Shield className="w-8 h-8 text-[#1a5f3f]/70" />
-            </div>
-          </div>
-          <div className="absolute top-60 right-40 animate-float-delayed">
-            <div className="bg-blue-200/30 p-4 rounded-full backdrop-blur-sm">
-              <Cloud className="w-8 h-8 text-[#1a5f3f]/70" />
-            </div>
-          </div>
-        </div>
-
-        {/* Cloud Shapes */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-10 left-1/4 w-64 h-32 bg-white/20 rounded-full blur-3xl"></div>
-          <div className="absolute top-40 right-1/4 w-80 h-40 bg-[#daff7d]/10 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-20 left-1/3 w-96 h-48 bg-purple-200/20 rounded-full blur-3xl"></div>
-        </div>
-
-        <div className="max-w-7xl mx-auto relative z-10">
+      {/* Main Hero Section */}
+      <section className="py-20 px-4 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="space-y-8">
               <div className="space-y-6">
-                <div className="inline-flex items-center bg-[#daff7d]/20 backdrop-blur-sm px-4 py-2 rounded-full text-[#1a5f3f] font-medium">
-                  <Star className="w-4 h-4 mr-2" />
-                  {t("hero.euRecognized")}
-                </div>
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
-                  {t("hero.title").split(" ").slice(0, -2).join(" ")}{" "}
-                  <span className="bg-gradient-to-r from-[#1a5f3f] to-[#2d7a5a] bg-clip-text text-transparent">
-                    {t("hero.title").split(" ").slice(-2).join(" ")}
-                  </span>
+                  {t("hero.gatewayToExcellence")}{" "}
+                  <span className="bg-gradient-to-r from-[#173104] to-[#2d5a1a] bg-clip-text text-transparent">
+                    {t("hero.techBusiness")}
+                  </span>{" "}
+                  {t("hero.andLanguage")}
                 </h1>
-                <p className="text-lg sm:text-xl text-gray-600 leading-relaxed">{t("hero.subtitle")}</p>
+                <p className="text-lg text-gray-600 leading-relaxed">{t("hero.jobReadySkills")}</p>
+
+                <div className="flex flex-wrap gap-4 text-sm">
+                  <Badge className="bg-[#173104]/10 text-[#173104] border-[#173104]/20 px-4 py-2">
+                    <CheckCircle className="w-4 h-4 mr-2" />
+                    {t("hero.euRecognized")}
+                  </Badge>
+                  <Badge className="bg-[#173104]/10 text-[#173104] border-[#173104]/20 px-4 py-2">
+                    <TrendingUp className="w-4 h-4 mr-2" />
+                    {t("hero.jobPlacement")}
+                  </Badge>
+                  <Badge className="bg-[#173104]/10 text-[#173104] border-[#173104]/20 px-4 py-2">
+                    <Globe className="w-4 h-4 mr-2" />
+                    {t("hero.europeAccess")}
+                  </Badge>
+                </div>
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link href="/application">
-                  <Button className="w-full sm:w-auto bg-gradient-to-r from-[#1a5f3f] to-[#2d7a5a] hover:from-[#145033] hover:to-[#246647] text-white px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg rounded-xl shadow-xl transition-all">
+                  <Button className="w-full sm:w-auto bg-gradient-to-r from-[#173104] to-[#2d5a1a] hover:from-[#145033] hover:to-[#246647] text-white px-8 py-4 text-lg rounded-xl shadow-xl transition-all">
                     {t("hero.startJourney")}
                     <ArrowRight className="w-5 h-5 ml-2" />
                   </Button>
@@ -142,162 +124,65 @@ export default function HomePage() {
                 <Link href="/courses">
                   <Button
                     variant="outline"
-                    className="w-full sm:w-auto border-2 border-[#1a5f3f]/30 text-[#1a5f3f] hover:bg-[#daff7d]/20 px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg rounded-xl bg-white/80 backdrop-blur-sm transition-all"
+                    className="w-full sm:w-auto border-2 border-[#173104]/30 text-[#173104] hover:bg-[#b9ee44]/20 px-8 py-4 text-lg rounded-xl bg-white/80 backdrop-blur-sm transition-all"
                   >
-                    <Play className="w-5 h-5 mr-2" />
                     {t("hero.exploreCourses")}
                   </Button>
                 </Link>
               </div>
-
-              <div className="grid grid-cols-3 gap-6 pt-8">
-                <div className="text-center">
-                  <div className="text-2xl sm:text-3xl font-bold text-[#1a5f3f]">5,000+</div>
-                  <div className="text-xs sm:text-sm text-gray-600">{t("stats.graduates")}</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl sm:text-3xl font-bold text-[#1a5f3f]">92%</div>
-                  <div className="text-xs sm:text-sm text-gray-600">{t("stats.jobPlacement")}</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl sm:text-3xl font-bold text-[#1a5f3f]">15</div>
-                  <div className="text-xs sm:text-sm text-gray-600">{t("stats.euCountries")}</div>
-                </div>
-              </div>
             </div>
 
             <div className="relative">
-              <div className="relative z-10">
-                <Image
-                  src="/images/cybersecurity-course.jpg"
-                  alt="Tech education"
-                  width={500}
-                  height={500}
-                  className="mx-auto rounded-2xl shadow-2xl"
-                />
-              </div>
-              {/* Floating certification badges */}
-              <div className="absolute -top-6 -right-6 bg-white/90 backdrop-blur-sm p-4 rounded-xl shadow-lg animate-float">
-                <Award className="w-8 h-8 text-[#daff7d]" />
-                <div className="text-xs font-semibold text-[#1a5f3f] mt-1">AWS Certified</div>
-              </div>
-              <div className="absolute -bottom-6 -left-6 bg-white/90 backdrop-blur-sm p-4 rounded-xl shadow-lg animate-float-delayed">
-                <Globe className="w-8 h-8 text-[#1a5f3f]" />
-                <div className="text-xs font-semibold text-[#1a5f3f] mt-1">EU Recognized</div>
-              </div>
+              <Image
+                src="/images/tech-business-courses.jpg"
+                alt="GITB Tech & Business Courses"
+                width={600}
+                height={400}
+                className="rounded-2xl shadow-2xl"
+              />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Step-by-Step Guide */}
-      <section className="py-20 px-4 bg-gradient-to-b from-white to-gray-50/50 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-50">
-          <div className="absolute inset-0 bg-gradient-to-r from-[#daff7d]/5 via-transparent to-[#daff7d]/5"></div>
-          <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_20%_20%,_#daff7d_0.1px,_transparent_0.1px)] bg-[length:60px_60px]"></div>
-        </div>
-
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">{t("stepByStep.title")}</h2>
-            <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">{t("stepByStep.subtitle")}</p>
-          </div>
-
-          <div className="relative">
-            {/* Connection Line */}
-            <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-[#1a5f3f]/20 via-[#daff7d]/40 to-[#1a5f3f]/20 transform -translate-y-1/2 hidden lg:block"></div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-8">
-              {[
-                {
-                  step: "01",
-                  title: t("stepByStep.steps.explore.title"),
-                  description: t("stepByStep.steps.explore.desc"),
-                  icon: <Globe className="w-6 sm:w-8 h-6 sm:h-8" />,
-                  color: "from-blue-400/20 to-blue-600/20",
-                },
-                {
-                  step: "02",
-                  title: t("stepByStep.steps.apply.title"),
-                  description: t("stepByStep.steps.apply.desc"),
-                  icon: <Users className="w-6 sm:w-8 h-6 sm:h-8" />,
-                  color: "from-green-400/20 to-green-600/20",
-                },
-                {
-                  step: "03",
-                  title: t("stepByStep.steps.accepted.title"),
-                  description: t("stepByStep.steps.accepted.desc"),
-                  icon: <CheckCircle className="w-6 sm:w-8 h-6 sm:h-8" />,
-                  color: "from-purple-400/20 to-purple-600/20",
-                },
-                {
-                  step: "04",
-                  title: t("stepByStep.steps.learn.title"),
-                  description: t("stepByStep.steps.learn.desc"),
-                  icon: <Code className="w-6 sm:w-8 h-6 sm:h-8" />,
-                  color: "from-orange-400/20 to-orange-600/20",
-                },
-                {
-                  step: "05",
-                  title: t("stepByStep.steps.certified.title"),
-                  description: t("stepByStep.steps.certified.desc"),
-                  icon: <Award className="w-6 sm:w-8 h-6 sm:h-8" />,
-                  color: "from-pink-400/20 to-pink-600/20",
-                },
-                {
-                  step: "06",
-                  title: t("stepByStep.steps.job.title"),
-                  description: t("stepByStep.steps.job.desc"),
-                  icon: <Star className="w-6 sm:w-8 h-6 sm:h-8" />,
-                  color: "from-indigo-400/20 to-indigo-600/20",
-                },
-              ].map((item, index) => (
-                <div key={index} className="relative group">
-                  <div className="text-center">
-                    <div
-                      className={`relative mx-auto w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br ${item.color} backdrop-blur-sm rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg`}
-                    >
-                      <div className="text-[#1a5f3f]">{item.icon}</div>
-                      <div className="absolute -top-2 -right-2 bg-[#daff7d] text-[#1a5f3f] text-xs font-bold w-5 h-5 sm:w-6 sm:h-6 rounded-full flex items-center justify-center">
-                        {item.step}
-                      </div>
-                    </div>
-                    <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-2">{item.title}</h3>
-                    <p className="text-xs sm:text-sm text-gray-600">{item.description}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="text-center mt-12">
-            <Link href="/how-it-works">
-              <Button className="bg-gradient-to-r from-[#1a5f3f] to-[#2d7a5a] text-white px-6 sm:px-8 py-3 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-                Learn More About Our Process
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Courses Preview */}
-      <section className="py-20 px-4 bg-white">
+      {/* Featured Courses Section */}
+      <section className="py-20 px-4 bg-white/50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">
-              Featured <span className="text-[#1a5f3f]">Programs</span>
+              {t("courses.industryReady")} <span className="text-[#173104]">{t("courses.programs")}</span>
             </h2>
-            <p className="text-lg sm:text-xl text-gray-600">
-              Explore our most popular courses designed for today's digital economy
-            </p>
+            <p className="text-lg sm:text-xl text-gray-600">{t("courses.designedForSuccess")}</p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow bg-white/80 backdrop-blur-sm group overflow-hidden">
-              <div className="relative h-48">
+              <div className="relative h-64">
                 <Image
-                  src="/images/uiux-design-course.jpg"
+                  src="/images/cybersecurity-flyer.jpg"
+                  alt="Cybersecurity Course"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+              <CardContent className="p-6">
+                <h3 className="text-xl font-bold text-gray-900 mb-2">Cybersecurity Professional</h3>
+                <p className="text-gray-600 mb-4">4 months intensive program with CompTIA Security+ certification</p>
+                <div className="flex items-center justify-between">
+                  <Badge className="bg-[#b9ee44]/20 text-[#173104]">4 Months</Badge>
+                  <Link href="/courses/cybersecurity">
+                    <Button className="bg-gradient-to-r from-[#173104] to-[#2d5a1a] text-white hover:shadow-lg transition-all text-sm">
+                      Learn More
+                    </Button>
+                  </Link>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow bg-white/80 backdrop-blur-sm group overflow-hidden">
+              <div className="relative h-64">
+                <Image
+                  src="/images/uiux-flyer.jpg"
                   alt="UI/UX Design Course"
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-300"
@@ -305,61 +190,45 @@ export default function HomePage() {
               </div>
               <CardContent className="p-6">
                 <h3 className="text-xl font-bold text-gray-900 mb-2">UI/UX & Webflow Design</h3>
-                <p className="text-gray-600 mb-4">
-                  Master modern design principles and create stunning user experiences
-                </p>
-                <Link href="/courses/uiux-design">
-                  <Button className="w-full bg-gradient-to-r from-[#1a5f3f] to-[#2d7a5a] text-white hover:shadow-lg transition-all">
-                    Learn More
-                  </Button>
-                </Link>
+                <p className="text-gray-600 mb-4">3 months program with Google UX Design Certificate</p>
+                <div className="flex items-center justify-between">
+                  <Badge className="bg-[#b9ee44]/20 text-[#173104]">3 Months</Badge>
+                  <Link href="/courses/uiux">
+                    <Button className="bg-gradient-to-r from-[#173104] to-[#2d5a1a] text-white hover:shadow-lg transition-all text-sm">
+                      Learn More
+                    </Button>
+                  </Link>
+                </div>
               </CardContent>
             </Card>
 
             <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow bg-white/80 backdrop-blur-sm group overflow-hidden">
-              <div className="relative h-48">
+              <div className="relative h-64">
                 <Image
-                  src="/images/language-courses.jpg"
+                  src="/images/languages-flyer.jpg"
                   alt="Language Courses"
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-300"
                 />
               </div>
               <CardContent className="p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Language Programs</h3>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">European Languages</h3>
                 <p className="text-gray-600 mb-4">French, Spanish, Lithuanian - Open doors across Europe</p>
-                <Link href="/courses/languages">
-                  <Button className="w-full bg-gradient-to-r from-[#1a5f3f] to-[#2d7a5a] text-white hover:shadow-lg transition-all">
-                    Learn More
-                  </Button>
-                </Link>
-              </CardContent>
-            </Card>
-
-            <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow bg-white/80 backdrop-blur-sm group overflow-hidden">
-              <div className="relative h-48">
-                <Image
-                  src="/images/iam-course.jpg"
-                  alt="Identity & Access Management"
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-              </div>
-              <CardContent className="p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Identity & Access Management</h3>
-                <p className="text-gray-600 mb-4">Secure digital identities and manage access controls</p>
-                <Link href="/courses/iam">
-                  <Button className="w-full bg-gradient-to-r from-[#1a5f3f] to-[#2d7a5a] text-white hover:shadow-lg transition-all">
-                    Learn More
-                  </Button>
-                </Link>
+                <div className="flex items-center justify-between">
+                  <Badge className="bg-[#b9ee44]/20 text-[#173104]">3-6 Months</Badge>
+                  <Link href="/courses/languages">
+                    <Button className="bg-gradient-to-r from-[#173104] to-[#2d5a1a] text-white hover:shadow-lg transition-all text-sm">
+                      Learn More
+                    </Button>
+                  </Link>
+                </div>
               </CardContent>
             </Card>
           </div>
 
           <div className="text-center mt-12">
             <Link href="/courses">
-              <Button className="bg-gradient-to-r from-[#1a5f3f] to-[#2d7a5a] text-white px-6 sm:px-8 py-3 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+              <Button className="bg-gradient-to-r from-[#173104] to-[#2d5a1a] text-white px-8 py-3 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
                 View All Courses
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Button>
@@ -368,62 +237,219 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 px-4 bg-gradient-to-r from-[#1a5f3f] to-[#2d7a5a] relative overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-r from-[#daff7d]/10 via-transparent to-[#daff7d]/10"></div>
-          <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,_#daff7d_0.5px,_transparent_0.5px)] bg-[length:60px_60px] opacity-20"></div>
-        </div>
-
-        <div className="max-w-4xl mx-auto text-center relative z-10">
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">Ready to Transform Your Career?</h2>
-          <p className="text-lg sm:text-xl text-green-100 mb-8 leading-relaxed">
-            Join thousands of students who have launched successful tech careers with industry-recognized skills and
-            EU-wide opportunities.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/application">
-              <Button className="w-full sm:w-auto bg-[#daff7d] text-[#1a5f3f] hover:bg-[#c5e86a] px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg rounded-xl shadow-lg font-semibold transition-all">
-                Start Your Application
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </Button>
-            </Link>
-            <Link href="/courses">
-              <Button
-                variant="outline"
-                className="w-full sm:w-auto border-2 border-white/30 text-white hover:bg-white/10 px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg rounded-xl bg-transparent backdrop-blur-sm transition-all"
-              >
-                Explore All Courses
-              </Button>
-            </Link>
+      {/* Job Market & Success Stats */}
+      <section className="py-20 px-4 bg-gradient-to-r from-[#173104] to-[#2d5a1a] text-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl font-bold mb-6">{t("jobMarket.europeOpportunity")}</h2>
+            <p className="text-xl text-green-100 max-w-3xl mx-auto">{t("jobMarket.demandGrowing")}</p>
           </div>
 
-          <div className="mt-12 text-sm text-green-200">
-            <p>✓ EU-Recognized Programs ✓ Industry Partnerships ✓ 92% Job Placement Rate</p>
+          <div className="grid md:grid-cols-4 gap-8 text-center mb-16">
+            <div className="bg-white/10 backdrop-blur-sm p-6 rounded-2xl">
+              <div className="text-4xl font-bold text-[#b9ee44] mb-2">92%</div>
+              <div className="text-green-100">{t("stats.jobPlacement")}</div>
+            </div>
+            <div className="bg-white/10 backdrop-blur-sm p-6 rounded-2xl">
+              <div className="text-4xl font-bold text-[#b9ee44] mb-2">€45K</div>
+              <div className="text-green-100">{t("stats.avgSalary")}</div>
+            </div>
+            <div className="bg-white/10 backdrop-blur-sm p-6 rounded-2xl">
+              <div className="text-4xl font-bold text-[#b9ee44] mb-2">15</div>
+              <div className="text-green-100">{t("stats.euCountries")}</div>
+            </div>
+            <div className="bg-white/10 backdrop-blur-sm p-6 rounded-2xl">
+              <div className="text-4xl font-bold text-[#b9ee44] mb-2">500+</div>
+              <div className="text-green-100">{t("stats.partnerCompanies")}</div>
+            </div>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h3 className="text-2xl font-bold mb-6">{t("jobMarket.whyChooseGitb")}</h3>
+              <div className="space-y-4">
+                <div className="flex items-center">
+                  <CheckCircle className="w-6 h-6 text-[#b9ee44] mr-3" />
+                  <span>{t("jobMarket.industryAligned")}</span>
+                </div>
+                <div className="flex items-center">
+                  <CheckCircle className="w-6 h-6 text-[#b9ee44] mr-3" />
+                  <span>{t("jobMarket.euRecognition")}</span>
+                </div>
+                <div className="flex items-center">
+                  <CheckCircle className="w-6 h-6 text-[#b9ee44] mr-3" />
+                  <span>{t("jobMarket.careerSupport")}</span>
+                </div>
+                <div className="flex items-center">
+                  <CheckCircle className="w-6 h-6 text-[#b9ee44] mr-3" />
+                  <span>{t("jobMarket.networkAccess")}</span>
+                </div>
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <Image src="/images/iam-flyer.jpg" alt="IAM Course" width={200} height={200} className="rounded-lg" />
+              <Image src="/images/kyc-flyer.jpg" alt="KYC Course" width={200} height={200} className="rounded-lg" />
+            </div>
           </div>
         </div>
       </section>
 
+      {/* Where Our Students Work */}
+      <section className="py-20 px-4 bg-white/50">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">
+              {t("students.whereTheyWork")} <span className="text-[#173104]">{t("students.graduates")}</span>
+            </h2>
+            <p className="text-lg sm:text-xl text-gray-600">{t("students.leadingCompanies")}</p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8 mb-16">
+            <Card className="border-0 shadow-lg bg-white/80 backdrop-blur-sm p-6 text-center">
+              <Building2 className="w-12 h-12 text-[#173104] mx-auto mb-4" />
+              <h3 className="text-xl font-bold text-gray-900 mb-2">{t("students.techGiants")}</h3>
+              <p className="text-gray-600 text-sm">Google, Microsoft, Amazon, Meta, Apple</p>
+            </Card>
+            <Card className="border-0 shadow-lg bg-white/80 backdrop-blur-sm p-6 text-center">
+              <Briefcase className="w-12 h-12 text-[#173104] mx-auto mb-4" />
+              <h3 className="text-xl font-bold text-gray-900 mb-2">{t("students.consulting")}</h3>
+              <p className="text-gray-600 text-sm">Deloitte, Accenture, McKinsey, PwC, EY</p>
+            </Card>
+            <Card className="border-0 shadow-lg bg-white/80 backdrop-blur-sm p-6 text-center">
+              <Target className="w-12 h-12 text-[#173104] mx-auto mb-4" />
+              <h3 className="text-xl font-bold text-gray-900 mb-2">{t("students.startups")}</h3>
+              <p className="text-gray-600 text-sm">Fintech, HealthTech, EdTech, GreenTech</p>
+            </Card>
+          </div>
+
+          <div className="bg-gradient-to-r from-[#b9ee44]/10 to-[#a8d93f]/10 p-8 rounded-2xl">
+            <div className="grid md:grid-cols-2 gap-8 items-center">
+              <div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">{t("students.successStories")}</h3>
+                <div className="space-y-4">
+                  <div className="flex items-start space-x-3">
+                    <Star className="w-5 h-5 text-[#b9ee44] mt-1" />
+                    <div>
+                      <p className="font-semibold">Sarah M. - Cybersecurity Analyst</p>
+                      <p className="text-sm text-gray-600">"Landed a €55K role at a major bank in Frankfurt"</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <Star className="w-5 h-5 text-[#b9ee44] mt-1" />
+                    <div>
+                      <p className="font-semibold">Marcus K. - UX Designer</p>
+                      <p className="text-sm text-gray-600">"Now working remotely for a Silicon Valley startup"</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <Star className="w-5 h-5 text-[#b9ee44] mt-1" />
+                    <div>
+                      <p className="font-semibold">Elena R. - Compliance Officer</p>
+                      <p className="text-sm text-gray-600">"Promoted to senior role within 6 months"</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="relative">
+                <Image
+                  src="/images/cybersecurity-vuln-flyer.jpg"
+                  alt="Success Stories"
+                  width={400}
+                  height={300}
+                  className="rounded-lg"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Industry Partners */}
+      <section className="py-20 px-4">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">
+              {t("partners.trustedBy")} <span className="text-[#173104]">{t("partners.industry")}</span>
+            </h2>
+            <p className="text-lg sm:text-xl text-gray-600">{t("partners.collaboration")}</p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 items-center opacity-70 hover:opacity-100 transition-opacity">
+            {[
+              "Microsoft",
+              "Google",
+              "Amazon",
+              "CompTIA",
+              "Cisco",
+              "Oracle",
+              "SAP",
+              "Salesforce",
+              "Adobe",
+              "IBM",
+              "VMware",
+              "Red Hat",
+            ].map((partner, index) => (
+              <div
+                key={index}
+                className="bg-white/80 backdrop-blur-sm p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow text-center"
+              >
+                <div className="w-12 h-12 bg-gradient-to-br from-[#173104]/10 to-[#b9ee44]/20 rounded-lg flex items-center justify-center mx-auto mb-2">
+                  <Award className="w-6 h-6 text-[#173104]" />
+                </div>
+                <span className="text-xs font-semibold text-gray-700">{partner}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Newsletter Signup */}
+      <section className="py-16 px-4 bg-gradient-to-r from-[#173104]/5 to-[#b9ee44]/10">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">{t("newsletter.stayUpdated")}</h2>
+          <p className="text-lg text-gray-600 mb-8">{t("newsletter.getLatest")}</p>
+
+          <Card className="bg-white/90 backdrop-blur-sm shadow-lg border-0 rounded-2xl">
+            <CardContent className="p-8">
+              <form className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+                <input
+                  type="text"
+                  placeholder={t("newsletter.fullName")}
+                  className="flex-1 px-4 py-3 rounded-xl border border-gray-200 focus:border-[#173104] focus:ring-2 focus:ring-[#173104]/20 outline-none transition-all"
+                />
+                <input
+                  type="email"
+                  placeholder={t("newsletter.email")}
+                  className="flex-1 px-4 py-3 rounded-xl border border-gray-200 focus:border-[#173104] focus:ring-2 focus:ring-[#173104]/20 outline-none transition-all"
+                />
+                <Button className="bg-gradient-to-r from-[#173104] to-[#2d5a1a] text-white px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all">
+                  {t("newsletter.subscribe")}
+                </Button>
+              </form>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
       {/* Footer */}
-      <footer className="bg-[#1a5f3f] text-white py-16 px-4">
+      <footer className="bg-[#173104] text-white py-16 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
               <Image
-                src="/images/gitb-logo-white.png"
+                src="/images/gitb-logo.png"
                 alt="GITB Logo"
                 width={120}
                 height={40}
-                className="h-10 w-auto mb-6"
+                className="h-10 w-auto mb-6 brightness-0 invert"
               />
               <p className="text-green-100 mb-6 leading-relaxed">{t("footer.description")}</p>
               <div className="flex space-x-4">
-                <div className="w-10 h-10 bg-green-600 rounded-lg flex items-center justify-center hover:bg-green-500 cursor-pointer transition-colors">
-                  <Mail className="w-5 h-5 text-white" />
+                <div className="w-10 h-10 bg-[#b9ee44] rounded-lg flex items-center justify-center hover:bg-[#a8d93f] cursor-pointer transition-colors">
+                  <Mail className="w-5 h-5 text-[#173104]" />
                 </div>
-                <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center hover:bg-blue-500 cursor-pointer transition-colors">
-                  <Globe className="w-5 h-5 text-white" />
+                <div className="w-10 h-10 bg-[#b9ee44] rounded-lg flex items-center justify-center hover:bg-[#a8d93f] cursor-pointer transition-colors">
+                  <Globe className="w-5 h-5 text-[#173104]" />
                 </div>
               </div>
             </div>
@@ -431,11 +457,6 @@ export default function HomePage() {
             <div>
               <h4 className="font-bold text-lg mb-6">{t("footer.quickLinks")}</h4>
               <div className="space-y-3 text-green-100">
-                <p>
-                  <Link href="/" className="hover:text-white transition-colors">
-                    {t("nav.home")}
-                  </Link>
-                </p>
                 <p>
                   <Link href="/courses" className="hover:text-white transition-colors">
                     {t("nav.courses")}
@@ -464,22 +485,22 @@ export default function HomePage() {
               <div className="space-y-3 text-green-100">
                 <p>
                   <Link href="/courses" className="hover:text-white transition-colors">
-                    Cloud Computing
-                  </Link>
-                </p>
-                <p>
-                  <Link href="/courses" className="hover:text-white transition-colors">
                     Cybersecurity
                   </Link>
                 </p>
                 <p>
                   <Link href="/courses" className="hover:text-white transition-colors">
-                    Full Stack Development
+                    UI/UX Design
                   </Link>
                 </p>
                 <p>
                   <Link href="/courses" className="hover:text-white transition-colors">
-                    Data Analytics
+                    Languages
+                  </Link>
+                </p>
+                <p>
+                  <Link href="/courses" className="hover:text-white transition-colors">
+                    Compliance
                   </Link>
                 </p>
               </div>
@@ -489,15 +510,15 @@ export default function HomePage() {
               <h4 className="font-bold text-lg mb-6">{t("footer.contact")}</h4>
               <div className="space-y-4">
                 <div className="flex items-center space-x-3">
-                  <Phone className="w-5 h-5 text-[#daff7d]" />
+                  <Phone className="w-5 h-5 text-[#b9ee44]" />
                   <span className="text-green-100">+370 600 12345</span>
                 </div>
                 <div className="flex items-center space-x-3">
-                  <Mail className="w-5 h-5 text-[#daff7d]" />
-                  <span className="text-green-100">info@gitb.eu</span>
+                  <Mail className="w-5 h-5 text-[#b9ee44]" />
+                  <span className="text-green-100">admissions@gitb.lt</span>
                 </div>
                 <div className="flex items-center space-x-3">
-                  <Globe className="w-5 h-5 text-[#daff7d]" />
+                  <Globe className="w-5 h-5 text-[#b9ee44]" />
                   <span className="text-green-100">Vilnius, Lithuania</span>
                 </div>
               </div>
@@ -520,23 +541,6 @@ export default function HomePage() {
           </div>
         </div>
       </footer>
-
-      <style jsx>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-20px); }
-        }
-        @keyframes float-delayed {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-15px); }
-        }
-        .animate-float {
-          animation: float 6s ease-in-out infinite;
-        }
-        .animate-float-delayed {
-          animation: float-delayed 8s ease-in-out infinite;
-        }
-      `}</style>
     </div>
   )
 }

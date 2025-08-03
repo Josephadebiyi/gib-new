@@ -73,12 +73,12 @@ export default function FAQPage() {
         {
           question: "How long are the programs?",
           answer:
-            "Program duration varies: Business Leadership (3 weeks), UI/UX Design (3 months), Language Programs (3-6 months), Cybersecurity (4 months), AWS Cloud (8 months), Full Stack Development (16 weeks). Each program is intensive and focused on practical skills.",
+            "Program duration varies: KYC Compliance (2 months), UI/UX Design (3 months), IAM (3 months), Language Programs (3-6 months), Cybersecurity (4 months). Each program is intensive and focused on practical skills.",
         },
         {
           question: "What certifications will I earn?",
           answer:
-            "You'll earn a GITB diploma plus industry certifications like AWS Certified Cloud Practitioner, CompTIA Security+, Google UX Design Certificate, Microsoft Azure certifications, and more depending on your program.",
+            "You'll earn a GITB diploma plus industry certifications like CompTIA Security+, CompTIA PenTest+, Google UX Design Certificate, CIAM, CKYCA, and language certifications (DELF, DELE, LKI) depending on your program.",
         },
         {
           question: "Are classes live or pre-recorded?",
@@ -88,7 +88,7 @@ export default function FAQPage() {
         {
           question: "What kind of projects will I work on?",
           answer:
-            "You'll work on real-world projects that mirror actual industry scenarios. Examples include building cloud infrastructure, designing mobile apps, creating cybersecurity protocols, and developing business strategies for real companies.",
+            "You'll work on real-world projects that mirror actual industry scenarios. Examples include security assessments, UI/UX design portfolios, compliance frameworks, and language proficiency demonstrations for real companies.",
         },
       ],
     },
@@ -156,7 +156,7 @@ export default function FAQPage() {
         {
           question: "Do you provide software licenses?",
           answer:
-            "Yes, we provide access to all necessary software, cloud platforms, and development tools. This includes licenses for professional software like Adobe Creative Suite, Microsoft Office, AWS credits, and specialized industry tools.",
+            "Yes, we provide access to all necessary software, cloud platforms, and development tools. This includes licenses for professional software like Adobe Creative Suite, Microsoft Office, and specialized industry tools.",
         },
         {
           question: "What if I have technical difficulties?",
@@ -173,9 +173,9 @@ export default function FAQPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-gradient-to-br from-green-50/30 via-lime-50/20 to-yellow-50/10">
       {/* Header */}
-      <header className="bg-gradient-to-r from-[#1a5f3f]/90 to-[#2d7a5a]/90 backdrop-blur-sm text-white px-4 py-4">
+      <header className="bg-[#173104] text-white px-4 py-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center space-x-8">
             <Link href="/">
@@ -184,23 +184,23 @@ export default function FAQPage() {
                 alt="GITB Logo"
                 width={120}
                 height={40}
-                className="h-10 w-auto cursor-pointer"
+                className="h-10 w-auto cursor-pointer brightness-0 invert"
               />
             </Link>
             <nav className="hidden md:flex space-x-8 text-sm font-medium">
-              <Link href="/" className="hover:text-[#daff7d] transition-colors">
+              <Link href="/" className="hover:text-[#b9ee44] transition-colors">
                 {t("nav.home")}
               </Link>
-              <Link href="/courses" className="hover:text-[#daff7d] transition-colors">
+              <Link href="/courses" className="hover:text-[#b9ee44] transition-colors">
                 {t("nav.courses")}
               </Link>
-              <Link href="/about" className="hover:text-[#daff7d] transition-colors">
+              <Link href="/about" className="hover:text-[#b9ee44] transition-colors">
                 {t("nav.about")}
               </Link>
-              <Link href="/how-it-works" className="hover:text-[#daff7d] transition-colors">
+              <Link href="/how-it-works" className="hover:text-[#b9ee44] transition-colors">
                 {t("nav.howItWorks")}
               </Link>
-              <Link href="/faq" className="text-[#daff7d] font-semibold">
+              <Link href="/faq" className="text-[#b9ee44] font-semibold">
                 {t("nav.faq")}
               </Link>
             </nav>
@@ -208,8 +208,8 @@ export default function FAQPage() {
           <div className="flex items-center space-x-6">
             <LanguageSwitcher />
             <Link href="/application">
-              <Button className="bg-[#daff7d] text-[#1a5f3f] hover:bg-[#c5e86a] text-sm px-4 py-2 sm:px-6 font-semibold shadow-lg">
-                {t("nav.applyNow")}
+              <Button className="bg-gradient-to-r from-[#b9ee44] to-[#a8d93f] text-[#173104] hover:from-[#a8d93f] hover:to-[#97c73a] text-sm px-6 py-2 font-bold rounded-lg shadow-lg transition-all">
+                {t("nav.registerNow")}
               </Button>
             </Link>
           </div>
@@ -217,23 +217,18 @@ export default function FAQPage() {
       </header>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-purple-100/30 via-blue-50/40 to-green-50/30 py-20 px-4 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-50">
-          <div className="absolute inset-0 bg-gradient-to-r from-[#daff7d]/5 via-transparent to-[#daff7d]/5"></div>
-          <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_20%_20%,_#daff7d_0.1px,_transparent_0.1px)] bg-[length:60px_60px]"></div>
-        </div>
-
-        <div className="max-w-7xl mx-auto text-center relative z-10">
-          <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">
-            Frequently Asked <span className="text-[#1a5f3f]">Questions</span>
+      <section className="bg-gradient-to-r from-[#b9ee44] to-[#a8d93f] py-20 px-4">
+        <div className="max-w-7xl mx-auto text-center">
+          <h1 className="text-4xl sm:text-5xl font-bold text-[#173104] mb-6">
+            Frequently Asked <span className="text-white">Questions</span>
           </h1>
-          <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+          <p className="text-lg sm:text-xl text-[#173104]/80 max-w-3xl mx-auto mb-8">
             Find answers to common questions about GITB programs, admissions, and career support
           </p>
           <div className="flex flex-wrap justify-center gap-4 mb-8">
-            <Badge className="bg-[#daff7d]/20 text-[#1a5f3f] px-4 py-2">Instant Answers</Badge>
-            <Badge className="bg-blue-100/50 text-blue-700 px-4 py-2">Expert Support</Badge>
-            <Badge className="bg-green-100/50 text-green-700 px-4 py-2">24/7 Help Available</Badge>
+            <Badge className="bg-white/20 text-[#173104] px-4 py-2 border-0">Instant Answers</Badge>
+            <Badge className="bg-white/20 text-[#173104] px-4 py-2 border-0">Expert Support</Badge>
+            <Badge className="bg-white/20 text-[#173104] px-4 py-2 border-0">24/7 Help Available</Badge>
           </div>
         </div>
       </section>
@@ -246,8 +241,8 @@ export default function FAQPage() {
               <Card key={categoryIndex} className="border-0 shadow-lg bg-white/80 backdrop-blur-sm">
                 <CardContent className="p-8">
                   <div className="flex items-center mb-6">
-                    <div className="bg-gradient-to-br from-[#1a5f3f]/10 to-[#daff7d]/20 w-12 h-12 rounded-xl flex items-center justify-center mr-4">
-                      <div className="text-[#1a5f3f]">{category.icon}</div>
+                    <div className="bg-gradient-to-br from-[#173104]/10 to-[#b9ee44]/20 w-12 h-12 rounded-xl flex items-center justify-center mr-4">
+                      <div className="text-[#173104]">{category.icon}</div>
                     </div>
                     <h2 className="text-2xl font-bold text-gray-900">{category.title}</h2>
                   </div>
@@ -259,7 +254,7 @@ export default function FAQPage() {
                         value={`${categoryIndex}-${faqIndex}`}
                         className="border border-gray-200 rounded-lg px-6"
                       >
-                        <AccordionTrigger className="text-left font-semibold text-gray-900 hover:text-[#1a5f3f] transition-colors">
+                        <AccordionTrigger className="text-left font-semibold text-gray-900 hover:text-[#173104] transition-colors">
                           {faq.question}
                         </AccordionTrigger>
                         <AccordionContent className="text-gray-600 leading-relaxed pt-4">{faq.answer}</AccordionContent>
@@ -274,30 +269,30 @@ export default function FAQPage() {
       </section>
 
       {/* Quick Stats */}
-      <section className="py-20 px-4 bg-gradient-to-br from-gray-50/50 to-blue-50/30">
+      <section className="py-20 px-4 bg-white/50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">
-              GITB by the <span className="text-[#1a5f3f]">Numbers</span>
+              GITB by the <span className="text-[#173104]">Numbers</span>
             </h2>
             <p className="text-lg sm:text-xl text-gray-600">Our track record speaks for itself</p>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div className="bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-lg">
-              <div className="text-3xl sm:text-4xl font-bold text-[#1a5f3f] mb-2">5,000+</div>
+              <div className="text-3xl sm:text-4xl font-bold text-[#173104] mb-2">5,000+</div>
               <div className="text-sm sm:text-base text-gray-600">Graduates</div>
             </div>
             <div className="bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-lg">
-              <div className="text-3xl sm:text-4xl font-bold text-[#1a5f3f] mb-2">92%</div>
+              <div className="text-3xl sm:text-4xl font-bold text-[#173104] mb-2">92%</div>
               <div className="text-sm sm:text-base text-gray-600">Job Placement Rate</div>
             </div>
             <div className="bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-lg">
-              <div className="text-3xl sm:text-4xl font-bold text-[#1a5f3f] mb-2">500+</div>
+              <div className="text-3xl sm:text-4xl font-bold text-[#173104] mb-2">500+</div>
               <div className="text-sm sm:text-base text-gray-600">Partner Companies</div>
             </div>
             <div className="bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-lg">
-              <div className="text-3xl sm:text-4xl font-bold text-[#1a5f3f] mb-2">15</div>
+              <div className="text-3xl sm:text-4xl font-bold text-[#173104] mb-2">15</div>
               <div className="text-sm sm:text-base text-gray-600">EU Countries</div>
             </div>
           </div>
@@ -305,50 +300,50 @@ export default function FAQPage() {
       </section>
 
       {/* Still Have Questions */}
-      <section className="py-20 px-4 bg-white">
+      <section className="py-20 px-4 bg-gradient-to-r from-[#173104] to-[#2d5a1a] text-white">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">Still Have Questions?</h2>
-          <p className="text-lg sm:text-xl text-gray-600 mb-12">
+          <h2 className="text-3xl sm:text-4xl font-bold mb-6">Still Have Questions?</h2>
+          <p className="text-lg sm:text-xl text-green-100 mb-12">
             Our admissions team is here to help you find the perfect program for your career goals
           </p>
 
           <div className="grid md:grid-cols-2 gap-8 mb-12">
-            <Card className="border-2 border-[#1a5f3f]/20 shadow-lg hover:shadow-xl transition-shadow">
+            <Card className="border-2 border-[#b9ee44]/30 shadow-lg hover:shadow-xl transition-shadow bg-white/10 backdrop-blur-sm">
               <CardContent className="p-8 text-center">
-                <div className="bg-gradient-to-br from-[#1a5f3f]/10 to-[#daff7d]/20 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <Phone className="w-8 h-8 text-[#1a5f3f]" />
+                <div className="bg-[#b9ee44] w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                  <Phone className="w-8 h-8 text-[#173104]" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-4">Schedule a Call</h3>
-                <p className="text-gray-600 mb-6">Speak with our admissions counselors for personalized guidance</p>
-                <Button className="w-full bg-gradient-to-r from-[#1a5f3f] to-[#2d7a5a] text-white hover:shadow-lg transition-all">
+                <h3 className="text-xl font-bold mb-4">Schedule a Call</h3>
+                <p className="text-green-100 mb-6">Speak with our admissions counselors for personalized guidance</p>
+                <Button className="w-full bg-[#b9ee44] text-[#173104] hover:bg-[#a8d93f] transition-all font-bold">
                   <Phone className="w-4 h-4 mr-2" />
                   +370 600 12345
                 </Button>
               </CardContent>
             </Card>
 
-            <Card className="border-2 border-[#1a5f3f]/20 shadow-lg hover:shadow-xl transition-shadow">
+            <Card className="border-2 border-[#b9ee44]/30 shadow-lg hover:shadow-xl transition-shadow bg-white/10 backdrop-blur-sm">
               <CardContent className="p-8 text-center">
-                <div className="bg-gradient-to-br from-[#1a5f3f]/10 to-[#daff7d]/20 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <Mail className="w-8 h-8 text-[#1a5f3f]" />
+                <div className="bg-[#b9ee44] w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                  <Mail className="w-8 h-8 text-[#173104]" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-4">Send an Email</h3>
-                <p className="text-gray-600 mb-6">Get detailed information about programs and requirements</p>
-                <Button className="w-full bg-gradient-to-r from-[#1a5f3f] to-[#2d7a5a] text-white hover:shadow-lg transition-all">
+                <h3 className="text-xl font-bold mb-4">Send an Email</h3>
+                <p className="text-green-100 mb-6">Get detailed information about programs and requirements</p>
+                <Button className="w-full bg-[#b9ee44] text-[#173104] hover:bg-[#a8d93f] transition-all font-bold">
                   <Mail className="w-4 h-4 mr-2" />
-                  admissions@gitb.eu
+                  admissions@gitb.lt
                 </Button>
               </CardContent>
             </Card>
           </div>
 
-          <div className="bg-gradient-to-r from-[#1a5f3f]/5 to-[#daff7d]/10 p-8 rounded-2xl">
-            <h3 className="text-xl font-bold text-gray-900 mb-4">Ready to Get Started?</h3>
-            <p className="text-gray-600 mb-6">
+          <div className="bg-white/10 backdrop-blur-sm p-8 rounded-2xl">
+            <h3 className="text-xl font-bold mb-4">Ready to Get Started?</h3>
+            <p className="text-green-100 mb-6">
               Join thousands of students who have transformed their careers with GITB
             </p>
             <Link href="/application">
-              <Button className="bg-gradient-to-r from-[#1a5f3f] to-[#2d7a5a] text-white px-8 py-4 text-lg rounded-xl shadow-xl hover:shadow-2xl transition-shadow">
+              <Button className="bg-gradient-to-r from-[#b9ee44] to-[#a8d93f] text-[#173104] px-8 py-4 text-lg rounded-xl shadow-xl hover:shadow-2xl transition-shadow font-bold">
                 Start Your Application
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Button>
@@ -357,8 +352,38 @@ export default function FAQPage() {
         </div>
       </section>
 
+      {/* Newsletter Signup */}
+      <section className="py-16 px-4 bg-gradient-to-r from-[#173104]/5 to-[#b9ee44]/10">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">Stay Updated with GITB</h2>
+          <p className="text-lg text-gray-600 mb-8">
+            Get the latest news about courses, job opportunities, and industry insights
+          </p>
+
+          <Card className="bg-white/90 backdrop-blur-sm shadow-lg border-0 rounded-2xl">
+            <CardContent className="p-8">
+              <form className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+                <input
+                  type="text"
+                  placeholder="Full Name"
+                  className="flex-1 px-4 py-3 rounded-xl border border-gray-200 focus:border-[#173104] focus:ring-2 focus:ring-[#173104]/20 outline-none transition-all"
+                />
+                <input
+                  type="email"
+                  placeholder="Email Address"
+                  className="flex-1 px-4 py-3 rounded-xl border border-gray-200 focus:border-[#173104] focus:ring-2 focus:ring-[#173104]/20 outline-none transition-all"
+                />
+                <Button className="bg-gradient-to-r from-[#173104] to-[#2d5a1a] text-white px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all">
+                  Subscribe
+                </Button>
+              </form>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
       {/* Footer */}
-      <footer className="bg-[#1a5f3f] text-white py-16 px-4">
+      <footer className="bg-[#173104] text-white py-16 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
@@ -408,11 +433,6 @@ export default function FAQPage() {
               <div className="space-y-3 text-green-100">
                 <p>
                   <Link href="/courses" className="hover:text-white transition-colors">
-                    Cloud Computing
-                  </Link>
-                </p>
-                <p>
-                  <Link href="/courses" className="hover:text-white transition-colors">
                     Cybersecurity
                   </Link>
                 </p>
@@ -423,7 +443,12 @@ export default function FAQPage() {
                 </p>
                 <p>
                   <Link href="/courses" className="hover:text-white transition-colors">
-                    Language Programs
+                    Languages
+                  </Link>
+                </p>
+                <p>
+                  <Link href="/courses" className="hover:text-white transition-colors">
+                    Compliance
                   </Link>
                 </p>
               </div>
@@ -433,15 +458,15 @@ export default function FAQPage() {
               <h4 className="font-bold text-lg mb-6">{t("footer.contact")}</h4>
               <div className="space-y-4">
                 <div className="flex items-center space-x-3">
-                  <Phone className="w-5 h-5 text-[#daff7d]" />
+                  <Phone className="w-5 h-5 text-[#b9ee44]" />
                   <span className="text-green-100">+370 600 12345</span>
                 </div>
                 <div className="flex items-center space-x-3">
-                  <Mail className="w-5 h-5 text-[#daff7d]" />
-                  <span className="text-green-100">admissions@gitb.eu</span>
+                  <Mail className="w-5 h-5 text-[#b9ee44]" />
+                  <span className="text-green-100">admissions@gitb.lt</span>
                 </div>
                 <div className="flex items-center space-x-3">
-                  <Globe className="w-5 h-5 text-[#daff7d]" />
+                  <Globe className="w-5 h-5 text-[#b9ee44]" />
                   <span className="text-green-100">Vilnius, Lithuania</span>
                 </div>
               </div>
