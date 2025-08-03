@@ -71,9 +71,13 @@ export default function CourseDetailPage({ params }: { params: { id: string } })
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center space-x-8">
             <Link href="/">
-              <div className="bg-white/95 text-[#1a5f3f] px-4 py-2 rounded-lg font-bold text-xl shadow-lg cursor-pointer">
-                GITB
-              </div>
+              <Image
+                src="/images/gitb-logo-simple.png"
+                alt="GITB Logo"
+                width={120}
+                height={40}
+                className="h-10 w-auto cursor-pointer brightness-0 invert"
+              />
             </Link>
             <nav className="hidden md:flex space-x-8 text-sm font-medium">
               <Link href="/" className="hover:text-[#daff7d] transition-colors">
@@ -308,9 +312,13 @@ export default function CourseDetailPage({ params }: { params: { id: string } })
           <div className="grid md:grid-cols-4 gap-8">
             <div>
               <Link href="/">
-                <div className="bg-white text-[#1a5f3f] px-4 py-2 rounded-lg font-bold text-xl mb-6 inline-block cursor-pointer">
-                  GITB
-                </div>
+                <Image
+                  src="/images/gitb-logo-simple.png"
+                  alt="GITB Logo"
+                  width={120}
+                  height={40}
+                  className="h-10 w-auto mb-6 cursor-pointer"
+                />
               </Link>
               <p className="text-green-100 mb-6 leading-relaxed">
                 Global Institute of Tech and Business - Empowering careers through technology education.

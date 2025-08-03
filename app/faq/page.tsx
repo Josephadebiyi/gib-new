@@ -2,185 +2,111 @@
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { Badge } from "@/components/ui/badge"
-import { ArrowRight, HelpCircle, CreditCard, Award, Globe, Users, BookOpen, Phone, Mail } from "lucide-react"
+import { Phone, ArrowRight, ChevronDown, ChevronUp, HelpCircle, Clock, Euro, Award, Users } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-import { useTranslation } from "@/hooks/useTranslation"
-import { LanguageSwitcher } from "@/components/LanguageSwitcher"
+import { useState } from "react"
 
 export default function FAQPage() {
-  const { t } = useTranslation()
+  const [openFAQ, setOpenFAQ] = useState<number | null>(null)
 
-  const faqCategories = [
+  const toggleFAQ = (index: number) => {
+    setOpenFAQ(openFAQ === index ? null : index)
+  }
+
+  const faqs = [
     {
-      title: "General Information",
-      icon: <HelpCircle className="w-6 h-6" />,
+      category: "General",
       questions: [
         {
           question: "What is GITB and what makes it different?",
           answer:
-            "GITB (Global Institute of Tech and Business) is Europe's leading provider of industry-focused technology education. We bridge the gap between academic learning and real-world professional demands with EU-recognized programs, industry partnerships, and a 92% job placement rate.",
+            "GITB (Global Institute of Tech and Business) is Lithuania's premier technology education provider. We focus exclusively on job-ready skills with industry-recognized certifications, small class sizes, and direct connections to European employers. Our 92% job placement rate speaks to our effectiveness.",
         },
         {
-          question: "Are GITB programs recognized across the European Union?",
+          question: "Are your programs recognized across Europe?",
           answer:
-            "Yes, all GITB programs are officially recognized across the EU through our compliance with the European Qualifications Framework (EQF), ECTS Credit Transfer System, and Bologna Process. Our certifications are valued by employers throughout Europe.",
+            "Yes! Our certifications are industry-standard and recognized across all EU countries. We partner with major certification bodies like CompTIA, Google, and others to ensure your credentials are valued by employers throughout Europe.",
         },
         {
-          question: "What languages are courses offered in?",
+          question: "Do I need prior experience to enroll?",
           answer:
-            "Most of our tech and business courses are conducted in English. We also offer specialized language programs in French, Spanish, and Lithuanian. All instructors are fluent in English and many speak additional European languages.",
-        },
-        {
-          question: "Can I study while working full-time?",
-          answer:
-            "Yes! Our programs are designed for working professionals. Classes are scheduled in the evenings and weekends, with flexible online learning options. Most students successfully complete their programs while maintaining their current employment.",
+            "No prior experience is required for most of our programs. We design our courses for complete beginners, career switchers, and professionals looking to upskill. Our assessment process helps us recommend the best program for your current skill level.",
         },
       ],
     },
     {
-      title: "Admissions & Applications",
-      icon: <Users className="w-6 h-6" />,
-      questions: [
-        {
-          question: "What are the admission requirements?",
-          answer:
-            "Requirements vary by program, but generally include: completion of secondary education, basic English proficiency, motivation statement, and relevant work experience (preferred but not required). We evaluate each application holistically.",
-        },
-        {
-          question: "How long does the application process take?",
-          answer:
-            "Our streamlined process takes just 48 hours from submission to decision. You'll submit your application online, pay the €50 fee, and receive confirmation within 2 business days.",
-        },
-        {
-          question: "What is the €50 application fee for?",
-          answer:
-            "The €50 application fee covers administrative costs and ensures serious applications. This fee is fully deducted from your tuition upon enrollment, making it essentially risk-free to apply.",
-        },
-        {
-          question: "Can I apply for multiple programs?",
-          answer:
-            "Yes, you can apply for multiple programs, but we recommend focusing on one that best aligns with your career goals. Our admissions counselors can help you choose the most suitable program during your consultation.",
-        },
-      ],
-    },
-    {
-      title: "Programs & Curriculum",
-      icon: <BookOpen className="w-6 h-6" />,
+      category: "Courses & Curriculum",
       questions: [
         {
           question: "How long are the programs?",
           answer:
-            "Program duration varies: KYC Compliance (2 months), UI/UX Design (3 months), IAM (3 months), Language Programs (3-6 months), Cybersecurity (4 months). Each program is intensive and focused on practical skills.",
+            "Program lengths vary: Cybersecurity (4 months), UI/UX Design (3 months), IAM Specialist (3 months), KYC Compliance (2 months), and European Languages (3 months per language). All programs are part-time to accommodate working professionals.",
         },
         {
-          question: "What certifications will I earn?",
+          question: "What's included in the course fees?",
           answer:
-            "You'll earn a GITB diploma plus industry certifications like CompTIA Security+, CompTIA PenTest+, Google UX Design Certificate, CIAM, CKYCA, and language certifications (DELF, DELE, LKI) depending on your program.",
+            "Course fees include all learning materials, lab access, certification exam vouchers, career support, and lifetime access to our alumni network. The only additional cost is the €50 registration fee.",
         },
         {
-          question: "Are classes live or pre-recorded?",
+          question: "Can I take multiple courses?",
           answer:
-            "Classes are primarily live and interactive, allowing real-time engagement with instructors and peers. All sessions are recorded for review, and you'll have 24/7 access to learning materials and resources.",
-        },
-        {
-          question: "What kind of projects will I work on?",
-          answer:
-            "You'll work on real-world projects that mirror actual industry scenarios. Examples include security assessments, UI/UX design portfolios, compliance frameworks, and language proficiency demonstrations for real companies.",
+            "Many students combine technical courses with language training. We offer discounts for multiple course enrollments and can create custom learning paths based on your career goals.",
         },
       ],
     },
     {
-      title: "Costs & Payment",
-      icon: <CreditCard className="w-6 h-6" />,
+      category: "Pricing & Payment",
       questions: [
         {
-          question: "How much do programs cost?",
+          question: "What are the course prices?",
           answer:
-            "Program costs vary by duration and specialization. Contact our admissions team for detailed pricing. We offer flexible payment plans and the €50 application fee is deducted from your tuition upon enrollment.",
+            "Technical courses range from €1,350-€1,400 total (including certification fees). European Languages are €300 per language. We offer flexible payment plans and a 15% discount with code SUPERTECH for new enrollments.",
         },
         {
           question: "Do you offer payment plans?",
           answer:
-            "Yes, we offer flexible payment options including monthly installments, employer sponsorship programs, and early-bird discounts. Our financial advisors will work with you to find a suitable payment structure.",
+            "Yes! We offer flexible monthly payment options. Technical courses can be split into 2-4 monthly payments, and language courses are €100/month for 3 months. No interest or additional fees for payment plans.",
         },
         {
-          question: "Are there any hidden fees?",
+          question: "Is there financial aid available?",
           answer:
-            "No hidden fees. The program cost includes all learning materials, certification exam fees, career coaching, and job placement support. The only additional cost is the €50 application fee (which is deducted from tuition).",
-        },
-        {
-          question: "Do you offer scholarships or financial aid?",
-          answer:
-            "We offer merit-based scholarships for exceptional candidates and need-based financial assistance for qualifying students. Additionally, many employers sponsor their employees' education at GITB.",
+            "We offer several financial assistance options including early bird discounts, multi-course discounts, and payment deferrals for qualifying students. Contact our admissions team to discuss your specific situation.",
         },
       ],
     },
     {
-      title: "Career Support & Job Placement",
-      icon: <Award className="w-6 h-6" />,
+      category: "Career Support",
       questions: [
         {
-          question: "What is your job placement rate?",
+          question: "What kind of job support do you provide?",
           answer:
-            "We maintain a 92% job placement rate within 6 months of graduation. Our extensive network of 500+ partner companies across Europe actively recruits our graduates for high-demand positions.",
+            "We provide comprehensive career support including resume optimization, interview preparation, portfolio development, and direct introductions to our 500+ partner companies across Europe. Our career services are available for life.",
         },
         {
-          question: "What kind of career support do you provide?",
+          question: "What's your job placement rate?",
           answer:
-            "Comprehensive career support including: resume optimization, interview preparation, LinkedIn profile enhancement, salary negotiation coaching, direct introductions to hiring managers, and lifetime alumni network access.",
+            "We maintain a 92% job placement rate within 6 months of graduation. Our graduates work at companies like Google, Microsoft, major European banks, consulting firms, and growing startups across 15 EU countries.",
         },
         {
-          question: "What is the average salary increase after graduation?",
+          question: "What salaries can I expect?",
           answer:
-            "Our graduates see an average salary increase of 40-60% within the first year. Starting salaries typically range from €35,000-€65,000 depending on the program, location, and experience level.",
-        },
-        {
-          question: "Can you help me find remote work opportunities?",
-          answer:
-            "Many of our partner companies offer remote and hybrid positions. We specifically prepare students for the remote work environment and connect them with companies embracing distributed teams.",
-        },
-      ],
-    },
-    {
-      title: "Technical Requirements",
-      icon: <Globe className="w-6 h-6" />,
-      questions: [
-        {
-          question: "What equipment do I need?",
-          answer:
-            "You'll need a reliable computer (Windows, Mac, or Linux), stable internet connection, webcam, and microphone. Specific software requirements vary by program and are provided upon enrollment. We can recommend suitable hardware if needed.",
-        },
-        {
-          question: "Do you provide software licenses?",
-          answer:
-            "Yes, we provide access to all necessary software, cloud platforms, and development tools. This includes licenses for professional software like Adobe Creative Suite, Microsoft Office, and specialized industry tools.",
-        },
-        {
-          question: "What if I have technical difficulties?",
-          answer:
-            "We provide 24/7 technical support through our dedicated IT helpdesk. Additionally, each cohort has technical mentors available during class hours to assist with any software or connectivity issues.",
-        },
-        {
-          question: "Can I access course materials after graduation?",
-          answer:
-            "Yes, graduates maintain lifetime access to course materials, recorded sessions, and our alumni resource library. You'll also receive updates when curriculum is refreshed to keep your knowledge current.",
+            "Starting salaries vary by role and location: Cybersecurity (€45-60K), UI/UX Design (€40-55K), IAM Specialist (€48-65K), KYC Compliance (€42-58K). These are above-market averages due to our industry focus and certification requirements.",
         },
       ],
     },
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50/30 via-lime-50/20 to-yellow-50/10">
+    <div className="min-h-screen bg-white">
       {/* Header */}
-      <header className="bg-[#173104] text-white px-4 py-4">
+      <header className="bg-gradient-to-r from-[#173104]/90 to-[#2d5a1a]/90 backdrop-blur-sm text-white px-4 py-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center space-x-8">
             <Link href="/">
               <Image
-                src="/images/gitb-logo.png"
+                src="/images/gitb-logo-simple.png"
                 alt="GITB Logo"
                 width={120}
                 height={40}
@@ -189,27 +115,30 @@ export default function FAQPage() {
             </Link>
             <nav className="hidden md:flex space-x-8 text-sm font-medium">
               <Link href="/" className="hover:text-[#b9ee44] transition-colors">
-                {t("nav.home")}
+                Home
               </Link>
               <Link href="/courses" className="hover:text-[#b9ee44] transition-colors">
-                {t("nav.courses")}
+                Courses
               </Link>
               <Link href="/about" className="hover:text-[#b9ee44] transition-colors">
-                {t("nav.about")}
+                About Us
               </Link>
               <Link href="/how-it-works" className="hover:text-[#b9ee44] transition-colors">
-                {t("nav.howItWorks")}
+                How It Works
               </Link>
               <Link href="/faq" className="text-[#b9ee44] font-semibold">
-                {t("nav.faq")}
+                FAQ
               </Link>
             </nav>
           </div>
           <div className="flex items-center space-x-6">
-            <LanguageSwitcher />
+            <div className="hidden md:flex items-center space-x-2 text-sm">
+              <Phone className="w-4 h-4" />
+              <span>+370 600 12345</span>
+            </div>
             <Link href="/application">
-              <Button className="bg-gradient-to-r from-[#b9ee44] to-[#a8d93f] text-[#173104] hover:from-[#a8d93f] hover:to-[#97c73a] text-sm px-6 py-2 font-bold rounded-lg shadow-lg transition-all">
-                {t("nav.registerNow")}
+              <Button className="bg-[#b9ee44] text-[#173104] hover:bg-[#a8d93a] text-sm px-6 py-2 font-semibold shadow-lg">
+                APPLY NOW
               </Button>
             </Link>
           </div>
@@ -217,274 +146,228 @@ export default function FAQPage() {
       </header>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-[#b9ee44] to-[#a8d93f] py-20 px-4">
-        <div className="max-w-7xl mx-auto text-center">
-          <h1 className="text-4xl sm:text-5xl font-bold text-[#173104] mb-6">
-            Frequently Asked <span className="text-white">Questions</span>
+      <section className="bg-gradient-to-br from-purple-100/30 via-blue-50/40 to-green-50/30 py-20 px-4 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-50">
+          <div className="absolute inset-0 bg-gradient-to-r from-[#b9ee44]/5 via-transparent to-[#b9ee44]/5"></div>
+          <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_20%_20%,_#b9ee44_0.1px,_transparent_0.1px)] bg-[length:60px_60px]"></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto relative z-10 text-center">
+          <Badge className="bg-[#b9ee44]/20 text-[#173104] mb-4">FAQ</Badge>
+          <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+            Frequently Asked <span className="text-[#173104]">Questions</span>
           </h1>
-          <p className="text-lg sm:text-xl text-[#173104]/80 max-w-3xl mx-auto mb-8">
-            Find answers to common questions about GITB programs, admissions, and career support
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            Get answers to common questions about our programs, pricing, and career support services.
           </p>
-          <div className="flex flex-wrap justify-center gap-4 mb-8">
-            <Badge className="bg-white/20 text-[#173104] px-4 py-2 border-0">Instant Answers</Badge>
-            <Badge className="bg-white/20 text-[#173104] px-4 py-2 border-0">Expert Support</Badge>
-            <Badge className="bg-white/20 text-[#173104] px-4 py-2 border-0">24/7 Help Available</Badge>
-          </div>
         </div>
       </section>
 
       {/* FAQ Categories */}
       <section className="py-20 px-4">
         <div className="max-w-4xl mx-auto">
-          <div className="space-y-8">
-            {faqCategories.map((category, categoryIndex) => (
-              <Card key={categoryIndex} className="border-0 shadow-lg bg-white/80 backdrop-blur-sm">
-                <CardContent className="p-8">
-                  <div className="flex items-center mb-6">
-                    <div className="bg-gradient-to-br from-[#173104]/10 to-[#b9ee44]/20 w-12 h-12 rounded-xl flex items-center justify-center mr-4">
-                      <div className="text-[#173104]">{category.icon}</div>
-                    </div>
-                    <h2 className="text-2xl font-bold text-gray-900">{category.title}</h2>
-                  </div>
+          {faqs.map((category, categoryIndex) => (
+            <div key={categoryIndex} className="mb-12">
+              <div className="flex items-center mb-8">
+                <div className="w-12 h-12 bg-gradient-to-br from-[#173104]/10 to-[#b9ee44]/20 rounded-lg flex items-center justify-center mr-4">
+                  {categoryIndex === 0 && <HelpCircle className="w-6 h-6 text-[#173104]" />}
+                  {categoryIndex === 1 && <Clock className="w-6 h-6 text-[#173104]" />}
+                  {categoryIndex === 2 && <Euro className="w-6 h-6 text-[#173104]" />}
+                  {categoryIndex === 3 && <Award className="w-6 h-6 text-[#173104]" />}
+                </div>
+                <h2 className="text-2xl font-bold text-gray-900">{category.category}</h2>
+              </div>
 
-                  <Accordion type="single" collapsible className="space-y-4">
-                    {category.questions.map((faq, faqIndex) => (
-                      <AccordionItem
-                        key={faqIndex}
-                        value={`${categoryIndex}-${faqIndex}`}
-                        className="border border-gray-200 rounded-lg px-6"
-                      >
-                        <AccordionTrigger className="text-left font-semibold text-gray-900 hover:text-[#173104] transition-colors">
-                          {faq.question}
-                        </AccordionTrigger>
-                        <AccordionContent className="text-gray-600 leading-relaxed pt-4">{faq.answer}</AccordionContent>
-                      </AccordionItem>
-                    ))}
-                  </Accordion>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+              <div className="space-y-4">
+                {category.questions.map((faq, faqIndex) => {
+                  const globalIndex = categoryIndex * 10 + faqIndex
+                  return (
+                    <Card
+                      key={faqIndex}
+                      className="border-2 border-gray-100 hover:border-[#173104]/20 transition-colors"
+                    >
+                      <CardContent className="p-0">
+                        <button
+                          onClick={() => toggleFAQ(globalIndex)}
+                          className="w-full p-6 text-left flex items-center justify-between hover:bg-gray-50/50 transition-colors"
+                        >
+                          <h3 className="text-lg font-semibold text-gray-900 pr-4">{faq.question}</h3>
+                          {openFAQ === globalIndex ? (
+                            <ChevronUp className="w-5 h-5 text-[#173104] flex-shrink-0" />
+                          ) : (
+                            <ChevronDown className="w-5 h-5 text-[#173104] flex-shrink-0" />
+                          )}
+                        </button>
+                        {openFAQ === globalIndex && (
+                          <div className="px-6 pb-6">
+                            <p className="text-gray-600 leading-relaxed">{faq.answer}</p>
+                          </div>
+                        )}
+                      </CardContent>
+                    </Card>
+                  )
+                })}
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
       {/* Quick Stats */}
-      <section className="py-20 px-4 bg-white/50">
+      <section className="py-20 px-4 bg-gradient-to-br from-gray-50/50 to-blue-50/30">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">
+            <h2 className="text-3xl font-bold text-gray-900 mb-6">
               GITB by the <span className="text-[#173104]">Numbers</span>
             </h2>
-            <p className="text-lg sm:text-xl text-gray-600">Our track record speaks for itself</p>
+            <p className="text-lg text-gray-600">Key facts about our programs and outcomes</p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div className="bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-lg">
-              <div className="text-3xl sm:text-4xl font-bold text-[#173104] mb-2">5,000+</div>
-              <div className="text-sm sm:text-base text-gray-600">Graduates</div>
-            </div>
-            <div className="bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-lg">
-              <div className="text-3xl sm:text-4xl font-bold text-[#173104] mb-2">92%</div>
-              <div className="text-sm sm:text-base text-gray-600">Job Placement Rate</div>
-            </div>
-            <div className="bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-lg">
-              <div className="text-3xl sm:text-4xl font-bold text-[#173104] mb-2">500+</div>
-              <div className="text-sm sm:text-base text-gray-600">Partner Companies</div>
-            </div>
-            <div className="bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-lg">
-              <div className="text-3xl sm:text-4xl font-bold text-[#173104] mb-2">15</div>
-              <div className="text-sm sm:text-base text-gray-600">EU Countries</div>
-            </div>
+          <div className="grid md:grid-cols-4 gap-8 text-center">
+            <Card className="border-0 shadow-lg bg-white/80 backdrop-blur-sm">
+              <CardContent className="p-8">
+                <div className="text-4xl font-bold text-[#173104] mb-2">92%</div>
+                <div className="text-gray-600">Job Placement Rate</div>
+              </CardContent>
+            </Card>
+
+            <Card className="border-0 shadow-lg bg-white/80 backdrop-blur-sm">
+              <CardContent className="p-8">
+                <div className="text-4xl font-bold text-[#173104] mb-2">€45K</div>
+                <div className="text-gray-600">Average Starting Salary</div>
+              </CardContent>
+            </Card>
+
+            <Card className="border-0 shadow-lg bg-white/80 backdrop-blur-sm">
+              <CardContent className="p-8">
+                <div className="text-4xl font-bold text-[#173104] mb-2">500+</div>
+                <div className="text-gray-600">Partner Companies</div>
+              </CardContent>
+            </Card>
+
+            <Card className="border-0 shadow-lg bg-white/80 backdrop-blur-sm">
+              <CardContent className="p-8">
+                <div className="text-4xl font-bold text-[#173104] mb-2">15</div>
+                <div className="text-gray-600">EU Countries</div>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
 
       {/* Still Have Questions */}
-      <section className="py-20 px-4 bg-gradient-to-r from-[#173104] to-[#2d5a1a] text-white">
+      <section className="py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-6">Still Have Questions?</h2>
-          <p className="text-lg sm:text-xl text-green-100 mb-12">
-            Our admissions team is here to help you find the perfect program for your career goals
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">Still Have Questions?</h2>
+          <p className="text-lg text-gray-600 mb-8">
+            Our admissions team is here to help you find the perfect program for your career goals.
           </p>
 
           <div className="grid md:grid-cols-2 gap-8 mb-12">
-            <Card className="border-2 border-[#b9ee44]/30 shadow-lg hover:shadow-xl transition-shadow bg-white/10 backdrop-blur-sm">
+            <Card className="border-2 border-[#173104]/20 shadow-lg">
               <CardContent className="p-8 text-center">
-                <div className="bg-[#b9ee44] w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                <div className="w-16 h-16 bg-gradient-to-br from-[#173104]/10 to-[#b9ee44]/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
                   <Phone className="w-8 h-8 text-[#173104]" />
                 </div>
-                <h3 className="text-xl font-bold mb-4">Schedule a Call</h3>
-                <p className="text-green-100 mb-6">Speak with our admissions counselors for personalized guidance</p>
-                <Button className="w-full bg-[#b9ee44] text-[#173104] hover:bg-[#a8d93f] transition-all font-bold">
-                  <Phone className="w-4 h-4 mr-2" />
-                  +370 600 12345
-                </Button>
+                <h3 className="text-xl font-bold text-gray-900 mb-4">Call Us</h3>
+                <p className="text-gray-600 mb-4">Speak directly with our admissions counselors</p>
+                <p className="text-[#173104] font-semibold">+370 600 12345</p>
+                <p className="text-sm text-gray-500">Mon-Fri, 9AM-6PM CET</p>
               </CardContent>
             </Card>
 
-            <Card className="border-2 border-[#b9ee44]/30 shadow-lg hover:shadow-xl transition-shadow bg-white/10 backdrop-blur-sm">
+            <Card className="border-2 border-[#173104]/20 shadow-lg">
               <CardContent className="p-8 text-center">
-                <div className="bg-[#b9ee44] w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <Mail className="w-8 h-8 text-[#173104]" />
+                <div className="w-16 h-16 bg-gradient-to-br from-[#173104]/10 to-[#b9ee44]/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                  <Users className="w-8 h-8 text-[#173104]" />
                 </div>
-                <h3 className="text-xl font-bold mb-4">Send an Email</h3>
-                <p className="text-green-100 mb-6">Get detailed information about programs and requirements</p>
-                <Button className="w-full bg-[#b9ee44] text-[#173104] hover:bg-[#a8d93f] transition-all font-bold">
-                  <Mail className="w-4 h-4 mr-2" />
-                  admissions@gitb.lt
+                <h3 className="text-xl font-bold text-gray-900 mb-4">Schedule a Call</h3>
+                <p className="text-gray-600 mb-4">Book a personalized consultation session</p>
+                <Button className="bg-gradient-to-r from-[#173104] to-[#2d5a1a] text-white px-6 py-2 rounded-lg">
+                  Book Now
                 </Button>
               </CardContent>
             </Card>
           </div>
 
-          <div className="bg-white/10 backdrop-blur-sm p-8 rounded-2xl">
-            <h3 className="text-xl font-bold mb-4">Ready to Get Started?</h3>
-            <p className="text-green-100 mb-6">
-              Join thousands of students who have transformed their careers with GITB
-            </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/application">
-              <Button className="bg-gradient-to-r from-[#b9ee44] to-[#a8d93f] text-[#173104] px-8 py-4 text-lg rounded-xl shadow-xl hover:shadow-2xl transition-shadow font-bold">
-                Start Your Application
+              <Button className="bg-gradient-to-r from-[#173104] to-[#2d5a1a] text-white px-8 py-4 text-lg rounded-xl shadow-xl hover:shadow-2xl transition-shadow">
+                Apply Now
                 <ArrowRight className="w-5 h-5 ml-2" />
+              </Button>
+            </Link>
+            <Link href="/courses">
+              <Button
+                variant="outline"
+                className="border-2 border-[#173104] text-[#173104] hover:bg-[#b9ee44]/10 px-8 py-4 text-lg rounded-xl bg-transparent"
+              >
+                View Courses
               </Button>
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Newsletter Signup */}
-      <section className="py-16 px-4 bg-gradient-to-r from-[#173104]/5 to-[#b9ee44]/10">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">Stay Updated with GITB</h2>
-          <p className="text-lg text-gray-600 mb-8">
-            Get the latest news about courses, job opportunities, and industry insights
-          </p>
-
-          <Card className="bg-white/90 backdrop-blur-sm shadow-lg border-0 rounded-2xl">
-            <CardContent className="p-8">
-              <form className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-                <input
-                  type="text"
-                  placeholder="Full Name"
-                  className="flex-1 px-4 py-3 rounded-xl border border-gray-200 focus:border-[#173104] focus:ring-2 focus:ring-[#173104]/20 outline-none transition-all"
-                />
-                <input
-                  type="email"
-                  placeholder="Email Address"
-                  className="flex-1 px-4 py-3 rounded-xl border border-gray-200 focus:border-[#173104] focus:ring-2 focus:ring-[#173104]/20 outline-none transition-all"
-                />
-                <Button className="bg-gradient-to-r from-[#173104] to-[#2d5a1a] text-white px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all">
-                  Subscribe
-                </Button>
-              </form>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
-
       {/* Footer */}
       <footer className="bg-[#173104] text-white py-16 px-4">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-4 gap-8">
             <div>
-              <Image
-                src="/images/gitb-logo.png"
-                alt="GITB Logo"
-                width={120}
-                height={40}
-                className="h-10 w-auto mb-6 brightness-0 invert"
-              />
-              <p className="text-green-100 mb-6 leading-relaxed">{t("footer.description")}</p>
+              <Link href="/">
+                <Image
+                  src="/images/gitb-logo-simple.png"
+                  alt="GITB Logo"
+                  width={120}
+                  height={40}
+                  className="h-10 w-auto mb-6 cursor-pointer"
+                />
+              </Link>
+              <p className="text-green-100 mb-6 leading-relaxed">
+                Global Institute of Tech and Business - Empowering careers through technology education.
+              </p>
             </div>
-
             <div>
-              <h4 className="font-bold text-lg mb-6">{t("footer.quickLinks")}</h4>
+              <h4 className="font-bold text-lg mb-6">Quick Links</h4>
               <div className="space-y-3 text-green-100">
                 <p>
                   <Link href="/" className="hover:text-white transition-colors">
-                    {t("nav.home")}
+                    Home
                   </Link>
                 </p>
                 <p>
                   <Link href="/courses" className="hover:text-white transition-colors">
-                    {t("nav.courses")}
+                    Courses
                   </Link>
                 </p>
                 <p>
                   <Link href="/about" className="hover:text-white transition-colors">
-                    {t("nav.about")}
+                    About Us
                   </Link>
                 </p>
                 <p>
                   <Link href="/how-it-works" className="hover:text-white transition-colors">
-                    {t("nav.howItWorks")}
-                  </Link>
-                </p>
-                <p>
-                  <Link href="/faq" className="hover:text-white transition-colors">
-                    {t("nav.faq")}
+                    How It Works
                   </Link>
                 </p>
               </div>
             </div>
-
             <div>
-              <h4 className="font-bold text-lg mb-6">{t("footer.programs")}</h4>
+              <h4 className="font-bold text-lg mb-6">Programs</h4>
               <div className="space-y-3 text-green-100">
-                <p>
-                  <Link href="/courses" className="hover:text-white transition-colors">
-                    Cybersecurity
-                  </Link>
-                </p>
-                <p>
-                  <Link href="/courses" className="hover:text-white transition-colors">
-                    UI/UX Design
-                  </Link>
-                </p>
-                <p>
-                  <Link href="/courses" className="hover:text-white transition-colors">
-                    Languages
-                  </Link>
-                </p>
-                <p>
-                  <Link href="/courses" className="hover:text-white transition-colors">
-                    Compliance
-                  </Link>
-                </p>
+                <p>Cybersecurity</p>
+                <p>UI/UX Design</p>
+                <p>Languages</p>
+                <p>Compliance</p>
               </div>
             </div>
-
             <div>
-              <h4 className="font-bold text-lg mb-6">{t("footer.contact")}</h4>
-              <div className="space-y-4">
-                <div className="flex items-center space-x-3">
-                  <Phone className="w-5 h-5 text-[#b9ee44]" />
-                  <span className="text-green-100">+370 600 12345</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <Mail className="w-5 h-5 text-[#b9ee44]" />
-                  <span className="text-green-100">admissions@gitb.lt</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <Globe className="w-5 h-5 text-[#b9ee44]" />
-                  <span className="text-green-100">Vilnius, Lithuania</span>
-                </div>
+              <h4 className="font-bold text-lg mb-6">Contact</h4>
+              <div className="space-y-3 text-green-100">
+                <p>+370 600 12345</p>
+                <p>info@gitb.eu</p>
+                <p>Vilnius, Lithuania</p>
               </div>
-            </div>
-          </div>
-
-          <div className="border-t border-green-600/30 mt-12 pt-8 text-center">
-            <p className="text-green-100">© 2024 Global Institute of Tech and Business. All rights reserved.</p>
-            <div className="flex flex-wrap justify-center space-x-4 sm:space-x-8 mt-4 text-sm text-green-200">
-              <Link href="/privacy-policy" className="hover:text-white transition-colors">
-                Privacy Policy
-              </Link>
-              <Link href="/terms-conditions" className="hover:text-white transition-colors">
-                Terms & Conditions
-              </Link>
-              <Link href="/cookie-policy" className="hover:text-white transition-colors">
-                Cookie Policy
-              </Link>
             </div>
           </div>
         </div>

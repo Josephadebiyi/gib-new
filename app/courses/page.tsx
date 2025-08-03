@@ -3,130 +3,147 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import {
-  Clock,
-  Users,
-  Award,
-  ArrowRight,
-  Star,
-  Globe,
-  Shield,
-  Palette,
-  Languages,
-  BookOpen,
-  Phone,
-  Mail,
-} from "lucide-react"
+import { Input } from "@/components/ui/input"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Phone, ArrowRight, Search, Filter, Clock, Award, Users, Star, CheckCircle } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-import { useTranslation } from "@/hooks/useTranslation"
-import { LanguageSwitcher } from "@/components/LanguageSwitcher"
+import { useState } from "react"
 
 export default function CoursesPage() {
-  const { t } = useTranslation()
+  const [searchTerm, setSearchTerm] = useState("")
+  const [sortBy, setSortBy] = useState("popular")
+  const [filterBy, setFilterBy] = useState("all")
 
   const courses = [
     {
-      id: "cybersecurity",
-      category: "Cybersecurity",
+      id: "cybersecurity-professional",
       title: "Cybersecurity Professional",
-      description: "Master ethical hacking, penetration testing, and security vulnerability assessment.",
+      category: "Technical",
       duration: "4 months",
-      students: "2,500+",
+      price: 1635,
+      level: "Beginner to Advanced",
       rating: 4.9,
-      level: "Advanced",
-      icon: <Shield className="w-8 h-8" />,
-      gradient: "from-red-500/10 to-red-600/20",
-      skills: ["Ethical Hacking", "Penetration Testing", "Security Assessment", "Compliance"],
+      students: 1250,
       image: "/images/cybersecurity-flyer.jpg",
-      certificates: ["CompTIA Security+", "CompTIA Network+"],
+      description: "Master cybersecurity fundamentals and earn CompTIA Security+ certification",
+      skills: ["Network Security", "Risk Assessment", "Incident Response", "Compliance"],
+      certification: "CompTIA Security+",
+      popular: true,
     },
     {
-      id: "cybersecurity-vuln",
-      category: "Cybersecurity",
-      title: "Cybersecurity Vulnerability Tester",
-      description: "Specialized program focusing on vulnerability testing and penetration testing techniques.",
+      id: "cybersecurity-vulnerability",
+      title: "Vulnerability Tester",
+      category: "Technical",
       duration: "4 months",
-      students: "1,800+",
+      price: 1590,
+      level: "Intermediate to Advanced",
       rating: 4.8,
-      level: "Advanced",
-      icon: <Shield className="w-8 h-8" />,
-      gradient: "from-red-500/10 to-red-600/20",
-      skills: ["Vulnerability Assessment", "Penetration Testing", "Risk Management", "Compliance"],
+      students: 890,
       image: "/images/cybersecurity-vuln-flyer.jpg",
-      certificates: ["CompTIA PenTest+"],
+      description: "Learn penetration testing and vulnerability assessment with CompTIA PenTest+",
+      skills: ["Penetration Testing", "Vulnerability Assessment", "Ethical Hacking", "Security Tools"],
+      certification: "CompTIA PenTest+",
+      popular: false,
     },
     {
       id: "uiux-design",
-      category: "Design",
       title: "UI/UX & Webflow Design",
-      description: "Master modern design principles, user experience, and Webflow development.",
-      duration: "3 months",
-      students: "1,400+",
-      rating: 4.8,
-      level: "Beginner",
-      icon: <Palette className="w-8 h-8" />,
-      gradient: "from-pink-500/10 to-pink-600/20",
-      skills: ["UI/UX Principles", "Wireframing", "Webflow", "User Research"],
+      category: "Design",
+      duration: "4 months",
+      price: 1590,
+      level: "Beginner to Intermediate",
+      rating: 4.9,
+      students: 1100,
       image: "/images/uiux-flyer.jpg",
-      certificates: ["Google UX Design Certificate"],
+      description: "Create stunning user experiences and build websites with Webflow",
+      skills: ["User Research", "Prototyping", "Webflow", "Design Systems"],
+      certification: "Google UX Design Certificate",
+      popular: true,
     },
     {
-      id: "iam",
-      category: "Security",
-      title: "Identity & Access Management (IAM)",
-      description: "Master IAM frameworks, RBAC, SSO, and multi-factor authentication systems.",
-      duration: "3 months",
-      students: "800+",
-      rating: 4.7,
+      id: "iam-specialist",
+      title: "IAM Specialist",
+      category: "Technical",
+      duration: "4 months",
+      price: 1730,
       level: "Intermediate",
-      icon: <Shield className="w-8 h-8" />,
-      gradient: "from-teal-500/10 to-teal-600/20",
-      skills: ["IAM Frameworks", "RBAC", "SSO & MFA", "Compliance"],
+      rating: 4.7,
+      students: 650,
       image: "/images/iam-flyer.jpg",
-      certificates: ["Certified Identity & Access Manager (CIAM)"],
+      description: "Master identity and access management for enterprise security",
+      skills: ["Identity Management", "Access Control", "SSO", "Directory Services"],
+      certification: "CIAM Certification",
+      popular: false,
     },
     {
       id: "kyc-compliance",
-      category: "Compliance",
-      title: "KYC & Compliance Specialist",
-      description: "Learn KYC regulations, customer due diligence, and fraud detection techniques.",
-      duration: "2 months",
-      students: "600+",
-      rating: 4.6,
-      level: "Beginner",
-      icon: <BookOpen className="w-8 h-8" />,
-      gradient: "from-emerald-500/10 to-emerald-600/20",
-      skills: ["KYC & AML", "Due Diligence", "Risk Assessment", "Fraud Prevention"],
+      title: "KYC Compliance Specialist",
+      category: "Business",
+      duration: "4 months",
+      price: 1590,
+      level: "Beginner to Intermediate",
+      rating: 4.8,
+      students: 780,
       image: "/images/kyc-flyer.jpg",
-      certificates: ["Certified KYC Analyst (CKYCA)"],
+      description: "Navigate financial regulations and compliance requirements",
+      skills: ["KYC Procedures", "AML Compliance", "Risk Assessment", "Regulatory Reporting"],
+      certification: "CKYCA Certification",
+      popular: false,
     },
     {
-      id: "languages",
-      category: "Languages",
+      id: "european-languages",
       title: "European Languages Program",
-      description: "French, Spanish, Lithuanian - Open doors across Europe with professional language skills.",
-      duration: "3-6 months",
-      students: "2,200+",
-      rating: 4.7,
+      category: "Language",
+      duration: "3 months",
+      price: 300,
       level: "All Levels",
-      icon: <Languages className="w-8 h-8" />,
-      gradient: "from-blue-500/10 to-blue-600/20",
-      skills: ["Business Communication", "Cultural Insights", "Professional Proficiency", "Certification Prep"],
+      rating: 4.6,
+      students: 2100,
       image: "/images/languages-flyer.jpg",
-      certificates: ["DELF", "DELE", "LKI"],
+      description: "Learn French, Spanish, or Lithuanian for European career opportunities",
+      skills: ["Conversational Skills", "Business Communication", "Cultural Awareness", "Professional Writing"],
+      certification: "CEFR Certificate",
+      popular: true,
     },
   ]
 
+  const filteredCourses = courses.filter((course) => {
+    const matchesSearch =
+      course.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      course.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      course.skills.some((skill) => skill.toLowerCase().includes(searchTerm.toLowerCase()))
+
+    const matchesFilter = filterBy === "all" || course.category.toLowerCase() === filterBy.toLowerCase()
+
+    return matchesSearch && matchesFilter
+  })
+
+  const sortedCourses = [...filteredCourses].sort((a, b) => {
+    switch (sortBy) {
+      case "price-low":
+        return a.price - b.price
+      case "price-high":
+        return b.price - a.price
+      case "duration":
+        return Number.parseInt(a.duration) - Number.parseInt(b.duration)
+      case "rating":
+        return b.rating - a.rating
+      case "popular":
+      default:
+        return b.students - a.students
+    }
+  })
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50/30 via-lime-50/20 to-yellow-50/10">
+    <div className="min-h-screen bg-white">
       {/* Header */}
-      <header className="bg-[#173104] text-white px-4 py-4">
+      <header className="bg-gradient-to-r from-[#173104]/90 to-[#2d5a1a]/90 backdrop-blur-sm text-white px-4 py-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center space-x-8">
             <Link href="/">
               <Image
-                src="/images/gitb-logo.png"
+                src="/images/gitb-logo-simple.png"
                 alt="GITB Logo"
                 width={120}
                 height={40}
@@ -135,27 +152,30 @@ export default function CoursesPage() {
             </Link>
             <nav className="hidden md:flex space-x-8 text-sm font-medium">
               <Link href="/" className="hover:text-[#b9ee44] transition-colors">
-                {t("nav.home")}
+                Home
               </Link>
               <Link href="/courses" className="text-[#b9ee44] font-semibold">
-                {t("nav.courses")}
+                Courses
               </Link>
               <Link href="/about" className="hover:text-[#b9ee44] transition-colors">
-                {t("nav.about")}
+                About Us
               </Link>
               <Link href="/how-it-works" className="hover:text-[#b9ee44] transition-colors">
-                {t("nav.howItWorks")}
+                How It Works
               </Link>
               <Link href="/faq" className="hover:text-[#b9ee44] transition-colors">
-                {t("nav.faq")}
+                FAQ
               </Link>
             </nav>
           </div>
           <div className="flex items-center space-x-6">
-            <LanguageSwitcher />
+            <div className="hidden md:flex items-center space-x-2 text-sm">
+              <Phone className="w-4 h-4" />
+              <span>+370 600 12345</span>
+            </div>
             <Link href="/application">
-              <Button className="bg-gradient-to-r from-[#b9ee44] to-[#a8d93f] text-[#173104] hover:from-[#a8d93f] hover:to-[#97c73a] text-sm px-6 py-2 font-bold rounded-lg shadow-lg transition-all">
-                {t("nav.registerNow")}
+              <Button className="bg-[#b9ee44] text-[#173104] hover:bg-[#a8d93a] text-sm px-6 py-2 font-semibold shadow-lg">
+                APPLY NOW
               </Button>
             </Link>
           </div>
@@ -163,40 +183,69 @@ export default function CoursesPage() {
       </header>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-[#b9ee44] to-[#a8d93f] py-20 px-4">
-        <div className="max-w-7xl mx-auto text-center">
-          <h1 className="text-4xl sm:text-5xl font-bold text-[#173104] mb-6">
-            Industry-Focused <span className="text-white">Tech Courses</span>
+      <section className="bg-gradient-to-br from-purple-100/30 via-blue-50/40 to-green-50/30 py-20 px-4 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-50">
+          <div className="absolute inset-0 bg-gradient-to-r from-[#b9ee44]/5 via-transparent to-[#b9ee44]/5"></div>
+          <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_20%_20%,_#b9ee44_0.1px,_transparent_0.1px)] bg-[length:60px_60px]"></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto relative z-10 text-center">
+          <Badge className="bg-[#b9ee44]/20 text-[#173104] mb-4">All Courses</Badge>
+          <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+            Industry-Ready <span className="text-[#173104]">Programs</span>
           </h1>
-          <p className="text-lg sm:text-xl text-[#173104]/80 max-w-3xl mx-auto mb-8">
-            Choose from our comprehensive catalog of EU-recognized programs designed to prepare you for high-demand
-            careers in Europe's thriving job market.
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            Choose from our comprehensive range of technology, business, and language courses designed for career
+            success in Europe's competitive job market.
           </p>
-          <div className="flex flex-wrap justify-center gap-4 mb-8">
-            <Badge className="bg-white/20 text-[#173104] px-4 py-2 border-0">EU Recognized</Badge>
-            <Badge className="bg-white/20 text-[#173104] px-4 py-2 border-0">Industry Partnerships</Badge>
-            <Badge className="bg-white/20 text-[#173104] px-4 py-2 border-0">Job Placement Support</Badge>
-          </div>
         </div>
       </section>
 
-      {/* Course Categories */}
+      {/* Search and Filter */}
       <section className="py-12 px-4 bg-white/50">
         <div className="max-w-7xl mx-auto">
-          <div className="flex flex-wrap justify-center gap-4 mb-12">
-            {["All", "Cybersecurity", "Design", "Compliance", "Languages"].map((category) => (
-              <Button
-                key={category}
-                variant={category === "All" ? "default" : "outline"}
-                className={`px-4 py-2 sm:px-6 sm:py-2 text-sm sm:text-base transition-all ${
-                  category === "All"
-                    ? "bg-[#173104] text-white hover:bg-[#2d5a1a]"
-                    : "border-[#173104]/30 text-[#173104] hover:bg-[#b9ee44]/20"
-                }`}
-              >
-                {category}
-              </Button>
-            ))}
+          <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
+            <div className="flex-1 max-w-md">
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                <Input
+                  type="text"
+                  placeholder="Search courses, skills, or topics..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="pl-10 py-3 border-2 border-gray-200 focus:border-[#173104] rounded-xl"
+                />
+              </div>
+            </div>
+
+            <div className="flex gap-4">
+              <Select value={filterBy} onValueChange={setFilterBy}>
+                <SelectTrigger className="w-40 border-2 border-gray-200 rounded-xl">
+                  <Filter className="w-4 h-4 mr-2" />
+                  <SelectValue placeholder="Filter by" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All Categories</SelectItem>
+                  <SelectItem value="technical">Technical</SelectItem>
+                  <SelectItem value="design">Design</SelectItem>
+                  <SelectItem value="business">Business</SelectItem>
+                  <SelectItem value="language">Language</SelectItem>
+                </SelectContent>
+              </Select>
+
+              <Select value={sortBy} onValueChange={setSortBy}>
+                <SelectTrigger className="w-40 border-2 border-gray-200 rounded-xl">
+                  <SelectValue placeholder="Sort by" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="popular">Most Popular</SelectItem>
+                  <SelectItem value="rating">Highest Rated</SelectItem>
+                  <SelectItem value="price-low">Price: Low to High</SelectItem>
+                  <SelectItem value="price-high">Price: High to Low</SelectItem>
+                  <SelectItem value="duration">Duration</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
           </div>
         </div>
       </section>
@@ -205,64 +254,96 @@ export default function CoursesPage() {
       <section className="py-20 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 xl:grid-cols-3 gap-8">
-            {courses.map((course, index) => (
+            {sortedCourses.map((course) => (
               <Card
-                key={index}
-                className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 bg-white/80 backdrop-blur-sm group overflow-hidden"
+                key={course.id}
+                className="border-0 shadow-lg hover:shadow-xl transition-shadow bg-white/80 backdrop-blur-sm group overflow-hidden"
               >
-                <div className="relative h-64 overflow-hidden">
+                <div className="relative h-64">
                   <Image
                     src={course.image || "/placeholder.svg"}
                     alt={course.title}
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-300"
                   />
-                  <div className="absolute top-4 right-4">
-                    <Badge className="bg-[#b9ee44]/90 text-[#173104] border-0">{course.level}</Badge>
-                  </div>
+                  {course.popular && (
+                    <Badge className="absolute top-4 left-4 bg-[#b9ee44] text-[#173104] font-semibold">
+                      Most Popular
+                    </Badge>
+                  )}
+                  <Badge className="absolute top-4 right-4 bg-white/90 text-gray-700">{course.category}</Badge>
                 </div>
 
                 <CardContent className="p-6">
-                  <div className="flex items-center mb-4">
-                    <div className={`bg-gradient-to-br ${course.gradient} p-3 rounded-xl mr-3`}>
-                      <div className="text-[#173104]">{course.icon}</div>
-                    </div>
-                    <div>
-                      <p className="text-sm font-semibold text-[#173104] mb-1">{course.category}</p>
-                      <h3 className="text-lg font-bold text-gray-900 leading-tight">{course.title}</h3>
+                  <div className="flex items-center justify-between mb-3">
+                    <h3 className="text-xl font-bold text-gray-900">{course.title}</h3>
+                    <div className="flex items-center space-x-1">
+                      <Star className="w-4 h-4 text-yellow-400 fill-current" />
+                      <span className="text-sm font-semibold text-gray-700">{course.rating}</span>
                     </div>
                   </div>
 
-                  <p className="text-gray-600 leading-relaxed mb-4 text-sm">{course.description}</p>
+                  <p className="text-gray-600 mb-4 text-sm leading-relaxed">{course.description}</p>
 
-                  <div className="flex items-center space-x-4 mb-4 text-xs text-gray-500">
-                    <div className="flex items-center">
-                      <Clock className="w-3 h-3 mr-1" />
-                      {course.duration}
+                  <div className="space-y-3 mb-6">
+                    <div className="flex items-center justify-between text-sm">
+                      <div className="flex items-center space-x-2">
+                        <Clock className="w-4 h-4 text-[#173104]" />
+                        <span className="text-gray-600">{course.duration}</span>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <Users className="w-4 h-4 text-[#173104]" />
+                        <span className="text-gray-600">{course.students.toLocaleString()} students</span>
+                      </div>
                     </div>
-                    <div className="flex items-center">
-                      <Users className="w-3 h-3 mr-1" />
-                      {course.students}
-                    </div>
-                    <div className="flex items-center">
-                      <Star className="w-3 h-3 mr-1 text-[#b9ee44] fill-current" />
-                      {course.rating}
+
+                    <div className="flex items-center space-x-2 text-sm">
+                      <Award className="w-4 h-4 text-[#173104]" />
+                      <span className="text-gray-600">{course.certification}</span>
                     </div>
                   </div>
 
                   <div className="mb-6">
-                    <p className="text-xs font-semibold text-gray-700 mb-2">Certificates:</p>
-                    <div className="flex flex-wrap gap-1">
-                      {course.certificates.map((cert, certIndex) => (
-                        <Badge key={certIndex} variant="outline" className="text-xs px-2 py-1 border-[#173104]/30">
-                          {cert}
+                    <p className="text-sm font-semibold text-gray-900 mb-2">Key Skills:</p>
+                    <div className="flex flex-wrap gap-2">
+                      {course.skills.slice(0, 3).map((skill, index) => (
+                        <Badge key={index} className="bg-[#173104]/10 text-[#173104] text-xs">
+                          {skill}
                         </Badge>
                       ))}
+                      {course.skills.length > 3 && (
+                        <Badge className="bg-gray-100 text-gray-600 text-xs">+{course.skills.length - 3} more</Badge>
+                      )}
+                    </div>
+                  </div>
+
+                  <div className="flex items-center justify-between mb-6">
+                    <div>
+                      <div className="text-2xl font-bold text-[#173104]">€{course.price}</div>
+                      <div className="text-sm text-gray-500">{course.level}</div>
+                    </div>
+                    <div className="text-right">
+                      <div className="text-sm text-gray-500">Starting from</div>
+                      <div className="text-lg font-semibold text-gray-700">
+                        €
+                        {course.id === "cybersecurity-professional"
+                          ? "409"
+                          : course.id === "cybersecurity-vulnerability"
+                            ? "398"
+                            : course.id === "uiux-design"
+                              ? "398"
+                              : course.id === "iam-specialist"
+                                ? "433"
+                                : course.id === "kyc-compliance"
+                                  ? "398"
+                                  : "100"}
+                        /month
+                      </div>
                     </div>
                   </div>
 
                   <Link href={`/courses/${course.id}`}>
-                    <Button className="w-full bg-gradient-to-r from-[#173104] to-[#2d5a1a] text-white hover:from-[#145033] hover:to-[#246647] group-hover:shadow-lg transition-all text-sm sm:text-base py-2 sm:py-3">
+                    <Button className="w-full bg-gradient-to-r from-[#173104] to-[#2d5a1a] text-white hover:shadow-lg transition-all">
                       Learn More
                       <ArrowRight className="w-4 h-4 ml-2" />
                     </Button>
@@ -271,87 +352,111 @@ export default function CoursesPage() {
               </Card>
             ))}
           </div>
+
+          {sortedCourses.length === 0 && (
+            <div className="text-center py-16">
+              <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Search className="w-12 h-12 text-gray-400" />
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">No courses found</h3>
+              <p className="text-gray-600">Try adjusting your search terms or filters</p>
+            </div>
+          )}
         </div>
       </section>
 
-      {/* Certification Partners */}
-      <section className="py-16 px-4 bg-white/50">
-        <div className="max-w-7xl mx-auto text-center">
-          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-8">
-            Prepare for <span className="text-[#173104]">Industry Certifications</span>
-          </h2>
-          <div className="grid grid-cols-2 md:grid-cols-6 gap-6 items-center opacity-70 hover:opacity-100 transition-opacity">
-            {["CompTIA", "Google", "Microsoft", "Cisco", "AWS", "Oracle"].map((cert, index) => (
-              <div
-                key={index}
-                className="bg-white/80 backdrop-blur-sm p-4 sm:p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow text-center"
-              >
-                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-[#173104]/10 to-[#b9ee44]/20 rounded-lg flex items-center justify-center mx-auto mb-3">
-                  <Award className="w-6 h-6 sm:w-8 sm:h-8 text-[#173104]" />
+      {/* Why Choose GITB */}
+      <section className="py-20 px-4 bg-gradient-to-br from-gray-50/50 to-blue-50/30">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold text-gray-900 mb-6">
+              Why Choose <span className="text-[#173104]">GITB Courses?</span>
+            </h2>
+            <p className="text-lg text-gray-600">What sets our programs apart</p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <Card className="border-0 shadow-lg bg-white/80 backdrop-blur-sm text-center">
+              <CardContent className="p-8">
+                <div className="w-16 h-16 bg-gradient-to-br from-[#173104]/10 to-[#b9ee44]/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                  <CheckCircle className="w-8 h-8 text-[#173104]" />
                 </div>
-                <span className="text-xs sm:text-sm font-semibold text-gray-700">{cert}</span>
-              </div>
-            ))}
+                <h3 className="text-xl font-bold text-gray-900 mb-4">Industry-Recognized Certifications</h3>
+                <p className="text-gray-600">
+                  Earn certifications from CompTIA, Google, and other leading organizations that employers value across
+                  Europe.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-0 shadow-lg bg-white/80 backdrop-blur-sm text-center">
+              <CardContent className="p-8">
+                <div className="w-16 h-16 bg-gradient-to-br from-[#173104]/10 to-[#b9ee44]/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                  <Users className="w-8 h-8 text-[#173104]" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-4">Expert Instructors</h3>
+                <p className="text-gray-600">
+                  Learn from industry professionals with real-world experience at leading European tech companies.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-0 shadow-lg bg-white/80 backdrop-blur-sm text-center">
+              <CardContent className="p-8">
+                <div className="w-16 h-16 bg-gradient-to-br from-[#173104]/10 to-[#b9ee44]/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                  <Award className="w-8 h-8 text-[#173104]" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-4">Career Support</h3>
+                <p className="text-gray-600">
+                  Get lifetime access to our career services, including job placement assistance and professional
+                  networking.
+                </p>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 px-4 bg-gradient-to-r from-[#173104] to-[#2d5a1a]">
+      {/* Call to Action */}
+      <section className="py-20 px-4 bg-gradient-to-r from-[#173104] to-[#2d5a1a] text-white">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">Ready to Start Learning?</h2>
-          <p className="text-lg sm:text-xl text-green-100 mb-8">
-            Join thousands of students who have transformed their careers with our industry-focused programs
+          <h2 className="text-4xl font-bold mb-6">Ready to Start Your Journey?</h2>
+          <p className="text-xl text-green-100 mb-8">
+            Join thousands of professionals who have transformed their careers with GITB's industry-focused programs.
           </p>
-          <Link href="/application">
-            <Button className="bg-gradient-to-r from-[#b9ee44] to-[#a8d93f] text-[#173104] hover:from-[#a8d93f] hover:to-[#97c73a] px-6 py-3 sm:px-8 sm:py-4 text-base sm:text-lg rounded-xl shadow-xl font-bold transition-all">
-              Apply Now - €50 Application Fee
-              <ArrowRight className="w-5 h-5 ml-2" />
-            </Button>
-          </Link>
-        </div>
-      </section>
-
-      {/* Newsletter Signup */}
-      <section className="py-16 px-4 bg-gradient-to-r from-[#173104]/5 to-[#b9ee44]/10">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">Stay Updated with New Courses</h2>
-          <p className="text-lg text-gray-600 mb-8">Be the first to know about new programs and special offers</p>
-
-          <Card className="bg-white/90 backdrop-blur-sm shadow-lg border-0 rounded-2xl">
-            <CardContent className="p-8">
-              <form className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-                <input
-                  type="text"
-                  placeholder="Full Name"
-                  className="flex-1 px-4 py-3 rounded-xl border border-gray-200 focus:border-[#173104] focus:ring-2 focus:ring-[#173104]/20 outline-none transition-all"
-                />
-                <input
-                  type="email"
-                  placeholder="Email Address"
-                  className="flex-1 px-4 py-3 rounded-xl border border-gray-200 focus:border-[#173104] focus:ring-2 focus:ring-[#173104]/20 outline-none transition-all"
-                />
-                <Button className="bg-gradient-to-r from-[#173104] to-[#2d5a1a] text-white px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all">
-                  Subscribe
-                </Button>
-              </form>
-            </CardContent>
-          </Card>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link href="/application">
+              <Button className="bg-[#b9ee44] text-[#173104] hover:bg-[#a8d93a] px-8 py-4 text-lg rounded-xl shadow-xl font-semibold">
+                Apply Now
+                <ArrowRight className="w-5 h-5 ml-2" />
+              </Button>
+            </Link>
+            <Link href="/how-it-works">
+              <Button
+                variant="outline"
+                className="border-2 border-white text-white hover:bg-white hover:text-[#173104] px-8 py-4 text-lg rounded-xl bg-transparent"
+              >
+                How It Works
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
 
       {/* Footer */}
       <footer className="bg-[#173104] text-white py-16 px-4">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-4 gap-8">
             <div>
-              <Image
-                src="/images/gitb-logo.png"
-                alt="GITB Logo"
-                width={120}
-                height={40}
-                className="h-10 w-auto mb-6 brightness-0 invert"
-              />
+              <Link href="/">
+                <Image
+                  src="/images/gitb-logo-simple.png"
+                  alt="GITB Logo"
+                  width={120}
+                  height={40}
+                  className="h-10 w-auto mb-6 cursor-pointer"
+                />
+              </Link>
               <p className="text-green-100 mb-6 leading-relaxed">
                 Global Institute of Tech and Business - Empowering careers through technology education.
               </p>
@@ -360,8 +465,8 @@ export default function CoursesPage() {
               <h4 className="font-bold text-lg mb-6">Quick Links</h4>
               <div className="space-y-3 text-green-100">
                 <p>
-                  <Link href="/courses" className="hover:text-white transition-colors">
-                    Courses
+                  <Link href="/" className="hover:text-white transition-colors">
+                    Home
                   </Link>
                 </p>
                 <p>
@@ -379,33 +484,28 @@ export default function CoursesPage() {
                     FAQ
                   </Link>
                 </p>
-                <p>
-                  <Link href="/application" className="hover:text-white transition-colors">
-                    Apply Now
-                  </Link>
-                </p>
               </div>
             </div>
             <div>
               <h4 className="font-bold text-lg mb-6">Programs</h4>
               <div className="space-y-3 text-green-100">
                 <p>
-                  <Link href="/courses" className="hover:text-white transition-colors">
+                  <Link href="/courses/cybersecurity-professional" className="hover:text-white transition-colors">
                     Cybersecurity
                   </Link>
                 </p>
                 <p>
-                  <Link href="/courses" className="hover:text-white transition-colors">
+                  <Link href="/courses/uiux-design" className="hover:text-white transition-colors">
                     UI/UX Design
                   </Link>
                 </p>
                 <p>
-                  <Link href="/courses" className="hover:text-white transition-colors">
+                  <Link href="/courses/european-languages" className="hover:text-white transition-colors">
                     Languages
                   </Link>
                 </p>
                 <p>
-                  <Link href="/courses" className="hover:text-white transition-colors">
+                  <Link href="/courses/kyc-compliance" className="hover:text-white transition-colors">
                     Compliance
                   </Link>
                 </p>
@@ -413,35 +513,11 @@ export default function CoursesPage() {
             </div>
             <div>
               <h4 className="font-bold text-lg mb-6">Contact</h4>
-              <div className="space-y-4">
-                <div className="flex items-center space-x-3">
-                  <Phone className="w-5 h-5 text-[#b9ee44]" />
-                  <span className="text-green-100">+370 600 12345</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <Mail className="w-5 h-5 text-[#b9ee44]" />
-                  <span className="text-green-100">admissions@gitb.lt</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <Globe className="w-5 h-5 text-[#b9ee44]" />
-                  <span className="text-green-100">Vilnius, Lithuania</span>
-                </div>
+              <div className="space-y-3 text-green-100">
+                <p>+370 600 12345</p>
+                <p>info@gitb.eu</p>
+                <p>Vilnius, Lithuania</p>
               </div>
-            </div>
-          </div>
-
-          <div className="border-t border-green-600/30 mt-12 pt-8 text-center">
-            <p className="text-green-100">© 2024 Global Institute of Tech and Business. All rights reserved.</p>
-            <div className="flex flex-wrap justify-center space-x-4 sm:space-x-8 mt-4 text-sm text-green-200">
-              <Link href="/privacy-policy" className="hover:text-white transition-colors">
-                Privacy Policy
-              </Link>
-              <Link href="/terms-conditions" className="hover:text-white transition-colors">
-                Terms & Conditions
-              </Link>
-              <Link href="/cookie-policy" className="hover:text-white transition-colors">
-                Cookie Policy
-              </Link>
             </div>
           </div>
         </div>

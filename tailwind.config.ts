@@ -26,11 +26,11 @@ const config: Config = {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "#173104",
+          DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
         },
         secondary: {
-          DEFAULT: "#b9ee44",
+          DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
         },
         destructive: {
@@ -52,11 +52,6 @@ const config: Config = {
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
-        },
-        gitb: {
-          primary: "#173104",
-          secondary: "#b9ee44",
-          accent: "#a8d93f",
         },
       },
       borderRadius: {

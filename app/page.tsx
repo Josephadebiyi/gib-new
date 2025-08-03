@@ -16,6 +16,7 @@ import {
   Star,
   Target,
   Briefcase,
+  Percent,
 } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
@@ -33,7 +34,7 @@ export default function HomePage() {
           <div className="flex items-center space-x-8">
             <Link href="/">
               <Image
-                src="/images/gitb-logo.png"
+                src="/images/gitb-logo-simple.png"
                 alt="GITB Logo"
                 width={120}
                 height={40}
@@ -57,7 +58,7 @@ export default function HomePage() {
           </div>
           <div className="flex items-center space-x-6">
             <LanguageSwitcher />
-            <div className="flex items-center space-x-2 text-sm">
+            <div className="hidden md:flex items-center space-x-2 text-sm">
               <Phone className="w-4 h-4" />
               <span>+370 600 12345</span>
             </div>
@@ -74,10 +75,11 @@ export default function HomePage() {
       <section className="bg-gradient-to-r from-[#b9ee44] to-[#a8d93f] py-3 px-4 text-center">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center justify-center space-x-4 text-[#173104] font-bold text-sm">
-            <span>🎯 {t("banner.action")}</span>
+            <Percent className="w-4 h-4" />
+            <span>🎯 Enroll now and get 15% off with code SUPERTECH</span>
             <div className="flex items-center space-x-2">
               <Clock className="w-4 h-4" />
-              <span>00:15:34</span>
+              <span>Limited time offer!</span>
             </div>
           </div>
         </div>
@@ -168,14 +170,45 @@ export default function HomePage() {
               <CardContent className="p-6">
                 <h3 className="text-xl font-bold text-gray-900 mb-2">Cybersecurity Professional</h3>
                 <p className="text-gray-600 mb-4">4 months intensive program with CompTIA Security+ certification</p>
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between mb-4">
                   <Badge className="bg-[#b9ee44]/20 text-[#173104]">4 Months</Badge>
-                  <Link href="/courses/cybersecurity">
-                    <Button className="bg-gradient-to-r from-[#173104] to-[#2d5a1a] text-white hover:shadow-lg transition-all text-sm">
-                      Learn More
-                    </Button>
-                  </Link>
+                  <div className="text-right">
+                    <div className="text-lg font-bold text-[#173104]">€1,635</div>
+                    <div className="text-sm text-gray-500">€409/month</div>
+                  </div>
                 </div>
+                <Link href="/courses/cybersecurity-professional">
+                  <Button className="w-full bg-gradient-to-r from-[#173104] to-[#2d5a1a] text-white hover:shadow-lg transition-all text-sm">
+                    Learn More
+                  </Button>
+                </Link>
+              </CardContent>
+            </Card>
+
+            <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow bg-white/80 backdrop-blur-sm group overflow-hidden">
+              <div className="relative h-64">
+                <Image
+                  src="/images/cybersecurity-vuln-flyer.jpg"
+                  alt="Vulnerability Testing Course"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+              <CardContent className="p-6">
+                <h3 className="text-xl font-bold text-gray-900 mb-2">Vulnerability Tester</h3>
+                <p className="text-gray-600 mb-4">4 months program with CompTIA PenTest+ certification</p>
+                <div className="flex items-center justify-between mb-4">
+                  <Badge className="bg-[#b9ee44]/20 text-[#173104]">4 Months</Badge>
+                  <div className="text-right">
+                    <div className="text-lg font-bold text-[#173104]">€1,590</div>
+                    <div className="text-sm text-gray-500">€398/month</div>
+                  </div>
+                </div>
+                <Link href="/courses/cybersecurity-vulnerability">
+                  <Button className="w-full bg-gradient-to-r from-[#173104] to-[#2d5a1a] text-white hover:shadow-lg transition-all text-sm">
+                    Learn More
+                  </Button>
+                </Link>
               </CardContent>
             </Card>
 
@@ -190,15 +223,73 @@ export default function HomePage() {
               </div>
               <CardContent className="p-6">
                 <h3 className="text-xl font-bold text-gray-900 mb-2">UI/UX & Webflow Design</h3>
-                <p className="text-gray-600 mb-4">3 months program with Google UX Design Certificate</p>
-                <div className="flex items-center justify-between">
-                  <Badge className="bg-[#b9ee44]/20 text-[#173104]">3 Months</Badge>
-                  <Link href="/courses/uiux">
-                    <Button className="bg-gradient-to-r from-[#173104] to-[#2d5a1a] text-white hover:shadow-lg transition-all text-sm">
-                      Learn More
-                    </Button>
-                  </Link>
+                <p className="text-gray-600 mb-4">4 months program with Google UX Design Certificate</p>
+                <div className="flex items-center justify-between mb-4">
+                  <Badge className="bg-[#b9ee44]/20 text-[#173104]">4 Months</Badge>
+                  <div className="text-right">
+                    <div className="text-lg font-bold text-[#173104]">€1,590</div>
+                    <div className="text-sm text-gray-500">€398/month</div>
+                  </div>
                 </div>
+                <Link href="/courses/uiux-design">
+                  <Button className="w-full bg-gradient-to-r from-[#173104] to-[#2d5a1a] text-white hover:shadow-lg transition-all text-sm">
+                    Learn More
+                  </Button>
+                </Link>
+              </CardContent>
+            </Card>
+
+            <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow bg-white/80 backdrop-blur-sm group overflow-hidden">
+              <div className="relative h-64">
+                <Image
+                  src="/images/iam-flyer.jpg"
+                  alt="IAM Specialist Course"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+              <CardContent className="p-6">
+                <h3 className="text-xl font-bold text-gray-900 mb-2">IAM Specialist</h3>
+                <p className="text-gray-600 mb-4">4 months program with CIAM certification</p>
+                <div className="flex items-center justify-between mb-4">
+                  <Badge className="bg-[#b9ee44]/20 text-[#173104]">4 Months</Badge>
+                  <div className="text-right">
+                    <div className="text-lg font-bold text-[#173104]">€1,730</div>
+                    <div className="text-sm text-gray-500">€433/month</div>
+                  </div>
+                </div>
+                <Link href="/courses/iam-specialist">
+                  <Button className="w-full bg-gradient-to-r from-[#173104] to-[#2d5a1a] text-white hover:shadow-lg transition-all text-sm">
+                    Learn More
+                  </Button>
+                </Link>
+              </CardContent>
+            </Card>
+
+            <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow bg-white/80 backdrop-blur-sm group overflow-hidden">
+              <div className="relative h-64">
+                <Image
+                  src="/images/kyc-flyer.jpg"
+                  alt="KYC Compliance Course"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+              <CardContent className="p-6">
+                <h3 className="text-xl font-bold text-gray-900 mb-2">KYC Compliance Specialist</h3>
+                <p className="text-gray-600 mb-4">4 months program with CKYCA certification</p>
+                <div className="flex items-center justify-between mb-4">
+                  <Badge className="bg-[#b9ee44]/20 text-[#173104]">4 Months</Badge>
+                  <div className="text-right">
+                    <div className="text-lg font-bold text-[#173104]">€1,590</div>
+                    <div className="text-sm text-gray-500">€398/month</div>
+                  </div>
+                </div>
+                <Link href="/courses/kyc-compliance">
+                  <Button className="w-full bg-gradient-to-r from-[#173104] to-[#2d5a1a] text-white hover:shadow-lg transition-all text-sm">
+                    Learn More
+                  </Button>
+                </Link>
               </CardContent>
             </Card>
 
@@ -214,14 +305,18 @@ export default function HomePage() {
               <CardContent className="p-6">
                 <h3 className="text-xl font-bold text-gray-900 mb-2">European Languages</h3>
                 <p className="text-gray-600 mb-4">French, Spanish, Lithuanian - Open doors across Europe</p>
-                <div className="flex items-center justify-between">
-                  <Badge className="bg-[#b9ee44]/20 text-[#173104]">3-6 Months</Badge>
-                  <Link href="/courses/languages">
-                    <Button className="bg-gradient-to-r from-[#173104] to-[#2d5a1a] text-white hover:shadow-lg transition-all text-sm">
-                      Learn More
-                    </Button>
-                  </Link>
+                <div className="flex items-center justify-between mb-4">
+                  <Badge className="bg-[#b9ee44]/20 text-[#173104]">3 Months</Badge>
+                  <div className="text-right">
+                    <div className="text-lg font-bold text-[#173104]">€300</div>
+                    <div className="text-sm text-gray-500">€100/month</div>
+                  </div>
                 </div>
+                <Link href="/courses/european-languages">
+                  <Button className="w-full bg-gradient-to-r from-[#173104] to-[#2d5a1a] text-white hover:shadow-lg transition-all text-sm">
+                    Learn More
+                  </Button>
+                </Link>
               </CardContent>
             </Card>
           </div>
@@ -437,7 +532,7 @@ export default function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
               <Image
-                src="/images/gitb-logo.png"
+                src="/images/gitb-logo-simple.png"
                 alt="GITB Logo"
                 width={120}
                 height={40}
@@ -484,22 +579,22 @@ export default function HomePage() {
               <h4 className="font-bold text-lg mb-6">{t("footer.programs")}</h4>
               <div className="space-y-3 text-green-100">
                 <p>
-                  <Link href="/courses" className="hover:text-white transition-colors">
+                  <Link href="/courses/cybersecurity-professional" className="hover:text-white transition-colors">
                     Cybersecurity
                   </Link>
                 </p>
                 <p>
-                  <Link href="/courses" className="hover:text-white transition-colors">
+                  <Link href="/courses/uiux-design" className="hover:text-white transition-colors">
                     UI/UX Design
                   </Link>
                 </p>
                 <p>
-                  <Link href="/courses" className="hover:text-white transition-colors">
+                  <Link href="/courses/european-languages" className="hover:text-white transition-colors">
                     Languages
                   </Link>
                 </p>
                 <p>
-                  <Link href="/courses" className="hover:text-white transition-colors">
+                  <Link href="/courses/kyc-compliance" className="hover:text-white transition-colors">
                     Compliance
                   </Link>
                 </p>

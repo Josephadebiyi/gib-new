@@ -2,380 +2,345 @@
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { ArrowLeft, Shield, Eye, Lock, FileText, Phone, Mail, Globe } from "lucide-react"
+import { Badge } from "@/components/ui/badge"
+import { Phone, ArrowRight, Shield, Eye, Lock, FileText } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-import { useTranslation } from "@/hooks/useTranslation"
-import { LanguageSwitcher } from "@/components/LanguageSwitcher"
 
 export default function PrivacyPolicyPage() {
-  const { t } = useTranslation()
-
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
-      <header className="bg-gradient-to-r from-[#1a5f3f]/90 to-[#2d7a5a]/90 backdrop-blur-sm text-white px-4 py-4">
+      <header className="bg-gradient-to-r from-[#173104]/90 to-[#2d5a1a]/90 backdrop-blur-sm text-white px-4 py-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center space-x-8">
             <Link href="/">
               <Image
-                src="/images/gitb-logo-white.png"
+                src="/images/gitb-logo-simple.png"
                 alt="GITB Logo"
                 width={120}
                 height={40}
-                className="h-10 w-auto cursor-pointer"
+                className="h-10 w-auto cursor-pointer brightness-0 invert"
               />
             </Link>
             <nav className="hidden md:flex space-x-8 text-sm font-medium">
-              <Link href="/courses" className="hover:text-[#daff7d] transition-colors">
-                {t("nav.courses")}
+              <Link href="/" className="hover:text-[#b9ee44] transition-colors">
+                Home
               </Link>
-              <Link href="/about" className="hover:text-[#daff7d] transition-colors">
-                {t("nav.about")}
+              <Link href="/courses" className="hover:text-[#b9ee44] transition-colors">
+                Courses
               </Link>
-              <Link href="/how-it-works" className="hover:text-[#daff7d] transition-colors">
-                {t("nav.howItWorks")}
+              <Link href="/about" className="hover:text-[#b9ee44] transition-colors">
+                About Us
               </Link>
-              <Link href="/faq" className="hover:text-[#daff7d] transition-colors">
-                {t("nav.faq")}
+              <Link href="/how-it-works" className="hover:text-[#b9ee44] transition-colors">
+                How It Works
+              </Link>
+              <Link href="/faq" className="hover:text-[#b9ee44] transition-colors">
+                FAQ
               </Link>
             </nav>
           </div>
           <div className="flex items-center space-x-6">
-            <LanguageSwitcher />
+            <div className="hidden md:flex items-center space-x-2 text-sm">
+              <Phone className="w-4 h-4" />
+              <span>+370 600 12345</span>
+            </div>
             <Link href="/application">
-              <Button className="bg-[#daff7d] text-[#1a5f3f] hover:bg-[#c5e86a] text-sm px-4 py-2 sm:px-6 font-semibold shadow-lg transition-all">
-                {t("nav.applyNow")}
+              <Button className="bg-[#b9ee44] text-[#173104] hover:bg-[#a8d93a] text-sm px-6 py-2 font-semibold shadow-lg">
+                APPLY NOW
               </Button>
             </Link>
           </div>
         </div>
       </header>
 
-      {/* Announcement Banner */}
-      <section className="bg-[#daff7d] py-3 px-4 text-center">
-        <div className="max-w-7xl mx-auto">
-          <p className="text-[#1a5f3f] font-semibold text-sm sm:text-base">
-            🎉 <span className="font-bold">ENROLL NOW</span> and get <span className="font-bold">15% OFF</span> with
-            code:
-            <span className="bg-[#1a5f3f] text-[#daff7d] px-2 py-1 rounded ml-2 font-mono">SUPERTECH</span>
-            <span className="ml-2">- Limited Time Offer!</span>
-          </p>
-        </div>
-      </section>
-
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-purple-100/30 via-blue-50/40 to-green-50/30 py-20 px-4">
-        <div className="max-w-4xl mx-auto">
-          <Link
-            href="/"
-            className="inline-flex items-center text-[#1a5f3f] hover:text-[#145033] mb-8 transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to Home
-          </Link>
-          <div className="text-center">
-            <div className="bg-gradient-to-br from-[#1a5f3f]/10 to-[#daff7d]/20 w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6">
-              <Shield className="w-10 h-10 text-[#1a5f3f]" />
-            </div>
-            <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">Privacy Policy</h1>
-            <p className="text-lg sm:text-xl text-gray-600 mb-4">
-              Your privacy is important to us. This policy explains how we collect, use, and protect your information.
-            </p>
-            <p className="text-sm text-gray-500">Last updated: January 2024</p>
-          </div>
+      <section className="bg-gradient-to-br from-purple-100/30 via-blue-50/40 to-green-50/30 py-20 px-4 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-50">
+          <div className="absolute inset-0 bg-gradient-to-r from-[#b9ee44]/5 via-transparent to-[#b9ee44]/5"></div>
+          <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_20%_20%,_#b9ee44_0.1px,_transparent_0.1px)] bg-[length:60px_60px]"></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto relative z-10 text-center">
+          <Badge className="bg-[#b9ee44]/20 text-[#173104] mb-4">Legal</Badge>
+          <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+            Privacy <span className="text-[#173104]">Policy</span>
+          </h1>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            Your privacy is important to us. This policy explains how we collect, use, and protect your personal
+            information.
+          </p>
+          <p className="text-sm text-gray-500 mt-4">Last updated: January 2024</p>
         </div>
       </section>
 
       {/* Privacy Policy Content */}
       <section className="py-20 px-4">
         <div className="max-w-4xl mx-auto">
-          <div className="space-y-8">
-            {/* Information We Collect */}
-            <Card className="border-0 shadow-lg">
+          <div className="space-y-12">
+            {/* Overview */}
+            <Card className="border-2 border-[#173104]/20 shadow-lg">
               <CardContent className="p-8">
                 <div className="flex items-center mb-6">
-                  <div className="bg-gradient-to-br from-blue-500/10 to-blue-600/20 w-12 h-12 rounded-xl flex items-center justify-center mr-4">
-                    <Eye className="w-6 h-6 text-[#1a5f3f]" />
+                  <div className="w-12 h-12 bg-gradient-to-br from-[#173104]/10 to-[#b9ee44]/20 rounded-lg flex items-center justify-center mr-4">
+                    <Shield className="w-6 h-6 text-[#173104]" />
+                  </div>
+                  <h2 className="text-2xl font-bold text-gray-900">Overview</h2>
+                </div>
+                <p className="text-gray-600 leading-relaxed">
+                  Global Institute of Tech and Business ("GITB," "we," "us," or "our") is committed to protecting your
+                  privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information
+                  when you visit our website, enroll in our programs, or interact with our services. This policy
+                  complies with the General Data Protection Regulation (GDPR) and other applicable privacy laws.
+                </p>
+              </CardContent>
+            </Card>
+
+            {/* Information We Collect */}
+            <Card className="border-2 border-[#173104]/20 shadow-lg">
+              <CardContent className="p-8">
+                <div className="flex items-center mb-6">
+                  <div className="w-12 h-12 bg-gradient-to-br from-[#173104]/10 to-[#b9ee44]/20 rounded-lg flex items-center justify-center mr-4">
+                    <Eye className="w-6 h-6 text-[#173104]" />
                   </div>
                   <h2 className="text-2xl font-bold text-gray-900">Information We Collect</h2>
                 </div>
-                <div className="space-y-4 text-gray-600">
-                  <h3 className="text-lg font-semibold text-gray-900">Personal Information</h3>
-                  <p>When you apply to GITB or use our services, we may collect:</p>
-                  <ul className="list-disc list-inside space-y-2 ml-4">
-                    <li>Name, email address, phone number, and postal address</li>
-                    <li>Educational background and work experience</li>
-                    <li>Payment information for application fees and tuition</li>
-                    <li>Government-issued identification for verification purposes</li>
-                    <li>Academic transcripts and certificates</li>
-                  </ul>
-
-                  <h3 className="text-lg font-semibold text-gray-900 mt-6">Technical Information</h3>
-                  <p>We automatically collect certain information when you visit our website:</p>
-                  <ul className="list-disc list-inside space-y-2 ml-4">
-                    <li>IP address, browser type, and operating system</li>
-                    <li>Pages visited, time spent on pages, and click patterns</li>
-                    <li>Device information and screen resolution</li>
-                    <li>Referral sources and search terms used</li>
-                  </ul>
+                <div className="space-y-6">
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-3">Personal Information</h3>
+                    <p className="text-gray-600 mb-3">We may collect the following personal information:</p>
+                    <ul className="list-disc list-inside text-gray-600 space-y-1">
+                      <li>Name, email address, phone number, and postal address</li>
+                      <li>Educational background and professional experience</li>
+                      <li>Payment information (processed securely through third-party providers)</li>
+                      <li>Course preferences and career goals</li>
+                      <li>Communication preferences and marketing consent</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-3">Technical Information</h3>
+                    <p className="text-gray-600 mb-3">We automatically collect certain technical information:</p>
+                    <ul className="list-disc list-inside text-gray-600 space-y-1">
+                      <li>IP address, browser type, and operating system</li>
+                      <li>Website usage data and navigation patterns</li>
+                      <li>Device information and screen resolution</li>
+                      <li>Cookies and similar tracking technologies</li>
+                    </ul>
+                  </div>
                 </div>
               </CardContent>
             </Card>
 
-            {/* How We Use Information */}
-            <Card className="border-0 shadow-lg">
+            {/* How We Use Your Information */}
+            <Card className="border-2 border-[#173104]/20 shadow-lg">
               <CardContent className="p-8">
                 <div className="flex items-center mb-6">
-                  <div className="bg-gradient-to-br from-green-500/10 to-green-600/20 w-12 h-12 rounded-xl flex items-center justify-center mr-4">
-                    <FileText className="w-6 h-6 text-[#1a5f3f]" />
+                  <div className="w-12 h-12 bg-gradient-to-br from-[#173104]/10 to-[#b9ee44]/20 rounded-lg flex items-center justify-center mr-4">
+                    <FileText className="w-6 h-6 text-[#173104]" />
                   </div>
                   <h2 className="text-2xl font-bold text-gray-900">How We Use Your Information</h2>
                 </div>
-                <div className="space-y-4 text-gray-600">
-                  <p>We use your information for the following purposes:</p>
-                  <ul className="list-disc list-inside space-y-2 ml-4">
+                <div className="space-y-4">
+                  <p className="text-gray-600">We use your information for the following purposes:</p>
+                  <ul className="list-disc list-inside text-gray-600 space-y-2">
                     <li>
-                      <strong>Educational Services:</strong> Processing applications, delivering courses, and providing
-                      student support
-                    </li>
-                    <li>
-                      <strong>Communication:</strong> Sending course updates, important announcements, and responding to
-                      inquiries
-                    </li>
-                    <li>
-                      <strong>Payment Processing:</strong> Handling application fees, tuition payments, and financial
-                      transactions
-                    </li>
-                    <li>
-                      <strong>Career Services:</strong> Connecting graduates with job opportunities and providing career
+                      <strong>Educational Services:</strong> To provide courses, assessments, certifications, and career
                       support
                     </li>
                     <li>
-                      <strong>Website Improvement:</strong> Analyzing usage patterns to enhance user experience
+                      <strong>Communication:</strong> To send course updates, important announcements, and respond to
+                      inquiries
                     </li>
                     <li>
-                      <strong>Legal Compliance:</strong> Meeting regulatory requirements and protecting our legal
-                      interests
+                      <strong>Payment Processing:</strong> To process tuition payments and manage billing
                     </li>
                     <li>
-                      <strong>Marketing:</strong> Sending promotional materials about new courses and programs (with
-                      your consent)
-                    </li>
-                  </ul>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Data Protection */}
-            <Card className="border-0 shadow-lg">
-              <CardContent className="p-8">
-                <div className="flex items-center mb-6">
-                  <div className="bg-gradient-to-br from-purple-500/10 to-purple-600/20 w-12 h-12 rounded-xl flex items-center justify-center mr-4">
-                    <Lock className="w-6 h-6 text-[#1a5f3f]" />
-                  </div>
-                  <h2 className="text-2xl font-bold text-gray-900">Data Protection & Security</h2>
-                </div>
-                <div className="space-y-4 text-gray-600">
-                  <p>We implement comprehensive security measures to protect your personal information:</p>
-                  <ul className="list-disc list-inside space-y-2 ml-4">
-                    <li>
-                      <strong>Encryption:</strong> All sensitive data is encrypted in transit and at rest using
-                      industry-standard protocols
+                      <strong>Marketing:</strong> To send promotional materials about new courses and opportunities
+                      (with your consent)
                     </li>
                     <li>
-                      <strong>Access Controls:</strong> Strict access controls ensure only authorized personnel can
-                      access your information
+                      <strong>Website Improvement:</strong> To analyze usage patterns and improve our services
                     </li>
                     <li>
-                      <strong>Regular Audits:</strong> We conduct regular security audits and vulnerability assessments
+                      <strong>Legal Compliance:</strong> To comply with applicable laws and regulations
                     </li>
                     <li>
-                      <strong>Staff Training:</strong> All employees receive data protection and privacy training
-                    </li>
-                    <li>
-                      <strong>Secure Infrastructure:</strong> Our systems are hosted on secure, compliant cloud
-                      platforms
-                    </li>
-                    <li>
-                      <strong>Incident Response:</strong> We have procedures in place to respond quickly to any security
-                      incidents
+                      <strong>Career Services:</strong> To connect you with potential employers and job opportunities
                     </li>
                   </ul>
                 </div>
               </CardContent>
             </Card>
 
-            {/* Your Rights */}
-            <Card className="border-0 shadow-lg">
+            {/* Data Sharing and Disclosure */}
+            <Card className="border-2 border-[#173104]/20 shadow-lg">
               <CardContent className="p-8">
                 <div className="flex items-center mb-6">
-                  <div className="bg-gradient-to-br from-orange-500/10 to-orange-600/20 w-12 h-12 rounded-xl flex items-center justify-center mr-4">
-                    <Shield className="w-6 h-6 text-[#1a5f3f]" />
+                  <div className="w-12 h-12 bg-gradient-to-br from-[#173104]/10 to-[#b9ee44]/20 rounded-lg flex items-center justify-center mr-4">
+                    <Lock className="w-6 h-6 text-[#173104]" />
                   </div>
-                  <h2 className="text-2xl font-bold text-gray-900">Your Rights</h2>
+                  <h2 className="text-2xl font-bold text-gray-900">Data Sharing and Disclosure</h2>
                 </div>
-                <div className="space-y-4 text-gray-600">
-                  <p>Under GDPR and other applicable privacy laws, you have the following rights:</p>
-                  <ul className="list-disc list-inside space-y-2 ml-4">
+                <div className="space-y-4">
+                  <p className="text-gray-600">We may share your information in the following circumstances:</p>
+                  <ul className="list-disc list-inside text-gray-600 space-y-2">
                     <li>
-                      <strong>Right to Access:</strong> Request a copy of the personal information we hold about you
+                      <strong>Service Providers:</strong> With trusted third-party vendors who assist in providing our
+                      services
                     </li>
                     <li>
-                      <strong>Right to Rectification:</strong> Request correction of inaccurate or incomplete
-                      information
+                      <strong>Partner Companies:</strong> With potential employers for job placement purposes (with your
+                      consent)
                     </li>
                     <li>
-                      <strong>Right to Erasure:</strong> Request deletion of your personal information under certain
-                      circumstances
+                      <strong>Certification Bodies:</strong> With organizations like CompTIA, Google, etc., for
+                      certification purposes
                     </li>
                     <li>
-                      <strong>Right to Restrict Processing:</strong> Request limitation of how we process your
-                      information
+                      <strong>Legal Requirements:</strong> When required by law or to protect our rights and safety
+                    </li>
+                    <li>
+                      <strong>Business Transfers:</strong> In connection with mergers, acquisitions, or asset sales
+                    </li>
+                  </ul>
+                  <p className="text-gray-600 mt-4">
+                    We never sell your personal information to third parties for marketing purposes.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Your Rights (GDPR) */}
+            <Card className="border-2 border-[#173104]/20 shadow-lg">
+              <CardContent className="p-8">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">Your Rights Under GDPR</h2>
+                <div className="space-y-4">
+                  <p className="text-gray-600">As an EU resident, you have the following rights:</p>
+                  <ul className="list-disc list-inside text-gray-600 space-y-2">
+                    <li>
+                      <strong>Right to Access:</strong> Request copies of your personal data
+                    </li>
+                    <li>
+                      <strong>Right to Rectification:</strong> Request correction of inaccurate or incomplete data
+                    </li>
+                    <li>
+                      <strong>Right to Erasure:</strong> Request deletion of your personal data
+                    </li>
+                    <li>
+                      <strong>Right to Restrict Processing:</strong> Request limitation of how we use your data
                     </li>
                     <li>
                       <strong>Right to Data Portability:</strong> Request transfer of your data to another organization
                     </li>
                     <li>
-                      <strong>Right to Object:</strong> Object to processing of your information for certain purposes
+                      <strong>Right to Object:</strong> Object to processing of your data for marketing purposes
                     </li>
                     <li>
-                      <strong>Right to Withdraw Consent:</strong> Withdraw consent for processing where consent is the
-                      legal basis
+                      <strong>Right to Withdraw Consent:</strong> Withdraw consent for data processing at any time
                     </li>
                   </ul>
-                  <p className="mt-4">To exercise any of these rights, please contact us at privacy@gitb.eu</p>
+                  <p className="text-gray-600 mt-4">
+                    To exercise these rights, contact us at <strong>privacy@gitb.eu</strong> or +370 600 12345.
+                  </p>
                 </div>
+              </CardContent>
+            </Card>
+
+            {/* Data Security */}
+            <Card className="border-2 border-[#173104]/20 shadow-lg">
+              <CardContent className="p-8">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">Data Security</h2>
+                <p className="text-gray-600 leading-relaxed">
+                  We implement appropriate technical and organizational security measures to protect your personal
+                  information against unauthorized access, alteration, disclosure, or destruction. These measures
+                  include encryption, secure servers, access controls, and regular security assessments. However, no
+                  method of transmission over the internet is 100% secure, and we cannot guarantee absolute security.
+                </p>
               </CardContent>
             </Card>
 
             {/* Cookies and Tracking */}
-            <Card className="border-0 shadow-lg">
+            <Card className="border-2 border-[#173104]/20 shadow-lg">
               <CardContent className="p-8">
                 <h2 className="text-2xl font-bold text-gray-900 mb-6">Cookies and Tracking Technologies</h2>
-                <div className="space-y-4 text-gray-600">
-                  <p>We use cookies and similar technologies to enhance your experience on our website:</p>
-                  <ul className="list-disc list-inside space-y-2 ml-4">
-                    <li>
-                      <strong>Essential Cookies:</strong> Required for basic website functionality and security
-                    </li>
-                    <li>
-                      <strong>Analytics Cookies:</strong> Help us understand how visitors use our website
-                    </li>
-                    <li>
-                      <strong>Preference Cookies:</strong> Remember your settings and preferences
-                    </li>
-                    <li>
-                      <strong>Marketing Cookies:</strong> Used to deliver relevant advertisements (with your consent)
-                    </li>
+                <div className="space-y-4">
+                  <p className="text-gray-600">We use cookies and similar technologies to:</p>
+                  <ul className="list-disc list-inside text-gray-600 space-y-1">
+                    <li>Remember your preferences and settings</li>
+                    <li>Analyze website traffic and usage patterns</li>
+                    <li>Provide personalized content and advertisements</li>
+                    <li>Improve website functionality and user experience</li>
                   </ul>
-                  <p>
-                    You can manage your cookie preferences through your browser settings or our cookie consent tool.
+                  <p className="text-gray-600 mt-4">
+                    You can control cookies through your browser settings. For more information, see our
+                    <Link href="/cookie-policy" className="text-[#173104] hover:underline ml-1">
+                      Cookie Policy
+                    </Link>
+                    .
                   </p>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* International Transfers */}
-            <Card className="border-0 shadow-lg">
-              <CardContent className="p-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">International Data Transfers</h2>
-                <div className="space-y-4 text-gray-600">
-                  <p>
-                    As an international education provider, we may transfer your personal information to countries
-                    outside the European Economic Area (EEA). When we do so, we ensure appropriate safeguards are in
-                    place:
-                  </p>
-                  <ul className="list-disc list-inside space-y-2 ml-4">
-                    <li>
-                      Transfers to countries with adequate data protection laws as recognized by the European Commission
-                    </li>
-                    <li>Use of Standard Contractual Clauses approved by the European Commission</li>
-                    <li>Transfers to organizations certified under approved certification schemes</li>
-                    <li>Implementation of appropriate technical and organizational measures</li>
-                  </ul>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Data Retention */}
-            <Card className="border-0 shadow-lg">
-              <CardContent className="p-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">Data Retention</h2>
-                <div className="space-y-4 text-gray-600">
-                  <p>We retain your personal information for different periods depending on the purpose:</p>
-                  <ul className="list-disc list-inside space-y-2 ml-4">
-                    <li>
-                      <strong>Student Records:</strong> Maintained for 7 years after graduation for academic
-                      verification
-                    </li>
-                    <li>
-                      <strong>Application Data:</strong> Kept for 2 years for unsuccessful applications, permanently for
-                      enrolled students
-                    </li>
-                    <li>
-                      <strong>Financial Records:</strong> Retained for 7 years for tax and accounting purposes
-                    </li>
-                    <li>
-                      <strong>Marketing Data:</strong> Kept until you withdraw consent or request deletion
-                    </li>
-                    <li>
-                      <strong>Website Analytics:</strong> Anonymized data may be retained indefinitely for statistical
-                      purposes
-                    </li>
-                  </ul>
                 </div>
               </CardContent>
             </Card>
 
             {/* Contact Information */}
-            <Card className="border-0 shadow-lg bg-gradient-to-br from-[#1a5f3f]/5 to-[#daff7d]/10">
+            <Card className="border-2 border-[#173104]/20 shadow-lg">
               <CardContent className="p-8">
                 <h2 className="text-2xl font-bold text-gray-900 mb-6">Contact Us</h2>
-                <div className="space-y-4 text-gray-600">
-                  <p>If you have any questions about this Privacy Policy or our data practices, please contact us:</p>
-                  <div className="grid md:grid-cols-2 gap-6 mt-6">
-                    <div className="flex items-center">
-                      <Mail className="w-5 h-5 text-[#1a5f3f] mr-3" />
-                      <div>
-                        <p className="font-semibold text-gray-900">Email</p>
-                        <p>privacy@gitb.eu</p>
-                      </div>
-                    </div>
-                    <div className="flex items-center">
-                      <Phone className="w-5 h-5 text-[#1a5f3f] mr-3" />
-                      <div>
-                        <p className="font-semibold text-gray-900">Phone</p>
-                        <p>+370 600 12345</p>
-                      </div>
-                    </div>
-                    <div className="flex items-center">
-                      <Globe className="w-5 h-5 text-[#1a5f3f] mr-3" />
-                      <div>
-                        <p className="font-semibold text-gray-900">Address</p>
-                        <p>
-                          Global Institute of Tech and Business
-                          <br />
-                          Vilnius, Lithuania
-                        </p>
-                      </div>
-                    </div>
-                  </div>
+                <p className="text-gray-600 mb-4">
+                  If you have questions about this Privacy Policy or our data practices, please contact us:
+                </p>
+                <div className="space-y-2 text-gray-600">
+                  <p>
+                    <strong>Global Institute of Tech and Business</strong>
+                  </p>
+                  <p>Email: privacy@gitb.eu</p>
+                  <p>Phone: +370 600 12345</p>
+                  <p>Address: Vilnius, Lithuania</p>
                 </div>
+                <p className="text-gray-600 mt-4">
+                  We will respond to your inquiry within 30 days as required by GDPR.
+                </p>
               </CardContent>
             </Card>
           </div>
         </div>
       </section>
 
+      {/* Call to Action */}
+      <section className="py-20 px-4 bg-gradient-to-r from-[#173104] to-[#2d5a1a] text-white">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl font-bold mb-6">Ready to Start Your Journey?</h2>
+          <p className="text-xl text-green-100 mb-8">
+            Your privacy is protected. Join thousands of professionals advancing their careers with GITB.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link href="/application">
+              <Button className="bg-[#b9ee44] text-[#173104] hover:bg-[#a8d93a] px-8 py-4 text-lg rounded-xl shadow-xl font-semibold">
+                Apply Now
+                <ArrowRight className="w-5 h-5 ml-2" />
+              </Button>
+            </Link>
+            <Link href="/courses">
+              <Button
+                variant="outline"
+                className="border-2 border-white text-white hover:bg-white hover:text-[#173104] px-8 py-4 text-lg rounded-xl bg-transparent"
+              >
+                View Courses
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Footer */}
-      <footer className="bg-[#1a5f3f] text-white py-16 px-4">
+      <footer className="bg-[#173104] text-white py-16 px-4">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-4 gap-8">
             <div>
               <Link href="/">
                 <Image
-                  src="/images/gitb-logo-white.png"
+                  src="/images/gitb-logo-simple.png"
                   alt="GITB Logo"
                   width={120}
                   height={40}
@@ -389,6 +354,11 @@ export default function PrivacyPolicyPage() {
             <div>
               <h4 className="font-bold text-lg mb-6">Quick Links</h4>
               <div className="space-y-3 text-green-100">
+                <p>
+                  <Link href="/" className="hover:text-white transition-colors">
+                    Home
+                  </Link>
+                </p>
                 <p>
                   <Link href="/courses" className="hover:text-white transition-colors">
                     Courses
@@ -404,74 +374,24 @@ export default function PrivacyPolicyPage() {
                     How It Works
                   </Link>
                 </p>
-                <p>
-                  <Link href="/faq" className="hover:text-white transition-colors">
-                    FAQ
-                  </Link>
-                </p>
-                <p>
-                  <Link href="/application" className="hover:text-white transition-colors">
-                    Apply Now
-                  </Link>
-                </p>
               </div>
             </div>
             <div>
               <h4 className="font-bold text-lg mb-6">Programs</h4>
               <div className="space-y-3 text-green-100">
-                <p>
-                  <Link href="/courses" className="hover:text-white transition-colors">
-                    Cloud Computing
-                  </Link>
-                </p>
-                <p>
-                  <Link href="/courses" className="hover:text-white transition-colors">
-                    Cybersecurity
-                  </Link>
-                </p>
-                <p>
-                  <Link href="/courses" className="hover:text-white transition-colors">
-                    UI/UX Design
-                  </Link>
-                </p>
-                <p>
-                  <Link href="/courses" className="hover:text-white transition-colors">
-                    Language Programs
-                  </Link>
-                </p>
+                <p>Cybersecurity</p>
+                <p>UI/UX Design</p>
+                <p>Languages</p>
+                <p>Compliance</p>
               </div>
             </div>
             <div>
               <h4 className="font-bold text-lg mb-6">Contact</h4>
-              <div className="space-y-4">
-                <div className="flex items-center space-x-3">
-                  <Phone className="w-5 h-5 text-[#daff7d]" />
-                  <span className="text-green-100">+370 600 12345</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <Mail className="w-5 h-5 text-[#daff7d]" />
-                  <span className="text-green-100">admissions@gitb.eu</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <Globe className="w-5 h-5 text-[#daff7d]" />
-                  <span className="text-green-100">Vilnius, Lithuania</span>
-                </div>
+              <div className="space-y-3 text-green-100">
+                <p>+370 600 12345</p>
+                <p>info@gitb.eu</p>
+                <p>Vilnius, Lithuania</p>
               </div>
-            </div>
-          </div>
-
-          <div className="border-t border-green-600/30 mt-12 pt-8 text-center">
-            <p className="text-green-100">© 2024 Global Institute of Tech and Business. All rights reserved.</p>
-            <div className="flex flex-wrap justify-center space-x-4 sm:space-x-8 mt-4 text-sm text-green-200">
-              <Link href="/privacy-policy" className="text-[#daff7d] font-semibold">
-                Privacy Policy
-              </Link>
-              <Link href="/terms-conditions" className="hover:text-white transition-colors">
-                Terms & Conditions
-              </Link>
-              <Link href="/cookie-policy" className="hover:text-white transition-colors">
-                Cookie Policy
-              </Link>
             </div>
           </div>
         </div>
