@@ -1,7 +1,0 @@
-# This file is used to configure the host for the application.
-# It is not directly used by the application code, but by the deployment environment.
-# Example:
-# HOST=0.0.0.0
-
-# This file is typically used for host-specific configurations or notes.
-# It is empty by default in this context.
