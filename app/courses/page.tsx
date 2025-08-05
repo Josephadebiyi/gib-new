@@ -1,118 +1,42 @@
 "use client"
 
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Phone, ArrowRight, Search, Filter, Clock, Award, Users, Star, CheckCircle } from "lucide-react"
+import { Phone, ArrowRight, Search, Filter, Award, Users, CheckCircle, Loader2 } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-import { useState } from "react"
+import { getCourses } from "@/lib/api"
+import type { Course } from "@/lib/api"
 
-export default function CoursesPage() {
+export default async function CoursesPage() {
   const [searchTerm, setSearchTerm] = useState("")
   const [sortBy, setSortBy] = useState("popular")
   const [filterBy, setFilterBy] = useState("all")
+  const [courses, setCourses] = useState<Course[]>([])
+  const [loading, setLoading] = useState(true)
 
-  const courses = [
-    {
-      id: "cybersecurity-professional",
-      title: "Cybersecurity Professional",
-      category: "Technical",
-      duration: "4 months",
-      price: 1635,
-      level: "Beginner to Advanced",
-      rating: 4.9,
-      students: 1250,
-      image: "/images/cybersecurity-flyer.jpg",
-      description: "Master cybersecurity fundamentals and earn CompTIA Security+ certification",
-      skills: ["Network Security", "Risk Assessment", "Incident Response", "Compliance"],
-      certification: "CompTIA Security+",
-      popular: true,
-    },
-    {
-      id: "cybersecurity-vulnerability",
-      title: "Vulnerability Tester",
-      category: "Technical",
-      duration: "4 months",
-      price: 1590,
-      level: "Intermediate to Advanced",
-      rating: 4.8,
-      students: 890,
-      image: "/images/cybersecurity-vuln-flyer.jpg",
-      description: "Learn penetration testing and vulnerability assessment with CompTIA PenTest+",
-      skills: ["Penetration Testing", "Vulnerability Assessment", "Ethical Hacking", "Security Tools"],
-      certification: "CompTIA PenTest+",
-      popular: false,
-    },
-    {
-      id: "uiux-design",
-      title: "UI/UX & Webflow Design",
-      category: "Design",
-      duration: "4 months",
-      price: 1590,
-      level: "Beginner to Intermediate",
-      rating: 4.9,
-      students: 1100,
-      image: "/images/uiux-flyer.jpg",
-      description: "Create stunning user experiences and build websites with Webflow",
-      skills: ["User Research", "Prototyping", "Webflow", "Design Systems"],
-      certification: "Google UX Design Certificate",
-      popular: true,
-    },
-    {
-      id: "iam-specialist",
-      title: "IAM Specialist",
-      category: "Technical",
-      duration: "4 months",
-      price: 1730,
-      level: "Intermediate",
-      rating: 4.7,
-      students: 650,
-      image: "/images/iam-flyer.jpg",
-      description: "Master identity and access management for enterprise security",
-      skills: ["Identity Management", "Access Control", "SSO", "Directory Services"],
-      certification: "CIAM Certification",
-      popular: false,
-    },
-    {
-      id: "kyc-compliance",
-      title: "KYC Compliance Specialist",
-      category: "Business",
-      duration: "4 months",
-      price: 1590,
-      level: "Beginner to Intermediate",
-      rating: 4.8,
-      students: 780,
-      image: "/images/kyc-flyer.jpg",
-      description: "Navigate financial regulations and compliance requirements",
-      skills: ["KYC Procedures", "AML Compliance", "Risk Assessment", "Regulatory Reporting"],
-      certification: "CKYCA Certification",
-      popular: false,
-    },
-    {
-      id: "european-languages",
-      title: "European Languages Program",
-      category: "Language",
-      duration: "3 months",
-      price: 300,
-      level: "All Levels",
-      rating: 4.6,
-      students: 2100,
-      image: "/images/languages-flyer.jpg",
-      description: "Learn French, Spanish, or Lithuanian for European career opportunities",
-      skills: ["Conversational Skills", "Business Communication", "Cultural Awareness", "Professional Writing"],
-      certification: "CEFR Certificate",
-      popular: true,
-    },
-  ]
+  useEffect(() => {
+    loadCourses()
+  }, [])
+
+  const loadCourses = async () => {
+    setLoading(true)
+    const result = await getCourses()
+    if (result.success && result.data) {
+      setCourses(result.data)
+    }
+    setLoading(false)
+  }
 
   const filteredCourses = courses.filter((course) => {
     const matchesSearch =
-      course.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      course.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      course.skills.some((skill) => skill.toLowerCase().includes(searchTerm.toLowerCase()))
+      course.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      course.description?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      course.skills?.some((skill) => skill.toLowerCase().includes(searchTerm.toLowerCase()))
 
     const matchesFilter = filterBy === "all" || course.category.toLowerCase() === filterBy.toLowerCase()
 
@@ -126,7 +50,7 @@ export default function CoursesPage() {
       case "price-high":
         return b.price - a.price
       case "duration":
-        return Number.parseInt(a.duration) - Number.parseInt(b.duration)
+        return a.duration.localeCompare(b.duration)
       case "rating":
         return b.rating - a.rating
       case "popular":
@@ -134,6 +58,26 @@ export default function CoursesPage() {
         return b.students - a.students
     }
   })
+
+  const getMonthlyPrice = (course: Course) => {
+    const months =
+      course.id === "european-languages"
+        ? 3
+        : course.duration.includes("2 months")
+          ? 2
+          : course.duration.includes("3 months")
+            ? 3
+            : 4
+    return Math.round(course.price / months)
+  }
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-white flex items-center justify-center">
+        <Loader2 className="w-8 h-8 animate-spin" />
+      </div>
+    )
+  }
 
   return (
     <div className="min-h-screen bg-white">
@@ -252,104 +196,35 @@ export default function CoursesPage() {
 
       {/* Courses Grid */}
       <section className="py-20 px-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 xl:grid-cols-3 gap-8">
+        <div className="container mx-auto px-4 py-8 md:py-12">
+          <h1 className="text-4xl font-bold text-center mb-8">Our Courses</h1>
+          <p className="text-center text-lg text-muted-foreground mb-12">
+            Explore our diverse range of courses designed to equip you with in-demand skills.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {sortedCourses.map((course) => (
-              <Card
-                key={course.id}
-                className="border-0 shadow-lg hover:shadow-xl transition-shadow bg-white/80 backdrop-blur-sm group overflow-hidden"
-              >
-                <div className="relative h-64">
-                  <Image
-                    src={course.image || "/placeholder.svg"}
-                    alt={course.title}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                  {course.popular && (
-                    <Badge className="absolute top-4 left-4 bg-[#b9ee44] text-[#173104] font-semibold">
-                      Most Popular
-                    </Badge>
-                  )}
-                  <Badge className="absolute top-4 right-4 bg-white/90 text-gray-700">{course.category}</Badge>
-                </div>
-
-                <CardContent className="p-6">
-                  <div className="flex items-center justify-between mb-3">
-                    <h3 className="text-xl font-bold text-gray-900">{course.title}</h3>
-                    <div className="flex items-center space-x-1">
-                      <Star className="w-4 h-4 text-yellow-400 fill-current" />
-                      <span className="text-sm font-semibold text-gray-700">{course.rating}</span>
-                    </div>
+              <Link href={`/courses/${course.id}`} key={course.id}>
+                <Card className="overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 h-full flex flex-col">
+                  <div className="relative w-full h-48">
+                    <Image
+                      src={course.image_url || "/placeholder.svg?height=200&width=300&query=course+thumbnail"}
+                      alt={course.name}
+                      fill
+                      objectFit="cover"
+                      className="transition-transform duration-300 hover:scale-105"
+                    />
                   </div>
-
-                  <p className="text-gray-600 mb-4 text-sm leading-relaxed">{course.description}</p>
-
-                  <div className="space-y-3 mb-6">
-                    <div className="flex items-center justify-between text-sm">
-                      <div className="flex items-center space-x-2">
-                        <Clock className="w-4 h-4 text-[#173104]" />
-                        <span className="text-gray-600">{course.duration}</span>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <Users className="w-4 h-4 text-[#173104]" />
-                        <span className="text-gray-600">{course.students.toLocaleString()} students</span>
-                      </div>
-                    </div>
-
-                    <div className="flex items-center space-x-2 text-sm">
-                      <Award className="w-4 h-4 text-[#173104]" />
-                      <span className="text-gray-600">{course.certification}</span>
-                    </div>
-                  </div>
-
-                  <div className="mb-6">
-                    <p className="text-sm font-semibold text-gray-900 mb-2">Key Skills:</p>
-                    <div className="flex flex-wrap gap-2">
-                      {course.skills.slice(0, 3).map((skill, index) => (
-                        <Badge key={index} className="bg-[#173104]/10 text-[#173104] text-xs">
-                          {skill}
-                        </Badge>
-                      ))}
-                      {course.skills.length > 3 && (
-                        <Badge className="bg-gray-100 text-gray-600 text-xs">+{course.skills.length - 3} more</Badge>
-                      )}
-                    </div>
-                  </div>
-
-                  <div className="flex items-center justify-between mb-6">
-                    <div>
-                      <div className="text-2xl font-bold text-[#173104]">€{course.price}</div>
-                      <div className="text-sm text-gray-500">{course.level}</div>
-                    </div>
-                    <div className="text-right">
-                      <div className="text-sm text-gray-500">Starting from</div>
-                      <div className="text-lg font-semibold text-gray-700">
-                        €
-                        {course.id === "cybersecurity-professional"
-                          ? "409"
-                          : course.id === "cybersecurity-vulnerability"
-                            ? "398"
-                            : course.id === "uiux-design"
-                              ? "398"
-                              : course.id === "iam-specialist"
-                                ? "433"
-                                : course.id === "kyc-compliance"
-                                  ? "398"
-                                  : "100"}
-                        /month
-                      </div>
-                    </div>
-                  </div>
-
-                  <Link href={`/courses/${course.id}`}>
-                    <Button className="w-full bg-gradient-to-r from-[#173104] to-[#2d5a1a] text-white hover:shadow-lg transition-all">
-                      Learn More
-                      <ArrowRight className="w-4 h-4 ml-2" />
-                    </Button>
-                  </Link>
-                </CardContent>
-              </Card>
+                  <CardHeader>
+                    <CardTitle className="text-xl font-semibold">{course.name}</CardTitle>
+                    <CardDescription className="line-clamp-2">{course.description}</CardDescription>
+                  </CardHeader>
+                  <CardContent className="mt-auto">
+                    <span className="inline-block bg-primary text-primary-foreground text-xs px-3 py-1 rounded-full">
+                      {course.category}
+                    </span>
+                  </CardContent>
+                </Card>
+              </Link>
             ))}
           </div>
 
@@ -515,7 +390,7 @@ export default function CoursesPage() {
               <h4 className="font-bold text-lg mb-6">Contact</h4>
               <div className="space-y-3 text-green-100">
                 <p>+370 600 12345</p>
-                <p>info@gitb.eu</p>
+                <p>admissions@gitb.lt</p>
                 <p>Vilnius, Lithuania</p>
               </div>
             </div>
