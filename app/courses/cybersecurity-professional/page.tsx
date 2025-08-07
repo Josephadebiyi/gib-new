@@ -3,20 +3,7 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import {
-  Clock,
-  Users,
-  Award,
-  CheckCircle,
-  ArrowRight,
-  BookOpen,
-  Target,
-  Shield,
-  Download,
-  Calendar,
-  Euro,
-  Phone,
-} from "lucide-react"
+import { Clock, Users, Award, CheckCircle, ArrowRight, BookOpen, Target, Shield, Download, Calendar, Euro, Phone } from 'lucide-react'
 import Image from "next/image"
 import Link from "next/link"
 
@@ -334,9 +321,9 @@ export default function CybersecurityProfessionalPage() {
                       <Euro className="w-6 h-6 text-[#173104] mr-3" />
                       <h3 className="font-bold text-lg">Investment</h3>
                     </div>
-                    <p className="text-2xl font-bold text-[#173104]">€1,350</p>
+                    <p className="text-2xl font-bold text-[#173104]">€1,635</p>
                     <p className="text-sm text-gray-600">
-                      €1,250 course fee + €50 registration + €50 CompTIA Security+ exam voucher
+                      €1,250 course fee + €50 registration + €335 CompTIA Security+ exam voucher
                     </p>
                     <p className="text-sm text-[#173104] font-semibold mt-2">Payment plans available</p>
                   </CardContent>
@@ -460,8 +447,8 @@ export default function CybersecurityProfessionalPage() {
               <h4 className="font-bold text-lg mb-6">Contact</h4>
               <div className="space-y-3 text-green-100">
                 <p>+370 600 12345</p>
-                <p>info@gitb.eu</p>
-                <p>Vilnius, Lithuania</p>
+                <p>admissions@gitb.lt</p>
+                <p>Eduardo, E. Andrė g. 14-5, 02231 Vilnius, Lithuania</p>
               </div>
             </div>
           </div>

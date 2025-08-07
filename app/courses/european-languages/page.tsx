@@ -3,20 +3,7 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import {
-  Clock,
-  Users,
-  Award,
-  CheckCircle,
-  ArrowRight,
-  Globe,
-  Target,
-  Languages,
-  Download,
-  Calendar,
-  Euro,
-  Phone,
-} from "lucide-react"
+import { Clock, Users, Award, CheckCircle, ArrowRight, Globe, Target, Languages, Download, Calendar, Euro, Phone } from 'lucide-react'
 import Image from "next/image"
 import Link from "next/link"
 
@@ -452,8 +439,8 @@ export default function EuropeanLanguagesPage() {
               <h4 className="font-bold text-lg mb-6">Contact</h4>
               <div className="space-y-3 text-green-100">
                 <p>+370 600 12345</p>
-                <p>info@gitb.eu</p>
-                <p>Vilnius, Lithuania</p>
+                <p>admissions@gitb.lt</p>
+                <p>Eduardo, E. Andrė g. 14-5, 02231 Vilnius, Lithuania</p>
               </div>
             </div>
           </div>
