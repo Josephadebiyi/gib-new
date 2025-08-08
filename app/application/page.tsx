@@ -8,15 +8,32 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Phone, ArrowRight, User, Mail, GraduationCap, Briefcase, Target, CheckCircle, Percent } from "lucide-react"
+import { Phone, ArrowRight, User, Mail, GraduationCap, Briefcase, Target, CheckCircle, Percent } from 'lucide-react'
 import Image from "next/image"
 import Link from "next/link"
 import { useState } from "react"
+import { useRouter } from "next/navigation"
 
 export default function ApplicationPage() {
+  const router = useRouter()
   const [promoCode, setPromoCode] = useState("")
   const [discount, setDiscount] = useState(0)
   const [selectedCourse, setSelectedCourse] = useState("")
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    country: "",
+    city: "",
+    education: "",
+    field: "",
+    experience: "",
+    currentRole: "",
+    motivation: "",
+    terms: false,
+    marketing: false,
+  })
 
   const courses = [
     { id: "cybersecurity-professional", name: "Cybersecurity Professional", price: 1635, duration: "4 months" },
@@ -33,6 +50,32 @@ export default function ApplicationPage() {
     } else {
       setDiscount(0)
     }
+  }
+
+  const handleInputChange = (field: string, value: string | boolean) => {
+    setFormData(prev => ({
+      ...prev,
+      [field]: value
+    }))
+  }
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    
+    // Basic validation
+    if (!formData.firstName || !formData.lastName || !formData.email || !selectedCourse || !formData.terms) {
+      alert("Please fill in all required fields and accept the terms and conditions.")
+      return
+    }
+
+    // Redirect to payment page with application data
+    const params = new URLSearchParams({
+      name: `${formData.firstName} ${formData.lastName}`,
+      email: formData.email,
+      course: courses.find(c => c.id === selectedCourse)?.name || selectedCourse,
+    })
+    
+    router.push(`/payment?${params.toString()}`)
   }
 
   const selectedCourseData = courses.find((course) => course.id === selectedCourse)
@@ -124,7 +167,7 @@ export default function ApplicationPage() {
                 <CardContent className="p-8">
                   <h2 className="text-2xl font-bold text-gray-900 mb-8">Application Form</h2>
 
-                  <form className="space-y-6">
+                  <form onSubmit={handleSubmit} className="space-y-6">
                     {/* Personal Information */}
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
@@ -134,23 +177,55 @@ export default function ApplicationPage() {
                       <div className="grid md:grid-cols-2 gap-4">
                         <div>
                           <Label htmlFor="firstName">First Name *</Label>
-                          <Input type="text" id="firstName" placeholder="Enter your first name" className="mt-1" />
+                          <Input 
+                            type="text" 
+                            id="firstName" 
+                            placeholder="Enter your first name" 
+                            className="mt-1"
+                            value={formData.firstName}
+                            onChange={(e) => handleInputChange('firstName', e.target.value)}
+                            required
+                          />
                         </div>
                         <div>
                           <Label htmlFor="lastName">Last Name *</Label>
-                          <Input type="text" id="lastName" placeholder="Enter your last name" className="mt-1" />
+                          <Input 
+                            type="text" 
+                            id="lastName" 
+                            placeholder="Enter your last name" 
+                            className="mt-1"
+                            value={formData.lastName}
+                            onChange={(e) => handleInputChange('lastName', e.target.value)}
+                            required
+                          />
                         </div>
                         <div>
                           <Label htmlFor="email">Email Address *</Label>
-                          <Input type="email" id="email" placeholder="your.email@example.com" className="mt-1" />
+                          <Input 
+                            type="email" 
+                            id="email" 
+                            placeholder="your.email@example.com" 
+                            className="mt-1"
+                            value={formData.email}
+                            onChange={(e) => handleInputChange('email', e.target.value)}
+                            required
+                          />
                         </div>
                         <div>
                           <Label htmlFor="phone">Phone Number *</Label>
-                          <Input type="tel" id="phone" placeholder="+370 600 12345" className="mt-1" />
+                          <Input 
+                            type="tel" 
+                            id="phone" 
+                            placeholder="+370 600 12345" 
+                            className="mt-1"
+                            value={formData.phone}
+                            onChange={(e) => handleInputChange('phone', e.target.value)}
+                            required
+                          />
                         </div>
                         <div>
                           <Label htmlFor="country">Country *</Label>
-                          <Select>
+                          <Select value={formData.country} onValueChange={(value) => handleInputChange('country', value)}>
                             <SelectTrigger className="mt-1">
                               <SelectValue placeholder="Select your country" />
                             </SelectTrigger>
@@ -168,7 +243,15 @@ export default function ApplicationPage() {
                         </div>
                         <div>
                           <Label htmlFor="city">City *</Label>
-                          <Input type="text" id="city" placeholder="Enter your city" className="mt-1" />
+                          <Input 
+                            type="text" 
+                            id="city" 
+                            placeholder="Enter your city" 
+                            className="mt-1"
+                            value={formData.city}
+                            onChange={(e) => handleInputChange('city', e.target.value)}
+                            required
+                          />
                         </div>
                       </div>
                     </div>
@@ -182,7 +265,7 @@ export default function ApplicationPage() {
                       <div className="grid md:grid-cols-2 gap-4">
                         <div>
                           <Label htmlFor="education">Highest Education Level *</Label>
-                          <Select>
+                          <Select value={formData.education} onValueChange={(value) => handleInputChange('education', value)}>
                             <SelectTrigger className="mt-1">
                               <SelectValue placeholder="Select education level" />
                             </SelectTrigger>
@@ -202,6 +285,8 @@ export default function ApplicationPage() {
                             id="field"
                             placeholder="e.g., Computer Science, Business"
                             className="mt-1"
+                            value={formData.field}
+                            onChange={(e) => handleInputChange('field', e.target.value)}
                           />
                         </div>
                       </div>
@@ -216,7 +301,7 @@ export default function ApplicationPage() {
                       <div className="grid md:grid-cols-2 gap-4">
                         <div>
                           <Label htmlFor="experience">Years of Work Experience *</Label>
-                          <Select>
+                          <Select value={formData.experience} onValueChange={(value) => handleInputChange('experience', value)}>
                             <SelectTrigger className="mt-1">
                               <SelectValue placeholder="Select experience level" />
                             </SelectTrigger>
@@ -235,6 +320,8 @@ export default function ApplicationPage() {
                             id="currentRole"
                             placeholder="e.g., Marketing Manager, Student"
                             className="mt-1"
+                            value={formData.currentRole}
+                            onChange={(e) => handleInputChange('currentRole', e.target.value)}
                           />
                         </div>
                       </div>
@@ -301,13 +388,22 @@ export default function ApplicationPage() {
                         id="motivation"
                         placeholder="Tell us about your career goals and why you chose this program..."
                         className="mt-1 min-h-[100px]"
+                        value={formData.motivation}
+                        onChange={(e) => handleInputChange('motivation', e.target.value)}
+                        required
                       />
                     </div>
 
                     {/* Terms and Conditions */}
                     <div className="space-y-4">
                       <div className="flex items-start space-x-2">
-                        <Checkbox id="terms" className="mt-1" />
+                        <Checkbox 
+                          id="terms" 
+                          className="mt-1"
+                          checked={formData.terms}
+                          onCheckedChange={(checked) => handleInputChange('terms', checked as boolean)}
+                          required
+                        />
                         <Label htmlFor="terms" className="text-sm leading-relaxed">
                           I agree to the{" "}
                           <Link href="/terms-conditions" className="text-[#173104] hover:underline">
@@ -320,7 +416,12 @@ export default function ApplicationPage() {
                         </Label>
                       </div>
                       <div className="flex items-start space-x-2">
-                        <Checkbox id="marketing" className="mt-1" />
+                        <Checkbox 
+                          id="marketing" 
+                          className="mt-1"
+                          checked={formData.marketing}
+                          onCheckedChange={(checked) => handleInputChange('marketing', checked as boolean)}
+                        />
                         <Label htmlFor="marketing" className="text-sm leading-relaxed">
                           I would like to receive updates about courses, events, and career opportunities
                         </Label>
@@ -328,8 +429,11 @@ export default function ApplicationPage() {
                     </div>
 
                     {/* Submit Button */}
-                    <Button className="w-full bg-gradient-to-r from-[#173104] to-[#2d5a1a] text-white py-4 text-lg rounded-xl shadow-xl hover:shadow-2xl transition-shadow">
-                      Submit Application
+                    <Button 
+                      type="submit"
+                      className="w-full bg-gradient-to-r from-[#173104] to-[#2d5a1a] text-white py-4 text-lg rounded-xl shadow-xl hover:shadow-2xl transition-shadow"
+                    >
+                      Continue to Payment (€50 Application Fee)
                       <ArrowRight className="w-5 h-5 ml-2" />
                     </Button>
                   </form>
@@ -339,11 +443,32 @@ export default function ApplicationPage() {
 
             {/* Sidebar */}
             <div className="space-y-6">
+              {/* Application Fee Notice */}
+              <Card className="border-2 border-[#173104]/20 shadow-lg">
+                <CardContent className="p-6">
+                  <h3 className="text-lg font-bold text-gray-900 mb-4">Application Fee</h3>
+                  <div className="space-y-3">
+                    <div className="flex justify-between text-lg font-bold text-[#173104]">
+                      <span>Application Fee:</span>
+                      <span>€50.00</span>
+                    </div>
+                    <p className="text-sm text-gray-600">
+                      One-time application processing fee. This fee is separate from course tuition and covers application review and administrative costs.
+                    </p>
+                    <div className="bg-blue-50 p-3 rounded-lg">
+                      <p className="text-sm text-blue-800 font-semibold">
+                        💳 Secure payment processing with Stripe
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
               {/* Price Summary */}
               {selectedCourse && (
                 <Card className="border-2 border-[#173104]/20 shadow-lg">
                   <CardContent className="p-6">
-                    <h3 className="text-lg font-bold text-gray-900 mb-4">Price Summary</h3>
+                    <h3 className="text-lg font-bold text-gray-900 mb-4">Course Price Summary</h3>
                     <div className="space-y-3">
                       <div className="flex justify-between">
                         <span className="text-gray-600">Course Fee:</span>
@@ -356,13 +481,13 @@ export default function ApplicationPage() {
                         </div>
                       )}
                       <div className="border-t pt-3 flex justify-between text-lg font-bold text-[#173104]">
-                        <span>Total:</span>
+                        <span>Course Total:</span>
                         <span>€{finalPrice.toFixed(2)}</span>
                       </div>
                       <p className="text-sm text-gray-500 mt-2">
                         Includes all materials, certification fees, and career support
                       </p>
-                      <p className="text-sm text-[#173104] font-semibold">Payment plans available</p>
+                      <p className="text-sm text-[#173104] font-semibold">Payment plans available after admission</p>
                     </div>
                   </CardContent>
                 </Card>
@@ -378,13 +503,22 @@ export default function ApplicationPage() {
                         <span className="text-xs font-bold text-[#173104]">1</span>
                       </div>
                       <div>
+                        <p className="font-semibold text-gray-900">Pay Application Fee</p>
+                        <p className="text-sm text-gray-600">Secure €50 payment to process your application</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <div className="w-6 h-6 bg-[#b9ee44] rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <span className="text-xs font-bold text-[#173104]">2</span>
+                      </div>
+                      <div>
                         <p className="font-semibold text-gray-900">Application Review</p>
                         <p className="text-sm text-gray-600">We'll review your application within 24 hours</p>
                       </div>
                     </div>
                     <div className="flex items-start space-x-3">
                       <div className="w-6 h-6 bg-[#b9ee44] rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                        <span className="text-xs font-bold text-[#173104]">2</span>
+                        <span className="text-xs font-bold text-[#173104]">3</span>
                       </div>
                       <div>
                         <p className="font-semibold text-gray-900">Skills Assessment</p>
@@ -393,7 +527,7 @@ export default function ApplicationPage() {
                     </div>
                     <div className="flex items-start space-x-3">
                       <div className="w-6 h-6 bg-[#b9ee44] rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                        <span className="text-xs font-bold text-[#173104]">3</span>
+                        <span className="text-xs font-bold text-[#173104]">4</span>
                       </div>
                       <div>
                         <p className="font-semibold text-gray-900">Admission Decision</p>
@@ -418,7 +552,7 @@ export default function ApplicationPage() {
                     </div>
                     <div className="flex items-center space-x-2">
                       <Mail className="w-4 h-4 text-[#173104]" />
-                      <span>admissions@gitb.eu</span>
+                      <span>admissions@gitb.lt</span>
                     </div>
                   </div>
                 </CardContent>
@@ -492,7 +626,7 @@ export default function ApplicationPage() {
                   alt="GITB Logo"
                   width={120}
                   height={40}
-                  className="h-10 w-auto mb-6 cursor-pointer"
+                  className="h-10 w-auto mb-6 cursor-pointer brightness-0 invert"
                 />
               </Link>
               <p className="text-green-100 mb-6 leading-relaxed">
@@ -537,8 +671,8 @@ export default function ApplicationPage() {
               <h4 className="font-bold text-lg mb-6">Contact</h4>
               <div className="space-y-3 text-green-100">
                 <p>+370 600 12345</p>
-                <p>info@gitb.eu</p>
-                <p>Vilnius, Lithuania</p>
+                <p>admissions@gitb.lt</p>
+                <p>Eduardo, E. Andrė g. 14-5, 02231 Vilnius, Lithuania</p>
               </div>
             </div>
           </div>
